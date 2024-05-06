@@ -12,3 +12,18 @@ package iut.info1.codagehuffman;
  *
  * @author info1 Le Beuze, Poupin, M'tima lesniak, Vigue
  */
+
+<hr>
+
+autre proposition :
+
+/**
+ * nom.java         {la date du jour de création}
+ * iut de Rodez, pas de copyright
+ */
+package compressionFichierHuffman.arbreHuffman;
+
+/**
+ * TODO Définir à quoi sert la class
+ * @author TD 2 Groupe 4
+ */
