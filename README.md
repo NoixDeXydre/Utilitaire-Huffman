@@ -6,6 +6,6 @@ Si vous utilisez un IDE comme Netbeans ou VSCode, veuillez bien ajouter vos fich
 
 # Paquetages
 
-La racine du projet est iut.info1.codageHuffman<br>
-Les fichiers sources se trouvent dans iut.info1.codageHuffman.src<br>
-Quant aux tests, ils sont dans iut.info1.codageHuffman.test<br>
+La racine du projet est utilitairehuffman<br>
+Les fichiers sources se trouvent dans utilitairehuffman.src<br>
+Quant aux tests, ils sont dans utilitairehuffman.test<br>
