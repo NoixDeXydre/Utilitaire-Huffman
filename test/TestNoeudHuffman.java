@@ -22,9 +22,12 @@ public class TestNoeudHuffman {
 	@Test
 	public void testNoeudHuffman() {
 		
-		// TODO compléter le jeu de test
+		// TODO compléter le coverage
 		assertThrows(IllegalArgumentException.class,
 				    () -> new NoeudHuffman('a', -18.0, 100.0));
+		
+		assertThrows(IllegalArgumentException.class,
+					() -> new NoeudHuffman('a', 0, -1));
 	}
 	
 	@Test
