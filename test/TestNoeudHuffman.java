@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class TestNoeudHuffman {
+public class TestNoeudHuffman {
 
 	@Test
-	void testNoeudHuffman() {
+	public void testNoeudHuffman() {
 		assertEquals(new NoeudHuffman('a', 18.0, 100.0).getLettre(), 'a');
 		assertEquals(new NoeudHuffman('a', 18.0, 100.0).getFreq(), 0.18);
 		assertThrows(IllegalArgumentException.class,()-> 
@@ -16,12 +16,12 @@ class TestNoeudHuffman {
 	}
 
 	@Test
-	void testGetLettre() {
+	public void testGetLettre() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testGetFreq() {
+	public void testGetFreq() {
 		fail("Not yet implemented");
 	}
 
