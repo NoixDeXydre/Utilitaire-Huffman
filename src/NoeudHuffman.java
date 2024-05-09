@@ -47,10 +47,10 @@ public class NoeudHuffman {
      * 
      * @param caractereDonnee le caractère donnée à associer au noeud
      * @param nombreApparitionCaractère le nombre d'apparition du
-     *        cacractère dans le texte
+     *        caractère dans le texte
      * @param caracteresTotaux le nombre total du caractère du texte
      * 
-     * @throws IllegalArgumetException si l'une des deux fréquences
+     * @throws IllegalArgumentException si l'une des deux fréquences
      *         est négative ou si le nombre total de caractère est
      *         égal à 0
      */
