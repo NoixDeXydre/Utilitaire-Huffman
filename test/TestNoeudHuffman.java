@@ -27,7 +27,7 @@ public class TestNoeudHuffman {
 				    () -> new NoeudHuffman('a', -18.0, 100.0));
 		
 		assertThrows(IllegalArgumentException.class,
-					() -> new NoeudHuffman('a', 0, -1));
+					() -> new NoeudHuffman(0, -1));
 	}
 	
 	@Test
@@ -49,6 +49,7 @@ public class TestNoeudHuffman {
 		
 		// TODO compléter le jeu de test
 		assertEquals(new NoeudHuffman('a', 18.0, 100.0).getFreq(), 0.18);
+		assertEquals(new NoeudHuffman(2.5, 70.0).getFreq(), 2.5 / 70.0);
 	}
 	
 	@Test
@@ -56,6 +57,7 @@ public class TestNoeudHuffman {
 		
 		// TODO compléter le jeu de test
 		assertEquals(new NoeudHuffman('a', 18.0, 100.0).getLettre(), 'a');
+		assertEquals(new NoeudHuffman(2.0, 70.0).getLettre(), ' ');
 	}
 	
 	@Test
@@ -70,12 +72,18 @@ public class TestNoeudHuffman {
 		
 		// TODO À compléter dans le futur
 		
+		// Variable regénérative pour des tests complexes
+		NoeudHuffman Test;
+		NoeudHuffman Test2;
+		
 		// Cas où le noeud peut-être inséré
 		assertDoesNotThrow(() -> new NoeudHuffman('a', 1, 1)
 						   	     .setNoeudParent(new NoeudHuffman(1, 1)));
 		
-		assertDoesNotThrow(() -> new NoeudHuffman('a', 1, 1)
-		   	     				 .setNoeudParent(new NoeudHuffman(' ', 1, 1)));
+		Test = new NoeudHuffman(1, 1);
+		Test.setNoeudParent(new NoeudHuffman(1, 1));
+		assertDoesNotThrow(() -> new NoeudHuffman(' ', 1, 1)
+  	     	     			     .setNoeudParent(Test));
 		
 		// Cas où le noeud ne peut pas être inséré (feuille)
 		assertThrows(IllegalArgumentException.class,
@@ -83,8 +91,8 @@ public class TestNoeudHuffman {
 		   	     	     .setNoeudParent(new NoeudHuffman('q', 1, 1)));
 		
 		// Cas où le noeud ne peut pas être inséré (parent déjà existant)
-		NoeudHuffman Test = new NoeudHuffman('a', 1, 1);
-		Test.setNoeudParent(new NoeudHuffman(1, 1));
+		Test2 = new NoeudHuffman('a', 1, 1);
+		Test2.setNoeudParent(new NoeudHuffman(1, 1));
 		assertThrows(IllegalArgumentException.class, 
 					() -> Test.setNoeudParent(new NoeudHuffman(1, 1)));
 		
