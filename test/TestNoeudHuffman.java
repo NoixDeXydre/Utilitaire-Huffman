@@ -24,7 +24,7 @@ public class TestNoeudHuffman {
 		
 		// TODO compléter le coverage
 		assertThrows(IllegalArgumentException.class,
-				    () -> new NoeudHuffman('a', -18.0, 100.0));
+				    () -> new NoeudHuffman('a', -18, 100));
 		
 		assertThrows(IllegalArgumentException.class,
 					() -> new NoeudHuffman(0, -1));
@@ -48,16 +48,16 @@ public class TestNoeudHuffman {
 	public void testGetFreq() {
 		
 		// TODO compléter le jeu de test
-		assertEquals(new NoeudHuffman('a', 18.0, 100.0).getFreq(), 0.18);
-		assertEquals(new NoeudHuffman(2.5, 70.0).getFreq(), 2.5 / 70.0);
+		assertEquals(new NoeudHuffman('a', 18, 100).getFreq(), 0.18);
+		assertEquals(new NoeudHuffman(2, 70).getFreq(), (double) 2 / 70.0);
 	}
 	
 	@Test
 	public void testGetLettre() {
 		
 		// TODO compléter le jeu de test
-		assertEquals(new NoeudHuffman('a', 18.0, 100.0).getLettre(), 'a');
-		assertEquals(new NoeudHuffman(2.0, 70.0).getLettre(), ' ');
+		assertEquals(new NoeudHuffman('a', 18, 100).getLettre(), 'a');
+		assertEquals(new NoeudHuffman(2, 70).getLettre(), ' ');
 	}
 	
 	@Test

@@ -54,8 +54,8 @@ public class NoeudHuffman {
      *         est négative ou si le nombre total de caractère est
      *         égal à 0
      */
-    public NoeudHuffman(char caractere, double nombreOccurenceCaractere,
-    		            double caracteresTotaux) {
+    public NoeudHuffman(char caractere, int nombreOccurenceCaractere,
+    		            				int caracteresTotaux) {
     	
     	if (nombreOccurenceCaractere < 0 || caracteresTotaux <= 0) {
     		throw new IllegalArgumentException(ERREUR_FREQ_NEGATIF);
@@ -63,7 +63,7 @@ public class NoeudHuffman {
     	
     	// on calcule la fréquence d'apparition de la lettre
         lettre = caractere;
-        freq = nombreOccurenceCaractere / caracteresTotaux;
+        freq = (double) nombreOccurenceCaractere / caracteresTotaux;
     }
     
     /**
@@ -71,7 +71,7 @@ public class NoeudHuffman {
      * @param nombreOccurenceCaractere
      * @param caracteresTotaux
      */
-    public NoeudHuffman(double nombreOccurenceCaractere, double caracteresTotaux) {
+    public NoeudHuffman(int nombreOccurenceCaractere, int caracteresTotaux) {
     	this(' ', nombreOccurenceCaractere, caracteresTotaux);
     }
     
