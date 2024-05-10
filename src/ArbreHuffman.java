@@ -45,7 +45,6 @@ public class ArbreHuffman {
     public ArbreHuffman(String cheminFichier) throws IOException {
     	
     	File fichierTexte = new File(cheminFichier);
-    	Scanner curseurTexte = new Scanner(fichierTexte);
     	
     	// ======== Construction progressive de l'arbre ========
     	
@@ -53,8 +52,6 @@ public class ArbreHuffman {
     	 * à partir d'un dictionnaire.
     	 */
     	dictionnaireLettresFrequences = getDictLettreFrequence(fichierTexte);
-    	
-    	curseurTexte.close();
     }
     
     /**
