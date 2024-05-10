@@ -22,7 +22,6 @@ public class TestNoeudHuffman {
 	@Test
 	public void testNoeudHuffman() {
 		
-		// TODO compléter le coverage
 		assertThrows(IllegalArgumentException.class,
 				    () -> new NoeudHuffman('a', -18, 100));
 		
@@ -47,7 +46,6 @@ public class TestNoeudHuffman {
 	@Test
 	public void testGetFreq() {
 		
-		// TODO compléter le jeu de test
 		assertEquals(new NoeudHuffman('a', 18, 100).getFreq(), 0.18);
 		assertEquals(new NoeudHuffman(2, 70).getFreq(), (double) 2 / 70.0);
 	}
@@ -55,7 +53,6 @@ public class TestNoeudHuffman {
 	@Test
 	public void testGetLettre() {
 		
-		// TODO compléter le jeu de test
 		assertEquals(new NoeudHuffman('a', 18, 100).getLettre(), 'a');
 		assertEquals(new NoeudHuffman(2, 70).getLettre(), ' ');
 	}
@@ -63,8 +60,12 @@ public class TestNoeudHuffman {
 	@Test
 	public void testGetNoeudParent() {
 		
-		// TODO À voir comment tester ce truc
-		fail("Not yet implemented");
+		NoeudHuffman test = new NoeudHuffman(1, 1);
+		NoeudHuffman test2 = new NoeudHuffman(1, 1);
+		test.setNoeudParent(test2);
+		
+		assertEquals(test.getNoeudParent(), test2);
+		assertEquals(test2.getNoeudParent(), null);
 	}
 	
 	@Test
@@ -73,17 +74,17 @@ public class TestNoeudHuffman {
 		// TODO À compléter dans le futur
 		
 		// Variable regénérative pour des tests complexes
-		NoeudHuffman Test;
-		NoeudHuffman Test2;
+		NoeudHuffman test;
+		NoeudHuffman test2;
 		
 		// Cas où le noeud peut-être inséré
 		assertDoesNotThrow(() -> new NoeudHuffman('a', 1, 1)
 						   	     .setNoeudParent(new NoeudHuffman(1, 1)));
 		
-		Test = new NoeudHuffman(1, 1);
-		Test.setNoeudParent(new NoeudHuffman(1, 1));
+		test = new NoeudHuffman(1, 1);
+		test.setNoeudParent(new NoeudHuffman(1, 1));
 		assertDoesNotThrow(() -> new NoeudHuffman(' ', 1, 1)
-  	     	     			     .setNoeudParent(Test));
+  	     	     			     .setNoeudParent(test));
 		
 		// Cas où le noeud ne peut pas être inséré (feuille)
 		assertThrows(IllegalArgumentException.class,
@@ -91,10 +92,10 @@ public class TestNoeudHuffman {
 		   	     	     .setNoeudParent(new NoeudHuffman('q', 1, 1)));
 		
 		// Cas où le noeud ne peut pas être inséré (parent déjà existant)
-		Test2 = new NoeudHuffman('a', 1, 1);
-		Test2.setNoeudParent(new NoeudHuffman(1, 1));
+		test2 = new NoeudHuffman('a', 1, 1);
+		test2.setNoeudParent(new NoeudHuffman(1, 1));
 		assertThrows(IllegalArgumentException.class, 
-					() -> Test.setNoeudParent(new NoeudHuffman(1, 1)));
+					() -> test.setNoeudParent(new NoeudHuffman(1, 1)));
 		
 		// TODO cas où insertion impossible (règle binaire)
 	}
