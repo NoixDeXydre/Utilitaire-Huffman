@@ -24,15 +24,23 @@ public class NoeudHuffman {
 	= "Il existe déjà un parent au noeud associé";
 	final private static String ERREUR_NOEUD_PARENT_EST_FEUILLE 
 	= "Le parent est une feuille et ne peut donc pas recevoir d'enfants";
+	final private static String ERREUR_NOEUD_PARENT_LIMITE_ENFANTS
+	= "Le parent possède un nombre d'enfants trop élevé";
 	
-	/** Lettre contenue dans le noeud */
-    final private char lettre;
+	/** Le nombre maximum d'enfants qu'un noeud peut avoir */
+	final private static int NOMBRE_MAX_ENFANTS = 2;
     
     /** Fréquence du noeud */
     final private double freq;
     
+    /** Lettre contenue dans le noeud */
+    final private char lettre;
+    
     /** Noeud parent associé */
     private NoeudHuffman noeudParent;
+    
+    /** Le nombre d'enfants que possède le noeud */
+    private int nbrEnfants = 0;
     
     /*
      *  FIXME Il y a peut être un moyen de le calculer avec
@@ -99,6 +107,13 @@ public class NoeudHuffman {
     }
     
     /**
+     * @return le nombre d'enfants attachés au noeud
+     */
+    public int getNombreEnfants() {
+    	return nbrEnfants;
+    }
+    
+    /**
      * @return son noeud parent
      */
     public NoeudHuffman getNoeudParent() {
@@ -106,22 +121,38 @@ public class NoeudHuffman {
     }
     
     /**
-     * Insère dans le noeud parent le noeud actuel
+     * Insère dans le noeud actuel son parent.
+     * Attention, le parent voit alors son instance modifiée !
      * 
      * @param noeudParent
      * @throws IllegalArgumentException si :
      *    <p>- le noeud possède déjà un parent</p>
      *    <p>- le parent est une feuille</p>
+     *    <p>- le parent a trop d'enfants</p>
+     *    
+     *    @see NOMBRE_MAX_ENFANTS
      */
     public void setNoeudParent(NoeudHuffman noeudParent) {
-    	
-    	// TODO exception s'il y a plus de deux noeuds attachés au parent
+
     	if (this.noeudParent != null) {
     		throw new IllegalArgumentException(ERREUR_NOEUD_PARENT_NON_NULL);
+    		
     	} else if (noeudParent.estFeuille()) {
     		throw new IllegalArgumentException(ERREUR_NOEUD_PARENT_EST_FEUILLE);
-    	} 
+    		
+    	} else if (noeudParent.getNombreEnfants() == NOMBRE_MAX_ENFANTS) {
+    		throw new IllegalArgumentException
+    				 (ERREUR_NOEUD_PARENT_LIMITE_ENFANTS);
+    	}
     	
     	this.noeudParent = noeudParent;
+    	noeudParent.setIncrementNombreEnfants();
+    }
+    
+    /**
+     * Augmente de 1 le nombre d'enfants qu'a le noeud.
+     */
+    private void setIncrementNombreEnfants() {
+    	nbrEnfants++;
     }
 }

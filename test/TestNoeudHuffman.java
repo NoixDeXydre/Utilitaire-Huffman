@@ -45,16 +45,31 @@ public class TestNoeudHuffman {
 
 	@Test
 	public void testGetFreq() {
-		
 		assertEquals(new NoeudHuffman('a', 18, 100).getFreq(), 0.18);
 		assertEquals(new NoeudHuffman(2, 70).getFreq(), (double) 2 / 70.0);
 	}
 	
 	@Test
 	public void testGetLettre() {
-		
 		assertEquals(new NoeudHuffman('a', 18, 100).getLettre(), 'a');
 		assertEquals(new NoeudHuffman(2, 70).getLettre(), ' ');
+	}
+	
+	@Test
+	public void testGetNombreEnfants() {
+		
+		// Devrait en même temps tester setIncrementNombreEnfants()
+		NoeudHuffman test = new NoeudHuffman(1, 1);
+		NoeudHuffman test2 = new NoeudHuffman(1, 1);
+		NoeudHuffman test3 = new NoeudHuffman(1, 1);
+		
+		assertEquals(test.getNombreEnfants(), 0);
+		
+		test2.setNoeudParent(test);
+		assertEquals(test.getNombreEnfants(), 1);
+		
+		test3.setNoeudParent(test);
+		assertEquals(test.getNombreEnfants(), 2);
 	}
 	
 	@Test
@@ -71,11 +86,13 @@ public class TestNoeudHuffman {
 	@Test
 	public void testSetNoeudParent() {
 		
-		// TODO À compléter dans le futur
+		// TODO améliorer ces tests parce qu'ils sont moches
 		
 		// Variable regénérative pour des tests complexes
-		NoeudHuffman test;
+		final NoeudHuffman test;
 		NoeudHuffman test2;
+		NoeudHuffman test3;
+		NoeudHuffman test4;
 		
 		// Cas où le noeud peut-être inséré
 		assertDoesNotThrow(() -> new NoeudHuffman('a', 1, 1)
@@ -97,6 +114,16 @@ public class TestNoeudHuffman {
 		assertThrows(IllegalArgumentException.class, 
 					() -> test.setNoeudParent(new NoeudHuffman(1, 1)));
 		
-		// TODO cas où insertion impossible (règle binaire)
+		// Cas où il y a trop d'enfants
+		test4 = new NoeudHuffman(1, 1);
+		test2 = new NoeudHuffman(1, 1);
+		test3 = new NoeudHuffman(1, 1);
+		
+		test4.setNoeudParent(test3);
+		test2.setNoeudParent(test3);
+		
+		assertThrows(IllegalArgumentException.class, 
+		() -> new NoeudHuffman(1, 1).setNoeudParent(test3));
+		
 	}
 }
