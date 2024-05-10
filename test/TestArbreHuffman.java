@@ -5,7 +5,9 @@
 
 package utilitairehuffman.test;
 
-import utilitairehuffman.src.ArbreHuffman;
+//import utilitairehuffman.src.ArbreHuffman;
+
+//import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,13 +19,29 @@ import org.junit.jupiter.api.Test;
  * TODO changer les auteurs
  * @author TD 2 Groupe 4
  */
-class TestArbreHuffman {
+public class TestArbreHuffman {
 	
 	// TODO faire le jeu de test manuel
 	
+	/* 
+	 * FIXME puisque certaines méthodes sont private,
+	 * il faut les tester indirectement
+	 */
+	
+	final String[] cheminsFichiers = {
+		"cajouj.txt",
+		"java.txt",
+		"mystere.txt",
+		"oeufman.txt"
+	};
+	
 	@Test
-	void testArbreHuffman() {
+	public void testArbreHuffman() {
 		fail("Not yet implemented");
 	}
-
+	
+	@Test
+	public void testGetDictLettreFrequence() {
+		fail("Not yet implemented");
+	}
 }
