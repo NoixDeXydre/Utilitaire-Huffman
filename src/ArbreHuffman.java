@@ -29,6 +29,11 @@ public class ArbreHuffman {
 	
 	// FIXME Java gère par défaut du UTF-16, et pas du UTF-8
 	
+	/** 
+	 * Dictionnaire ayant pour clé un caractère, et pour valeur sa fréquence.
+	 * Les valeurs sont triés dans l'ordre croissant 
+	 * pour bien faire fonctionner l'algorithme 
+	 */
 	private HashMap<Character, Double> dictionnaireLettresFrequences;
 	
     /**
@@ -65,6 +70,13 @@ public class ArbreHuffman {
      * 
      * Avant d'être retourné, le dictionnaire est trié par ordre croissant.
      * 
+     * On peut calculer la fréquence d'un caractère 
+     * à l'aide de la méthode itérative suivante :
+     * 
+     * <p> u0 = 0;</p>
+     * <p> un + 1 = un + 1 / nbrCaractereTotal;</p>
+     * Où nbrCaractereTotal est le nombre de caractère total dans un texte.
+     * 
      * @param curseurTexte
      * @return le dictionnaire des lettres et des fréquences
      * @throws IOException 
@@ -81,8 +93,9 @@ public class ArbreHuffman {
     	while (curseurTexte.hasNext()) {
     		
     		lettreAnalyse = curseurTexte.next().charAt(0);
-    		
     		lettreFrequence.putIfAbsent(lettreAnalyse, .0);
+    		
+    		// Calcul de la fréquence
     		lettreFrequence.replace(lettreAnalyse, 
     					   (double) lettreFrequence.get(lettreAnalyse) 
     							    + 1 / nombreCaracteresTexte);
