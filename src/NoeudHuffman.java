@@ -2,10 +2,10 @@
  * NoeudHuffman.java         07/05/2024
  * IUT de Rodez, pas de copyright.
  */
+
 package utilitairehuffman.src;
 
 // TODO mettre à jour le diagramme des classes quand c'est fini :3
-// TODO éviter de casser la limite DOS
 
 /**
  * Composant servant à créer des noeuds de Huffman.
@@ -17,13 +17,13 @@ package utilitairehuffman.src;
  */
 public class NoeudHuffman {
 	
-	final private static String ERREUR_FREQ_NEGATIF = "Il y a une valeur négative "
-													+ "dans les valeurs données";
+	final private static String ERREUR_FREQ_NEGATIF 
+	= "Il y a une valeur négative dans les valeurs données";
 	
-	final private static String ERREUR_NOEUD_PARENT_NON_NULL = "Il existe déjà un"
-															 + "parent au noeud associé";
-	final private static String ERREUR_NOEUD_PARENT_EST_FEUILLE = "Le parent est une feuille "
-																+ "et ne peut donc pas recevoir d'enfants";
+	final private static String ERREUR_NOEUD_PARENT_NON_NULL 
+	= "Il existe déjà un parent au noeud associé";
+	final private static String ERREUR_NOEUD_PARENT_EST_FEUILLE 
+	= "Le parent est une feuille et ne peut donc pas recevoir d'enfants";
 	
 	/** Lettre contenue dans le noeud */
     final private char lettre;
