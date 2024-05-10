@@ -6,10 +6,9 @@
 package utilitairehuffman.test;
 
 import utilitairehuffman.src.NoeudHuffman;
+
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
-
 
 /**
  * Test de la classe NoeudHuffman.
