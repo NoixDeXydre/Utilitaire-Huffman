@@ -2,7 +2,7 @@
  * UtilitaireHuffman.java                                     06 mai 2024
  * IUT de Rodez, info1 2023-2024 groupe TP3 aucun droit d'auteur ni copyright
  */
-package utilitairehuffman;
+package iut.info1.codagehuffman.src;
 
 // TODO import ???
 

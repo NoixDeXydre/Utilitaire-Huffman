@@ -1,6 +1,6 @@
-package utilitairehuffman.test;
+package iut.info1.codagehuffman.test;
 
-import utilitairehuffman.src.NoeudHuffman;
+import iut.info1.codagehuffman.src.NoeudHuffman;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;

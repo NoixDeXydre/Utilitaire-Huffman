@@ -2,7 +2,7 @@
  * ArbreHuffman.java         06/05/2024
  * iut de Rodez, pas de copyright
  */
-package utilitairehuffman.src;
+package iut.info1.codagehuffman.src;
 
 /**
  * Création d'un arbre de huffman à partir d'un texte donné
