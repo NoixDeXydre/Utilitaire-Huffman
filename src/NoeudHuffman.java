@@ -11,16 +11,14 @@ package iut.info1.codagehuffman.src;
  * Composant servant à créer des noeuds de Huffman.
  * Similaire à un noeud classique, à la seule différence 
  * que ces noeuds peuvent uniquement remonter à son noeud parent.
- * 
- * TODO changer les auteurs
- * @author TD 2 Groupe 4
+ * @author TD 2 Groupe 4 : Adrien Vigué, Noa M'Tima Lesniak
  */
 public class NoeudHuffman {
 	
 	final private static String ERREUR_FREQ_NEGATIF 
 	= "Il y a une valeur négative dans les valeurs données";
 	
-	final private static String ERREUR_NOEUD_PARENT_NON_NULL 
+	final private static String ERREUR_NOEUD_PARENT_DEJA_DEFINI 
 	= "Il existe déjà un parent au noeud associé";
 	final private static String ERREUR_NOEUD_PARENT_EST_FEUILLE 
 	= "Le parent est une feuille et ne peut donc pas recevoir d'enfants";
@@ -28,7 +26,7 @@ public class NoeudHuffman {
 	= "Le parent possède un nombre d'enfants trop élevé";
 	
 	/** Le nombre maximum d'enfants qu'un noeud peut avoir */
-	final private static int NOMBRE_MAX_ENFANTS = 2;
+	final public static int NOMBRE_MAX_ENFANTS = 2;
     
     /** Fréquence du noeud */
     final private double freq;
@@ -84,6 +82,37 @@ public class NoeudHuffman {
     }
     
     /**
+     * Insère dans le noeud actuel son parent.
+     * Attention, le parent voit alors son instance modifiée !
+     * 
+     * @param noeudParent
+     * @throws IllegalArgumentException si :
+     *    <li>- le noeud possède déjà un parent</li>
+     *    <li>- le parent est une feuille</li>
+     *    <li>- le parent a trop d'enfants</li>
+     *    
+     *    @see NOMBRE_MAX_ENFANTS
+     */
+    public void setNoeudParent(NoeudHuffman noeudParent) {
+
+    	if (this.noeudParent != null) {
+    		throw new IllegalArgumentException (
+    				  ERREUR_NOEUD_PARENT_DEJA_DEFINI);
+    		
+    	} else if (noeudParent.estFeuille()) {
+    		throw new IllegalArgumentException (
+    				  ERREUR_NOEUD_PARENT_EST_FEUILLE);
+    		
+    	} else if (noeudParent.getNombreEnfants() >= NOMBRE_MAX_ENFANTS) {
+    		throw new IllegalArgumentException
+    				 (ERREUR_NOEUD_PARENT_LIMITE_ENFANTS);
+    	}
+    	
+    	this.noeudParent = noeudParent;
+    	noeudParent.setIncrementNombreEnfants();
+    }
+    
+    /**
      * Informe si le noeud est une feuille, en d'autres termes, 
      * s'il ne possède pas de lettre.
      * @return true s'il s'agit d'une feuille, sinon false.
@@ -118,35 +147,6 @@ public class NoeudHuffman {
      */
     public NoeudHuffman getNoeudParent() {
     	return noeudParent;
-    }
-    
-    /**
-     * Insère dans le noeud actuel son parent.
-     * Attention, le parent voit alors son instance modifiée !
-     * 
-     * @param noeudParent
-     * @throws IllegalArgumentException si :
-     *    <p>- le noeud possède déjà un parent</p>
-     *    <p>- le parent est une feuille</p>
-     *    <p>- le parent a trop d'enfants</p>
-     *    
-     *    @see NOMBRE_MAX_ENFANTS
-     */
-    public void setNoeudParent(NoeudHuffman noeudParent) {
-
-    	if (this.noeudParent != null) {
-    		throw new IllegalArgumentException(ERREUR_NOEUD_PARENT_NON_NULL);
-    		
-    	} else if (noeudParent.estFeuille()) {
-    		throw new IllegalArgumentException(ERREUR_NOEUD_PARENT_EST_FEUILLE);
-    		
-    	} else if (noeudParent.getNombreEnfants() == NOMBRE_MAX_ENFANTS) {
-    		throw new IllegalArgumentException
-    				 (ERREUR_NOEUD_PARENT_LIMITE_ENFANTS);
-    	}
-    	
-    	this.noeudParent = noeudParent;
-    	noeudParent.setIncrementNombreEnfants();
     }
     
     /**
