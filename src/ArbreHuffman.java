@@ -5,11 +5,19 @@
 
 package utilitairehuffman.src;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
-import java.util.HashMap;
-import java.util.Scanner;
+import java.nio.charset.Charset;
+
+// Les LinkedHashMaps ne s'arrangent pas automatiquement !
+import java.util.LinkedHashMap;
+
+import java.util.Map;
 
 //import utilitairehuffman.src.NoeudHuffman;
 
@@ -22,19 +30,23 @@ import java.util.Scanner;
  * 
  * Contrairement à un arbre classique, il se créer à partir de ses feuilles.
  * 
+ * D'après les spécifications du document, 
+ * l'arbre de Huffman ne supporte que la lecture des fichiers UTF-8 !
+ * 
  * TODO changer auteurs
  * @author TD 2 Groupe 4
  */
 public class ArbreHuffman {
 	
-	// FIXME Java gère par défaut du UTF-16, et pas du UTF-8
+	/** Encodage supporté par l'arbre */
+	private final static String ENCODAGE_TEXTE = "UTF-8";
 	
 	/** 
 	 * Dictionnaire ayant pour clé un caractère, et pour valeur sa fréquence.
 	 * Les valeurs sont triés dans l'ordre croissant 
 	 * pour bien faire fonctionner l'algorithme 
 	 */
-	private HashMap<Character, Double> dictionnaireLettresFrequences;
+	private LinkedHashMap<Character, Double> dictionnaireLettresFrequences;
 	
     /**
      * Création d'un arbre de Huffman à partir d'un fichier texte.
@@ -57,8 +69,24 @@ public class ArbreHuffman {
     /**
      * @return le dictionnaire des lettres et des fréquences
      */
-    public HashMap<Character, Double> getDictLettreFrequence() {
+    public LinkedHashMap<Character, Double> getDictLettreFrequence() {
     	return dictionnaireLettresFrequences;
+    }
+    
+    /**
+     * Retourne un liseur pouvant lire un fichier caractère par caractère
+     * dans l'encodage UTF-8.
+     * 
+     * @param fichierTexte
+     * @return le liseur
+     * @throws FileNotFoundException
+     */
+    private static BufferedReader getLiseurChar(File fichierTexte) 
+    			   throws FileNotFoundException {
+    	
+    	return new BufferedReader(new InputStreamReader
+    							 (new FileInputStream(fichierTexte),
+    							      Charset.forName(ENCODAGE_TEXTE)));
     }
     
     /**
@@ -78,24 +106,26 @@ public class ArbreHuffman {
      * @return le dictionnaire des lettres et des fréquences
      * @throws IOException 
      */
-    private static HashMap<Character, Double> 
-    			   getDictLettreFrequence(File cheminTexte) throws IOException {
+    private static LinkedHashMap<Character, Double> 
+    			   getDictLettreFrequence(File fichierTexte) 
+    		throws IOException {
     	
-    	HashMap<Character, Double> lettreFrequence 
-    	= new HashMap<Character, Double>();
+    	LinkedHashMap<Character, Double> lettreFrequence 
+    	= new LinkedHashMap<>();
     	
     	char lettreAnalyse;
-    	Scanner curseurTexte = new Scanner(cheminTexte);
-    	long nombreCaracteresTexte = getLongueurTexte(cheminTexte);
-    	while (curseurTexte.hasNext()) {
+    	int tampon;
+    	long nombreCaracteresTexte = getLongueurTexte(fichierTexte);
+    	BufferedReader curseurTexte = getLiseurChar(fichierTexte);
+    	while ((tampon = curseurTexte.read()) != -1) {
     		
-    		lettreAnalyse = curseurTexte.next().charAt(0);
+    		lettreAnalyse = (char) tampon;
     		lettreFrequence.putIfAbsent(lettreAnalyse, .0);
     		
     		// Calcul de la fréquence
-    		lettreFrequence.replace(lettreAnalyse, 
-    					   (double) lettreFrequence.get(lettreAnalyse) 
-    							    + 1 / nombreCaracteresTexte);
+    		lettreFrequence.put(lettreAnalyse, 
+    				 			lettreFrequence.get(lettreAnalyse) 
+    					        + (double) 1 / nombreCaracteresTexte);
     	}
     	
     	curseurTexte.close();
@@ -109,13 +139,12 @@ public class ArbreHuffman {
      * @return le nombre de caractère au total
      * @throws IOException
      */
-    private static long getLongueurTexte(File cheminTexte) throws IOException {
+    private static long getLongueurTexte(File fichierTexte) throws IOException {
     	
     	long nombreCaracteres = 0l;
-    	Scanner curseurTexte = new Scanner(cheminTexte);
-    	while (curseurTexte.hasNext()) {
-    		
-    		curseurTexte.next().charAt(0);
+    	BufferedReader curseurTexte = getLiseurChar(fichierTexte);
+    	
+    	while (curseurTexte.read() != -1) {
     		nombreCaracteres++;
     	}
     	
@@ -129,15 +158,19 @@ public class ArbreHuffman {
      * @param dictionnaire
      * @return le dictionnaire trié
      */
-    private static HashMap<Character, Double> trierDictionnaire
-                  (HashMap<Character, Double> dictionnaire) {
+    private static LinkedHashMap<Character, Double> trierDictionnaire
+                  (LinkedHashMap<Character, Double> dictionnaire) {
+    	
+    	LinkedHashMap<Character, Double> dictionnaireTrie 
+    	= new LinkedHashMap<>();
     	
     	// Tri des valeurs en utilisant les fonctions lambdas et stream()
-    	dictionnaire.entrySet()
-    	  			.stream()
-    	  			.sorted(HashMap.Entry.comparingByValue());
+    	dictionnaire.entrySet().stream()
+    	  			.sorted(Map.Entry.comparingByValue())
+    	  			.forEach(entry -> dictionnaireTrie.put
+    	  				    (entry.getKey(), entry.getValue()));
     	  
-    	return dictionnaire;
+    	return dictionnaireTrie;
     }
     
     // TODO faire le reste en suivant le diagramme des classes
