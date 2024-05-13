@@ -17,7 +17,8 @@ public class NoeudHuffman {
 	
 	final private static String ERREUR_FREQ_NEGATIF 
 	= "Il y a une valeur négative dans les valeurs données";
-	
+	private static final String ERREUR_FREQ_SUP_A_1
+	= "Il y a plus d'occurence d'une lettre que de lettres totales";
 	final private static String ERREUR_NOEUD_PARENT_DEJA_DEFINI 
 	= "Il existe déjà un parent au noeud associé";
 	final private static String ERREUR_NOEUD_PARENT_EST_FEUILLE 
@@ -56,29 +57,48 @@ public class NoeudHuffman {
      *        caractère dans le texte
      * @param caracteresTotaux le nombre total du caractère du texte
      * 
-     * @throws IllegalArgumentException si l'une des deux fréquences
-     *         est négative ou si le nombre total de caractère est
-     *         égal à 0
+     * @throws IllegalArgumentException si :
+     *         <li> l'une des deux fréquences est négative ou si le
+     *         nombre total de caractère est égal à 0 </li>
+     *         <li> le nombre d'occurence du caractère est supérieur
+     *         au nombre total de caractère </li>
+     *         
      */
     public NoeudHuffman(char caractere, int nombreOccurenceCaractere,
     		            				int caracteresTotaux) {
     	
     	if (nombreOccurenceCaractere < 0 || caracteresTotaux <= 0) {
     		throw new IllegalArgumentException(ERREUR_FREQ_NEGATIF);
+    	} else if (nombreOccurenceCaractere > caracteresTotaux) {
+    		throw new IllegalArgumentException(ERREUR_FREQ_SUP_A_1);
     	}
     	
-    	// on calcule la fréquence d'apparition de la lettre
+    	// on calcule la fréquence d'apparition de la lettre 
         lettre = caractere;
         freq = (double) nombreOccurenceCaractere / caracteresTotaux;
     }
     
     /**
-     * Créer un noeud de Huffman sans lettre associée.
+     * Créer un noeud de Huffman sans lettre associée et détermine
+     * la fréquence d'apparition associée en fonction du premier
+     * nombre donné et du nombre de lettres total du texte.
      * @param nombreOccurenceCaractere
      * @param caracteresTotaux
+     * @throws IllegalArgumentException si :
+     *         <li> l'une des deux fréquences est négative ou si le
+     *         nombre total de caractère est égal à 0 </li>
+     *         <li> le nombre d'occurence du caractère est supérieur
+     *         au nombre total de caractère </li>
      */
     public NoeudHuffman(int nombreOccurenceCaractere, int caracteresTotaux) {
-    	this(' ', nombreOccurenceCaractere, caracteresTotaux);
+    	if (nombreOccurenceCaractere < 0 || caracteresTotaux <= 0) {
+    		throw new IllegalArgumentException(ERREUR_FREQ_NEGATIF);
+    	} else if (nombreOccurenceCaractere > caracteresTotaux) {
+    		throw new IllegalArgumentException(ERREUR_FREQ_SUP_A_1);
+    	}
+    	
+    	lettre = ' ';
+    	freq = (double) nombreOccurenceCaractere/caracteresTotaux;
     }
     
     /**

@@ -26,7 +26,7 @@ public class TestNoeudHuffman {
 		assertThrows(IllegalArgumentException.class,
 				() -> new NoeudHuffman('Q', 0, 0));
 		assertThrows(IllegalArgumentException.class,
-				() -> new NoeudHuffman('<', 5, 0));
+				() -> new NoeudHuffman('<', 5, 4));
 	}
 	
 	@Test
@@ -34,13 +34,12 @@ public class TestNoeudHuffman {
 		
 		assertThrows(IllegalArgumentException.class,
 				    () -> new NoeudHuffman(-18, 100));
-		
 		assertThrows(IllegalArgumentException.class,
 					() -> new NoeudHuffman(0, -1));
 		assertThrows(IllegalArgumentException.class,
 				() -> new NoeudHuffman(0, 0));
 		assertThrows(IllegalArgumentException.class,
-				() -> new NoeudHuffman(5, 0));
+				() -> new NoeudHuffman(5, 2));
 	}
 	
 	@Test
@@ -65,8 +64,8 @@ public class TestNoeudHuffman {
 		
 		// Cas où le noeud ne peut pas être inséré (feuille)
 		assertThrows(IllegalArgumentException.class,
-				   () -> new NoeudHuffman(' ', 1, 1)
-		   	     	     .setNoeudParent(new NoeudHuffman('q', 1, 1)));
+				     () -> new NoeudHuffman(' ', 1, 1)
+		   	     	       .setNoeudParent(new NoeudHuffman('q', 1, 1)));
 		
 		// Cas où le noeud ne peut pas être inséré (parent déjà existant)
 		noeudDeTest2 = new NoeudHuffman('a', 1, 1);
@@ -109,7 +108,6 @@ public class TestNoeudHuffman {
 		assertEquals(new NoeudHuffman('a', 18, 100).getFreq(), 0.18);
 		assertEquals(new NoeudHuffman(2, 70).getFreq(), (double) 2 / 70.0);
 		assertEquals(new NoeudHuffman(0, 85).getFreq(), 0.0);
-		assertEquals(new NoeudHuffman(7, 3).getFreq(), 7.0/3.0);
 	}
 	
 	@Test
