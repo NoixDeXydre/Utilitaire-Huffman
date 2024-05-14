@@ -11,16 +11,15 @@ package iut.info1.codagehuffman.src;
  * Composant servant à créer des noeuds de Huffman.
  * Similaire à un noeud classique, à la seule différence 
  * que ces noeuds peuvent uniquement remonter à son noeud parent.
- * 
- * TODO changer les auteurs
- * @author TD 2 Groupe 4
+ * @author TD 2 Groupe 4 : Adrien Vigué, Noa M'Tima Lesniak
  */
 public class NoeudHuffman {
 	
 	final private static String ERREUR_FREQ_NEGATIF 
 	= "Il y a une valeur négative dans les valeurs données";
-	
-	final private static String ERREUR_NOEUD_PARENT_NON_NULL 
+	private static final String ERREUR_FREQ_SUP_A_1
+	= "Il y a plus d'occurence d'une lettre que de lettres totales";
+	final private static String ERREUR_NOEUD_PARENT_DEJA_DEFINI 
 	= "Il existe déjà un parent au noeud associé";
 	final private static String ERREUR_NOEUD_PARENT_EST_FEUILLE 
 	= "Le parent est une feuille et ne peut donc pas recevoir d'enfants";
@@ -28,7 +27,7 @@ public class NoeudHuffman {
 	= "Le parent possède un nombre d'enfants trop élevé";
 	
 	/** Le nombre maximum d'enfants qu'un noeud peut avoir */
-	final private static int NOMBRE_MAX_ENFANTS = 2;
+	final public static int NOMBRE_MAX_ENFANTS = 2;
     
     /** Fréquence du noeud */
     final private double freq;
@@ -58,29 +57,79 @@ public class NoeudHuffman {
      *        caractère dans le texte
      * @param caracteresTotaux le nombre total du caractère du texte
      * 
-     * @throws IllegalArgumentException si l'une des deux fréquences
-     *         est négative ou si le nombre total de caractère est
-     *         égal à 0
+     * @throws IllegalArgumentException si :
+     *         <li> l'une des deux fréquences est négative ou si le
+     *         nombre total de caractère est égal à 0 </li>
+     *         <li> le nombre d'occurence du caractère est supérieur
+     *         au nombre total de caractère </li>
+     *         
      */
     public NoeudHuffman(char caractere, int nombreOccurenceCaractere,
     		            				int caracteresTotaux) {
     	
     	if (nombreOccurenceCaractere < 0 || caracteresTotaux <= 0) {
     		throw new IllegalArgumentException(ERREUR_FREQ_NEGATIF);
+    	} else if (nombreOccurenceCaractere > caracteresTotaux) {
+    		throw new IllegalArgumentException(ERREUR_FREQ_SUP_A_1);
     	}
     	
-    	// on calcule la fréquence d'apparition de la lettre
+    	// on calcule la fréquence d'apparition de la lettre 
         lettre = caractere;
         freq = (double) nombreOccurenceCaractere / caracteresTotaux;
     }
     
     /**
-     * Créer un noeud de Huffman sans lettre associée.
+     * Créer un noeud de Huffman sans lettre associée et détermine
+     * la fréquence d'apparition associée en fonction du premier
+     * nombre donné et du nombre de lettres total du texte.
      * @param nombreOccurenceCaractere
      * @param caracteresTotaux
+     * @throws IllegalArgumentException si :
+     *         <li> l'une des deux fréquences est négative ou si le
+     *         nombre total de caractère est égal à 0 </li>
+     *         <li> le nombre d'occurence du caractère est supérieur
+     *         au nombre total de caractère </li>
      */
     public NoeudHuffman(int nombreOccurenceCaractere, int caracteresTotaux) {
-    	this(' ', nombreOccurenceCaractere, caracteresTotaux);
+    	if (nombreOccurenceCaractere < 0 || caracteresTotaux <= 0) {
+    		throw new IllegalArgumentException(ERREUR_FREQ_NEGATIF);
+    	} else if (nombreOccurenceCaractere > caracteresTotaux) {
+    		throw new IllegalArgumentException(ERREUR_FREQ_SUP_A_1);
+    	}
+    	
+    	lettre = ' ';
+    	freq = (double) nombreOccurenceCaractere/caracteresTotaux;
+    }
+    
+    /**
+     * Insère dans le noeud actuel son parent.
+     * Attention, le parent voit alors son instance modifiée !
+     * 
+     * @param noeudParent
+     * @throws IllegalArgumentException si :
+     *    <li>- le noeud possède déjà un parent</li>
+     *    <li>- le parent est une feuille</li>
+     *    <li>- le parent a trop d'enfants</li>
+     *    
+     *    @see NOMBRE_MAX_ENFANTS
+     */
+    public void setNoeudParent(NoeudHuffman noeudParent) {
+
+    	if (this.noeudParent != null) {
+    		throw new IllegalArgumentException (
+    				  ERREUR_NOEUD_PARENT_DEJA_DEFINI);
+    		
+    	} else if (noeudParent.estFeuille()) {
+    		throw new IllegalArgumentException (
+    				  ERREUR_NOEUD_PARENT_EST_FEUILLE);
+    		
+    	} else if (noeudParent.getNombreEnfants() >= NOMBRE_MAX_ENFANTS) {
+    		throw new IllegalArgumentException
+    				 (ERREUR_NOEUD_PARENT_LIMITE_ENFANTS);
+    	}
+    	
+    	this.noeudParent = noeudParent;
+    	noeudParent.setIncrementNombreEnfants();
     }
     
     /**
@@ -118,35 +167,6 @@ public class NoeudHuffman {
      */
     public NoeudHuffman getNoeudParent() {
     	return noeudParent;
-    }
-    
-    /**
-     * Insère dans le noeud actuel son parent.
-     * Attention, le parent voit alors son instance modifiée !
-     * 
-     * @param noeudParent
-     * @throws IllegalArgumentException si :
-     *    <p>- le noeud possède déjà un parent</p>
-     *    <p>- le parent est une feuille</p>
-     *    <p>- le parent a trop d'enfants</p>
-     *    
-     *    @see NOMBRE_MAX_ENFANTS
-     */
-    public void setNoeudParent(NoeudHuffman noeudParent) {
-
-    	if (this.noeudParent != null) {
-    		throw new IllegalArgumentException(ERREUR_NOEUD_PARENT_NON_NULL);
-    		
-    	} else if (noeudParent.estFeuille()) {
-    		throw new IllegalArgumentException(ERREUR_NOEUD_PARENT_EST_FEUILLE);
-    		
-    	} else if (noeudParent.getNombreEnfants() == NOMBRE_MAX_ENFANTS) {
-    		throw new IllegalArgumentException
-    				 (ERREUR_NOEUD_PARENT_LIMITE_ENFANTS);
-    	}
-    	
-    	this.noeudParent = noeudParent;
-    	noeudParent.setIncrementNombreEnfants();
     }
     
     /**
