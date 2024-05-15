@@ -31,11 +31,11 @@ public class NoeudHuffman {
     /** Lettre contenue dans le noeud */
     final private char lettre;
     
-    /** Noeud parent associé */
-    private NoeudHuffman noeudParent;
-    
     /** Le nombre d'enfants que possède le noeud */
     private int nbrEnfants = 0;
+    
+    /** Noeud parent associé */
+    private NoeudHuffman noeudParent;
     
     /**
      * Créer un noeud de Huffman avec une lettre et la fréquence
