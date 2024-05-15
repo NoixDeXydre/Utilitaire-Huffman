@@ -17,8 +17,8 @@ package utilitairehuffman.src;
  */
 public class NoeudHuffman {
 	
-	final private static String ERREUR_FREQ_NEGATIF 
-	= "Il y a une valeur négative dans les valeurs données";
+	final private static String ERREUR_FREQ_INVALIDE
+	= "La fréquence n'est pas comprise entre 0 et 1";
 	
 	final private static String ERREUR_NOEUD_PARENT_NON_NULL 
 	= "Il existe déjà un parent au noeud associé";
@@ -42,45 +42,35 @@ public class NoeudHuffman {
     /** Le nombre d'enfants que possède le noeud */
     private int nbrEnfants = 0;
     
-    /*
-     *  FIXME Il y a peut être un moyen de le calculer avec
-     *  moins de chance d'overflow dans la classe Arbre de Huffman 
-     *  (voir avec Noa lors de la conception de la classe ArbreHuffman)
-     */
-    
     /**
      * Créer un noeud de Huffman avec une lettre et la fréquence
-     * d'apparition associée de la lettre en fonction du nombre du
-     * nombre de lettres total du texte.
+     * d'apparition associée de la lettre.
      * 
-     * @param caractereDonnee le caractère donnée à associer au noeud
-     * @param nombreApparitionCaractère le nombre d'apparition du
+     * @param lettre le caractère donnée à associer au noeud
+     * @param freq le nombre d'apparition pondéré du
      *        caractère dans le texte
-     * @param caracteresTotaux le nombre total du caractère du texte
      * 
-     * @throws IllegalArgumentException si l'une des deux fréquences
-     *         est négative ou si le nombre total de caractère est
-     *         égal à 0
+     * @throws IllegalArgumentException si la fréquence 
+               n'est pas compris entre 0 et 1
      */
-    public NoeudHuffman(char caractere, int nombreOccurenceCaractere,
-    		            				int caracteresTotaux) {
+    public NoeudHuffman(char lettre, double freq) {
     	
-    	if (nombreOccurenceCaractere < 0 || caracteresTotaux <= 0) {
-    		throw new IllegalArgumentException(ERREUR_FREQ_NEGATIF);
+    	if (freq < 0.0 || freq > 1.0) {
+    		throw new IllegalArgumentException(ERREUR_FREQ_INVALIDE);
     	}
     	
     	// on calcule la fréquence d'apparition de la lettre
-        lettre = caractere;
-        freq = (double) nombreOccurenceCaractere / caracteresTotaux;
+        this.lettre = caractere;
+        this.freq = freq;
     }
     
     /**
      * Créer un noeud de Huffman sans lettre associée.
-     * @param nombreOccurenceCaractere
-     * @param caracteresTotaux
+     * @param freq le nombre d'apparition pondéré du
+     *        caractère dans le texte
      */
-    public NoeudHuffman(int nombreOccurenceCaractere, int caracteresTotaux) {
-    	this(' ', nombreOccurenceCaractere, caracteresTotaux);
+    public NoeudHuffman(double freq) {
+    	this(' ', freq);
     }
     
     /**
