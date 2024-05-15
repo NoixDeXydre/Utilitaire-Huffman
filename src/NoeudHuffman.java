@@ -96,7 +96,7 @@ public class NoeudHuffman {
     	}
     	
     	this.noeudParent = noeudParent;
-    	noeudParent.setIncrementNombreEnfants();
+    	nbrEnfants++;
     }
     
     /**
@@ -134,12 +134,5 @@ public class NoeudHuffman {
      */
     public NoeudHuffman getNoeudParent() {
     	return noeudParent;
-    }
-    
-    /**
-     * Augmente de 1 le nombre d'enfants qu'a le noeud.
-     */
-    private void setIncrementNombreEnfants() {
-    	nbrEnfants++;
     }
 }
