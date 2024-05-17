@@ -38,15 +38,15 @@ import java.util.Map;
  */
 public class ArbreHuffman {
 	
-	/** Encodage supporté par l'arbre */
-	public final static String ENCODAGE_TEXTE = "UTF-8";
+    /** Encodage supporté par l'arbre */
+    public final static String ENCODAGE_TEXTE = "UTF-8";
 	
-	/** 
-	 * Dictionnaire ayant pour clé un caractère, et pour valeur sa fréquence.
-	 * Les valeurs sont triés dans l'ordre croissant 
-	 * pour bien faire fonctionner l'algorithme 
-	 */
-	private LinkedHashMap<Character, Double> dictionnaireLettresFrequences;
+    /** 
+     * Dictionnaire ayant pour clé un caractère, et pour valeur sa fréquence.
+     * Les valeurs sont triés dans l'ordre croissant 
+     * pour bien faire fonctionner l'algorithme 
+     */
+    private LinkedHashMap<Character, Double> dictionnaireLettresFrequences;
 	
     /**
      * Création d'un arbre de Huffman à partir d'un fichier texte.
