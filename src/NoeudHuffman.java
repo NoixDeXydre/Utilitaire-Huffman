@@ -99,6 +99,8 @@ public class NoeudHuffman {
     				 (ERREUR_NOEUD_PARENT_LIMITE_ENFANTS);
     	}
     	
+    	// TODO fusionner la fréquence du noeud parent avec son noeud enfant
+    	
     	this.noeudParent = noeudParent;
     	nbrEnfants++;
     }
