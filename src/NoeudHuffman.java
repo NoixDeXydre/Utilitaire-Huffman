@@ -25,11 +25,11 @@ public class NoeudHuffman {
 	/** Le nombre maximum d'enfants qu'un noeud peut avoir */
 	final public static int NOMBRE_MAX_ENFANTS = 2;
     
-    /** Fréquence du noeud */
-    final private double freq;
-    
     /** Lettre contenue dans le noeud */
     final private char lettre;
+    
+    /** Fréquence du noeud */
+    private double freq;
     
     /** Le nombre d'enfants que possède le noeud */
     private int nbrEnfants = 0;
