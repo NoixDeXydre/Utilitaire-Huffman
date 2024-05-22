@@ -51,8 +51,8 @@ public class ArbreHuffman {
     /**
      * Création d'un arbre de Huffman à partir d'un fichier texte.
      * 
-     * @param fichierTexte le chemin vers le fichier texte.
-     * @throws IOException 
+     * @param cheminFichier le chemin vers le fichier texte.
+     * @throws IOException @see java.lang.IOException
      */
     public ArbreHuffman(String cheminFichier) throws IOException {
     	
@@ -67,6 +67,7 @@ public class ArbreHuffman {
     }
     
     /**
+     * Getter de dictionnaireLettresFrequences
      * @return le dictionnaire des lettres et des fréquences
      */
     public LinkedHashMap<Character, Double> getDictLettreFrequence() {
@@ -79,7 +80,7 @@ public class ArbreHuffman {
      * 
      * @param fichierTexte
      * @return le liseur
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException @see java.lang.FileNotFoundException
      */
     private static BufferedReader getLiseurChar(File fichierTexte) 
     			   throws FileNotFoundException {
@@ -102,9 +103,9 @@ public class ArbreHuffman {
      * <p> un + 1 = un + 1 / nbrCaractereTotal;</p>
      * Où nbrCaractereTotal est le nombre de caractère total dans un texte.
      * 
-     * @param curseurTexte
+     * @param fichierTexte
      * @return le dictionnaire des lettres et des fréquences
-     * @throws IOException 
+     * @throws IOException @see java.lang.IOException
      */
     private static LinkedHashMap<Character, Double> 
     			   getDictLettreFrequence(File fichierTexte) 
@@ -135,9 +136,9 @@ public class ArbreHuffman {
     /**
      * Calcule la longueur d'un texte caractère par caractère.
      * 
-     * @param cheminTexte
+     * @param fichierTexte
      * @return le nombre de caractère au total
-     * @throws IOException
+     * @throws IOException @see java.lang.IOException
      */
     private static long getLongueurTexte(File fichierTexte) throws IOException {
     	
