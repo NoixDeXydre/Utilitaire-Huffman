@@ -5,8 +5,6 @@
 
 package iut.info1.codagehuffman.src;
 
-// TODO mettre à jour le diagramme des classes quand c'est fini :3
-
 /**
  * Composant servant à créer des noeuds de Huffman.
  * Similaire à un noeud classique, à la seule différence 

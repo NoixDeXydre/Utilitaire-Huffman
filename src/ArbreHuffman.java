@@ -79,7 +79,7 @@ public class ArbreHuffman {
      * 
      * @param fichierTexte
      * @return le liseur
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException	
      */
     private static BufferedReader getLiseurChar(File fichierTexte) 
     			   throws FileNotFoundException {

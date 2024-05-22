@@ -20,7 +20,6 @@ public class TestNoeudHuffman {
 		
 		assertThrows(IllegalArgumentException.class,
 				    () -> new NoeudHuffman('a', -18, 100));
-		
 		assertThrows(IllegalArgumentException.class,
 					() -> new NoeudHuffman('\t', 0, -1));
 		assertThrows(IllegalArgumentException.class,
