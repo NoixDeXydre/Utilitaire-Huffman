@@ -121,7 +121,6 @@ public class TestNoeudHuffman {
 	@Test
 	public void testGetNombreEnfants() {
 		
-		// Devrait en même temps tester setIncrementNombreEnfants()
 		NoeudHuffman noeudDeTest = new NoeudHuffman(1);
 		NoeudHuffman noeudDeTest2 = new NoeudHuffman(1);
 		NoeudHuffman noeudDeTest3 = new NoeudHuffman(1);
