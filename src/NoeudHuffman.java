@@ -101,7 +101,7 @@ public class NoeudHuffman {
     		throw new IllegalArgumentException(ERREUR_FREQ_SUP_A_1);
     	}
     	
-    	lettre = ' ';
+    	lettre = ' '; // FIXME conflit avec caractère espace
     	freq = (double) nombreOccurenceCaractere/caracteresTotaux;
     }
     

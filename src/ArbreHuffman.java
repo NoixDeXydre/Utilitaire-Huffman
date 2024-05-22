@@ -33,8 +33,7 @@ import java.util.Map;
  * D'après les spécifications du document, 
  * l'arbre de Huffman ne supporte que la lecture des fichiers UTF-8 !
  * 
- * TODO changer auteurs
- * @author TD 2 Groupe 4
+ * @author TD 2 Groupe 4 Noa M'Tima Lesniak
  */
 public class ArbreHuffman {
 	
@@ -115,11 +114,13 @@ public class ArbreHuffman {
     	= new LinkedHashMap<>();
     	
     	char lettreAnalyse;
-    	int tampon;
-    	long nombreCaracteresTexte = getLongueurTexte(fichierTexte);
+    	int tampon; // récupère la valeur binaire du caractère
+    	/* longueur totale */
+    	long nombreCaracteresTexte = getLongueurTexte(fichierTexte); 
+    	
     	BufferedReader curseurTexte = getLiseurChar(fichierTexte);
     	while ((tampon = curseurTexte.read()) != -1) {
-    		
+    		// récupère la lettre en binaire et la converti en char
     		lettreAnalyse = (char) tampon;
     		lettreFrequence.putIfAbsent(lettreAnalyse, .0);
     		
