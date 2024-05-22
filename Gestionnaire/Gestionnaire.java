@@ -5,11 +5,14 @@
 
 package iut.info1.codagehuffman.gestionnaire;
 
+import java.io.IOException;
+
+import iut.info1.codagehuffman.src.ArbreHuffman;
+
 /**
  * Gestion de l'entrée utilisateur pour le fonctionnement de 
  * l'algorithme de compression.
- * @author Noa M'TIMA LESNIAK, Cylian POUPIN, Adrien VIGUE, 
- *         Tom LE BEUZE
+ * @author TD 2 Groupe 4 Cylian POUPIN, Adrien VIGUE, Tom LE BEUZE
  */
 public class Gestionnaire {
 
@@ -56,11 +59,11 @@ public class Gestionnaire {
         final String DOCUMENTATION = 
                 """
                   $> encode <fichier> output <fichierCodé> abr <arbreHuffman>
-                 Compresse le fichier grâce à l’arbre Huffman spécifié.
+                 Compresse le fichier grâce à l\'arbre Huffman spécifié.
                  
                   $> encode <fichier> <fichierCodé> <arbreHuffman>
                  Même commande que la précédente mais sans les commandes
-                 facultatives (voir note)
+                 facultatives (voir plus bas)
                 
                   $> decode <fichier> abr <arbreHuffman> output <fichierDécodé>
                  Décompresse le fichier à l’aide d’un arbre de Huffman.
@@ -139,7 +142,7 @@ public class Gestionnaire {
         final String ECRITURE_FICHIER_ERREUR =
                 """
                 !-!-!!-!-!
-                ! Erreur ! : Impossible d'enregistrer le fichier compréssé
+                ! Erreur ! : Impossible d'enregistrer le fichier compressé
                 !-!-!!-!-!
                 """;
         
@@ -188,20 +191,29 @@ public class Gestionnaire {
         try {                                                                   // TODO traitement du deuxièmme argument
             if ("encode".equalsIgnoreCase(args[0])) {
                 System.out.println("Demande d'encodage"); // DEBUG
-                
+                // TODO faire le lien avec ArbreHuffman()
                 fichierSource = args[1];
+                System.out.println("pas encore fini"); // stub
             }
 
             if ("decode".equalsIgnoreCase(args[0])) {
                 System.out.println("Demande de décodage"); // DEBUG
-                
+                // TODO faire le lien avec ArbreHuffman()
                 fichierSource = args[1];
+                System.out.println("pas encore fini"); // stub
             }
 
             if ("make-abr".equalsIgnoreCase(args[0])) {
                 System.out.println("Demande de création d'arbre"); // DEBUG
                 
                 fichierSource = args[1];
+                try {
+					new ArbreHuffman(fichierSource);
+					System.out.println("La création de l'arbre n'a pas été "
+							          + "effectuée avec succès !"); // stub
+				} catch (IOException e) {
+					System.out.println(LECTURE_FICHIER_ERREUR);
+				}
             }
             
             if ("help".equalsIgnoreCase(args[0])) {
