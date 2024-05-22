@@ -1,0 +1,45 @@
+@options
+@packages
+-encoding
+'UTF-8'
+-protected
+-source
+'21'
+-sourcepath
+'C:/Users/Utilisateur/OneDrive/Scolaire/M. Barrios/SAE - Exploration algorithlique d\'un problème/Gestionnaire/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2024. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/Utilisateur/OneDrive/Scolaire/M. Barrios/SAE - Exploration algorithlique d\'un problème/Gestionnaire/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'Gestionnaire 1.0 API'
+-use
+-version
+-windowtitle
+'Gestionnaire 1.0 API'
+iut.info1.codagehuffman.gestionnaire
+C:\Users\Utilisateur\OneDrive\Scolaire\M. Barrios\SAE - Exploration algorithlique d'un problème\Gestionnaire\src\main\java = 1715073847569
+C:\Users\Utilisateur\OneDrive\Scolaire\M. Barrios\SAE - Exploration algorithlique d'un problème\Gestionnaire\target\site\apidocs\allclasses-index.html = 1715699823755
+C:\Users\Utilisateur\OneDrive\Scolaire\M. Barrios\SAE - Exploration algorithlique d'un problème\Gestionnaire\target\site\apidocs\allpackages-index.html = 1715699823758
+C:\Users\Utilisateur\OneDrive\Scolaire\M. Barrios\SAE - Exploration algorithlique d'un problème\Gestionnaire\target\site\apidocs\copy.svg = 1715699823790
+C:\Users\Utilisateur\OneDrive\Scolaire\M. Barrios\SAE - Exploration algorithlique d'un problème\Gestionnaire\target\site\apidocs\element-list = 1715699823720
+C:\Users\Utilisateur\OneDrive\Scolaire\M. Barrios\SAE - Exploration algorithlique d'un problème\Gestionnaire\target\site\apidocs\help-doc.html = 1715699823782
+C:\Users\Utilisateur\OneDrive\Scolaire\M. Barrios\SAE - Exploration algorithlique d'un problème\Gestionnaire\target\site\apidocs\index-all.html = 1715699823772
+C:\Users\Utilisateur\OneDrive\Scolaire\M. Barrios\SAE - Exploration algorithlique d'un problème\Gestionnaire\target\site\apidocs\index.html = 1715699823778
+C:\Users\Utilisateur\OneDrive\Scolaire\M. Barrios\SAE - Exploration algorithlique d'un problème\Gestionnaire\target\site\apidocs\link.svg = 1715699823792
+C:\Users\Utilisateur\OneDrive\Scolaire\M. Barrios\SAE - Exploration algorithlique d'un problème\Gestionnaire\target\site\apidocs\member-search-index.js = 1715699823765
+C:\Users\Utilisateur\OneDrive\Scolaire\M. Barrios\SAE - Exploration algorithlique d'un problème\Gestionnaire\target\site\apidocs\module-search-index.js = 1715699823760
+C:\Users\Utilisateur\OneDrive\Scolaire\M. Barrios\SAE - Exploration algorithlique d'un problème\Gestionnaire\target\site\apidocs\overview-tree.html = 1715699823746
+C:\Users\Utilisateur\OneDrive\Scolaire\M. Barrios\SAE - Exploration algorithlique d'un problème\Gestionnaire\target\site\apidocs\package-search-index.js = 1715699823762
+C:\Users\Utilisateur\OneDrive\Scolaire\M. Barrios\SAE - Exploration algorithlique d'un problème\Gestionnaire\target\site\apidocs\script.js = 1715699823788
+C:\Users\Utilisateur\OneDrive\Scolaire\M. Barrios\SAE - Exploration algorithlique d'un problème\Gestionnaire\target\site\apidocs\search-page.js = 1715699823797
+C:\Users\Utilisateur\OneDrive\Scolaire\M. Barrios\SAE - Exploration algorithlique d'un problème\Gestionnaire\target\site\apidocs\search.html = 1715699823775
+C:\Users\Utilisateur\OneDrive\Scolaire\M. Barrios\SAE - Exploration algorithlique d'un problème\Gestionnaire\target\site\apidocs\search.js = 1715699823794
+C:\Users\Utilisateur\OneDrive\Scolaire\M. Barrios\SAE - Exploration algorithlique d'un problème\Gestionnaire\target\site\apidocs\stylesheet.css = 1715699823785
+C:\Users\Utilisateur\OneDrive\Scolaire\M. Barrios\SAE - Exploration algorithlique d'un problème\Gestionnaire\target\site\apidocs\tag-search-index.js = 1715699823766
+C:\Users\Utilisateur\OneDrive\Scolaire\M. Barrios\SAE - Exploration algorithlique d'un problème\Gestionnaire\target\site\apidocs\type-search-index.js = 1715699823763
