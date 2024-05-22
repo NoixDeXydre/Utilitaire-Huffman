@@ -19,21 +19,21 @@ public class Gestionnaire {
      *             
      * <pre>
      *  $&gt; encode &lt;fichier&gt; output &lt;fichierCodé&gt; abr &lt;arbreHuffman&gt;
-     * Compresse le fichier grâce à l’arbre Huffman spécifié.
+     * Compresse le fichier grâce à l'arbre Huffman spécifié.
      * 
      *  $&gt; encode &lt;fichier&gt; &lt;fichierCodé&gt; &lt;arbreHuffman&gt;
      * Même commande que la précédente mais sans les commandes facultatives 
      * (voir note)
      * 
      *  $&gt; decode &lt;fichier&gt; abr &lt;arbreHuffman&gt; output &lt;fichierDécodé&gt;
-     * Décompresse le fichier à l’aide d’un arbre de Huffman.
+     * Décompresse le fichier à l'aide d'un arbre de Huffman.
      * 
      *  $&gt; make-abr &lt;fichier&gt; output &lt;arbreHuffman&gt;
      * Construis un arbre de Huffman en se basant sur le fichier donné. 
-     * L’arbre doit avoir été généré avant de pouvoir compresser un fichier.
+     * L'arbre doit avoir été généré avant de pouvoir compresser un fichier.
      * 
      *  $&gt; help
-     * Donne les commandes disponibles pour l’utilisateur.
+     * Donne les commandes disponibles pour l'utilisateur.
      * (affiche cette documentation)
      * </pre>
      * 
@@ -56,18 +56,18 @@ public class Gestionnaire {
         final String DOCUMENTATION = 
                 """
                   $> encode <fichier> output <fichierCodé> abr <arbreHuffman>
-                 Compresse le fichier grâce à l’arbre Huffman spécifié.
+                 Compresse le fichier grâce à l'arbre Huffman spécifié.
                  
                   $> encode <fichier> <fichierCodé> <arbreHuffman>
                  Même commande que la précédente mais sans les commandes
                  facultatives (voir note)
                 
                   $> decode <fichier> abr <arbreHuffman> output <fichierDécodé>
-                 Décompresse le fichier à l’aide d’un arbre de Huffman.
+                 Décompresse le fichier à l'aide d'un arbre de Huffman.
                  
                   $> make-abr <fichier> output <arbreHuffman>
                  Construis un arbre de Huffman en se basant sur le fichier 
-                 donné. L’arbre doit avoir été généré avant de pouvoir 
+                 donné. L'arbre doit avoir été généré avant de pouvoir 
                  compresser un fichier.
                  
                   $> help
@@ -167,6 +167,8 @@ public class Gestionnaire {
         
         int noArgUtile;
         
+        boolean argCorrect = false;
+        
         // Chemins d'accès
         String fichierSource;
         String fichierDestination;
@@ -179,33 +181,41 @@ public class Gestionnaire {
         // Message de bienvenue
         System.out.println(HABILLAGE_CONSOLE_EN_TETE);
         
-        
-        // TODO check d'intégrité de la commande utilisateur
+        // DEBUG
         for (int i = 0 ; i < args.length ; i++) {
-            System.out.println(args[i]); // DEBUG
+            System.out.println(args[i]); 
         }
+        // ----
         
         try {                                                                   // TODO traitement du deuxièmme argument
             if ("encode".equalsIgnoreCase(args[0])) {
                 System.out.println("Demande d'encodage"); // DEBUG
+                argCorrect = true;
                 
                 fichierSource = args[1];
             }
 
             if ("decode".equalsIgnoreCase(args[0])) {
                 System.out.println("Demande de décodage"); // DEBUG
+                argCorrect = true;
                 
                 fichierSource = args[1];
             }
 
             if ("make-abr".equalsIgnoreCase(args[0])) {
                 System.out.println("Demande de création d'arbre"); // DEBUG
+                argCorrect = true;
                 
                 fichierSource = args[1];
             }
             
             if ("help".equalsIgnoreCase(args[0])) {
                 System.out.println(DOCUMENTATION);
+                argCorrect = true;
+            }
+            
+            if (!argCorrect) {
+                System.out.println(SYNTAXE_ERREUR);
             }
             
         } catch (ArrayIndexOutOfBoundsException aucunArgument) {
@@ -213,15 +223,3 @@ public class Gestionnaire {
         }
     }
 }
-
-
-
-//// Analyse et lecture des arguments
-//        noArgUtile = 0;
-//        
-//        for (int i = 0 ; i < args.length ; i++) {
-//            if ("output".equals(args[i]) || "abr".equals(args[i])) {  // Les arguments "output" et "abr" sont ignorés
-//                noArgUtile ++;
-//                 System.out.println(noArgUtile); // DEBUG
-//            }
-//        }
