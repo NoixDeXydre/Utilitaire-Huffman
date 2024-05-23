@@ -50,16 +50,19 @@ public class NoeudHuffman {
      * d'apparition associée de la lettre en fonction du nombre du
      * nombre de lettres total du texte.
      * 
-     * @param caractereDonnee le caractère donnée à associer au noeud
-     * @param nombreApparitionCaractère le nombre d'apparition du
+     * @param caractere le caractère donnée à associer au noeud
+     * @param nombreOccurenceCaractere le nombre d'apparition du
      *        caractère dans le texte
      * @param caracteresTotaux le nombre total du caractère du texte
      * 
      * @throws IllegalArgumentException si :
+     *         <ul>
      *         <li> l'une des deux fréquences est négative ou si le
      *         nombre total de caractère est égal à 0 </li>
      *         <li> le nombre d'occurence du caractère est supérieur
      *         au nombre total de caractère </li>
+     *         </ul>
+     *         @see java.lang.IllegalArgumentException
      *         
      */
     public NoeudHuffman(char caractere, int nombreOccurenceCaractere,
@@ -80,13 +83,16 @@ public class NoeudHuffman {
      * Créer un noeud de Huffman sans lettre associée et détermine
      * la fréquence d'apparition associée en fonction du premier
      * nombre donné et du nombre de lettres total du texte.
-     * @param nombreOccurenceCaractere
-     * @param caracteresTotaux
+     * @param nombreOccurenceCaractere Nombre d'occurence du caractère
+     * @param caracteresTotaux Nombre de caractères au total
      * @throws IllegalArgumentException si :
+     *         <ul>
      *         <li> l'une des deux fréquences est négative ou si le
      *         nombre total de caractère est égal à 0 </li>
      *         <li> le nombre d'occurence du caractère est supérieur
      *         au nombre total de caractère </li>
+     *         </ul>
+     *         @see java.lang.IllegalArgumentException
      */
     public NoeudHuffman(int nombreOccurenceCaractere, int caracteresTotaux) {
     	if (nombreOccurenceCaractere < 0 || caracteresTotaux <= 0) {
@@ -103,12 +109,15 @@ public class NoeudHuffman {
      * Insère dans le noeud actuel son parent.
      * Attention, le parent voit alors son instance modifiée !
      * 
-     * @param noeudParent
+     * @param noeudParent noeud du parent
      * @throws IllegalArgumentException si :
+     *    <ul>
      *    <li>- le noeud possède déjà un parent</li>
      *    <li>- le parent est une feuille</li>
      *    <li>- le parent a trop d'enfants</li>
-     *    
+     *    </ul>
+     *    @see java.lang.IllegalArgumentException
+     *    <br>
      *    @see NOMBRE_MAX_ENFANTS
      */
     public void setNoeudParent(NoeudHuffman noeudParent) {
@@ -140,6 +149,7 @@ public class NoeudHuffman {
     }
 
     /**
+     * Getter de la fréquence
      * @return la fréquence d'apparition du noeud dans le texte.
      */
     public double getFreq() {
@@ -147,6 +157,7 @@ public class NoeudHuffman {
     }
     
     /**
+     * Getter de lettre
      * @return la lettre associée au noeud.
      */
     public char getLettre() {
@@ -154,6 +165,7 @@ public class NoeudHuffman {
     }
     
     /**
+     * Getter du nombre d'enfants
      * @return le nombre d'enfants attachés au noeud
      */
     public int getNombreEnfants() {
@@ -161,6 +173,7 @@ public class NoeudHuffman {
     }
     
     /**
+     * Getter du noeud parent
      * @return son noeud parent
      */
     public NoeudHuffman getNoeudParent() {
