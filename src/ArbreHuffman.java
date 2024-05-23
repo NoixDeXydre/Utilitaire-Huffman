@@ -33,8 +33,7 @@ import java.util.Map;
  * D'après les spécifications du document, 
  * l'arbre de Huffman ne supporte que la lecture des fichiers UTF-8 !
  * 
- * TODO changer auteurs
- * @author TD 2 Groupe 4
+ * @author TD 2 Groupe 4 Noa M'Tima Lesniak
  */
 public class ArbreHuffman {
 	
@@ -51,8 +50,8 @@ public class ArbreHuffman {
     /**
      * Création d'un arbre de Huffman à partir d'un fichier texte.
      * 
-     * @param fichierTexte le chemin vers le fichier texte.
-     * @throws IOException 
+     * @param cheminFichier le chemin vers le fichier texte.
+     * @throws IOException @see java.lang.IOException
      */
     public ArbreHuffman(String cheminFichier) throws IOException {
     	
@@ -67,6 +66,7 @@ public class ArbreHuffman {
     }
     
     /**
+     * Getter de dictionnaireLettresFrequences
      * @return le dictionnaire des lettres et des fréquences
      */
     public LinkedHashMap<Character, Double> getDictLettreFrequence() {
@@ -79,7 +79,7 @@ public class ArbreHuffman {
      * 
      * @param fichierTexte
      * @return le liseur
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException @see java.lang.FileNotFoundException
      */
     private static BufferedReader getLiseurChar(File fichierTexte) 
     			   throws FileNotFoundException {
@@ -102,9 +102,9 @@ public class ArbreHuffman {
      * <p> un + 1 = un + 1 / nbrCaractereTotal;</p>
      * Où nbrCaractereTotal est le nombre de caractère total dans un texte.
      * 
-     * @param curseurTexte
+     * @param fichierTexte
      * @return le dictionnaire des lettres et des fréquences
-     * @throws IOException 
+     * @throws IOException @see java.lang.IOException
      */
     private static LinkedHashMap<Character, Double> 
     			   getDictLettreFrequence(File fichierTexte) 
@@ -114,11 +114,13 @@ public class ArbreHuffman {
     	= new LinkedHashMap<>();
     	
     	char lettreAnalyse;
-    	int tampon;
-    	long nombreCaracteresTexte = getLongueurTexte(fichierTexte);
+    	int tampon; // récupère la valeur binaire du caractère
+    	/* longueur totale */
+    	long nombreCaracteresTexte = getLongueurTexte(fichierTexte); 
+    	
     	BufferedReader curseurTexte = getLiseurChar(fichierTexte);
     	while ((tampon = curseurTexte.read()) != -1) {
-    		
+    		// récupère la lettre en binaire et la converti en char
     		lettreAnalyse = (char) tampon;
     		lettreFrequence.putIfAbsent(lettreAnalyse, .0);
     		
@@ -135,9 +137,9 @@ public class ArbreHuffman {
     /**
      * Calcule la longueur d'un texte caractère par caractère.
      * 
-     * @param cheminTexte
+     * @param fichierTexte
      * @return le nombre de caractère au total
-     * @throws IOException
+     * @throws IOException @see java.lang.IOException
      */
     private static long getLongueurTexte(File fichierTexte) throws IOException {
     	
