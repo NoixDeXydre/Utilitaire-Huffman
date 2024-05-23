@@ -1,9 +1,9 @@
 /*
- * Gestionnaire.java                                                05/2024
+ * UtilitaireHuffman.java                                                05/2024
  * IUT de Rodez, pas de copyright.
  */
 
-package iut.info1.codagehuffman.gestionnaire;
+package iut.info1.codagehuffman;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ import iut.info1.codagehuffman.src.ArbreHuffman;
  * l'algorithme de compression.
  * @author TD 2 Groupe 4 Cylian POUPIN, Adrien VIGUE, Tom LE BEUZE
  */
-public class Gestionnaire {
+public class UtilitaireHuffman {
 
     /**
      * Interface utilisateur en ligne de commande.
