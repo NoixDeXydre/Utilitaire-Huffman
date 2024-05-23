@@ -40,7 +40,6 @@ public class NoeudHuffman {
     /**
      * Créer un noeud de Huffman avec une lettre et la fréquence
      * d'apparition associée de la lettre.
-     * 
      * @param lettre le caractère donnée à associer au noeud
      * @param freq le nombre d'apparition pondéré du
      * @throws IllegalArgumentException si la fréquence 
