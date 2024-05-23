@@ -19,13 +19,17 @@ public class TestNoeudHuffman {
 	public void testNoeudHuffman() {
 		
 		assertThrows(IllegalArgumentException.class,
-				    () -> new NoeudHuffman(-0.18));
+				     ()-> new NoeudHuffman(new NoeudHuffman('b', 1),
+				    		               new NoeudHuffman('a', 0.01)));
 		assertThrows(IllegalArgumentException.class,
-					() -> new NoeudHuffman(0));
+			     ()-> new NoeudHuffman(new NoeudHuffman('b', 0.6),
+			    		               new NoeudHuffman('a', 0.5)));
 		assertThrows(IllegalArgumentException.class,
-				() -> new NoeudHuffman(1.1));
+			     ()-> new NoeudHuffman(new NoeudHuffman('b', 0.01),
+			    		               new NoeudHuffman('a', 1)));
 		assertThrows(IllegalArgumentException.class,
-				() -> new NoeudHuffman(5.5));
+			     ()-> new NoeudHuffman(new NoeudHuffman('b',0.02),
+			    		               new NoeudHuffman('a', 0.99)));
 	}
 	
 	@Test
@@ -42,48 +46,6 @@ public class TestNoeudHuffman {
 	}
 	
 	@Test
-	public void testSetNoeudParent() {
-		
-		// Variable regénérative pour des tests complexes
-		final NoeudHuffman noeudDeTest;
-		NoeudHuffman noeudDeTest2;
-		NoeudHuffman noeudDeTest3;
-		NoeudHuffman noeudDeTest4;
-		
-		// Cas où le noeud peut-être inséré
-		assertDoesNotThrow(() -> new NoeudHuffman('a', 1)
-						   	     .setNoeudParent(new NoeudHuffman(1)));
-		
-		noeudDeTest = new NoeudHuffman(1);
-		noeudDeTest.setNoeudParent(new NoeudHuffman(1));
-		assertDoesNotThrow(() -> new NoeudHuffman(' ', 1)
-  	     	     			     .setNoeudParent(noeudDeTest));
-		
-		// Cas où le noeud ne peut pas être inséré (feuille)
-		assertThrows(IllegalArgumentException.class,
-				     () -> new NoeudHuffman(' ', 1)
-		   	     	       .setNoeudParent(new NoeudHuffman('q', 1)));
-		
-		// Cas où le noeud ne peut pas être inséré (parent déjà existant)
-		noeudDeTest2 = new NoeudHuffman('a', 1);
-		noeudDeTest2.setNoeudParent(new NoeudHuffman(1));
-		assertThrows(IllegalArgumentException.class, 
-					() -> noeudDeTest.setNoeudParent(new NoeudHuffman(1)));
-		
-		// Cas où il y a trop d'enfants
-		noeudDeTest4 = new NoeudHuffman(1);
-		noeudDeTest2 = new NoeudHuffman(1);
-		noeudDeTest3 = new NoeudHuffman(1);
-		
-		noeudDeTest4.setNoeudParent(noeudDeTest3);
-		noeudDeTest2.setNoeudParent(noeudDeTest3);
-		
-		assertThrows(IllegalArgumentException.class, 
-		() -> new NoeudHuffman(1).setNoeudParent(noeudDeTest3));
-		
-	}
-	
-	@Test
 	public void testEstFeuille() {
 		
 		// Le noeud est sensé être une feuille
@@ -94,17 +56,19 @@ public class TestNoeudHuffman {
 		assertEquals(new NoeudHuffman('<', 1).estFeuille(), true);
 		assertEquals(new NoeudHuffman('é', 1).estFeuille(), true);
 		assertEquals(new NoeudHuffman('@', 1).estFeuille(), true);
+		assertEquals(new NoeudHuffman(' ', 1).estFeuille(), true);
 		
-		// Le noeud n'est pas sensé être une feuille
-		assertEquals(new NoeudHuffman(' ', 1).estFeuille(), false);
-		assertEquals(new NoeudHuffman(1).estFeuille(), false);
+		// Le noeud n'est pas sensé être une feuille		
+		assertEquals(new NoeudHuffman(new NoeudHuffman('9', 0.2),
+				     new NoeudHuffman('8', 0.5)).estFeuille(), false);
 	}
 
 	@Test
 	public void testGetFreq() {
 		assertEquals(new NoeudHuffman('a', 0.18).getFreq(), 0.18);
-		assertEquals(new NoeudHuffman((double) 2 / 70.0).getFreq(), 
-									  (double) 2 / 70.0);
+		assertEquals(new NoeudHuffman(new NoeudHuffman('9', 1 / 70.0),
+				                      new NoeudHuffman('8', 1 / 70.0)).getFreq(),
+		             (double) 2 / 70.0);
 	}
 	
 	@Test
@@ -115,34 +79,17 @@ public class TestNoeudHuffman {
 		assertEquals(new NoeudHuffman('é', 0.18).getLettre(), 'é');
 		assertEquals(new NoeudHuffman('@', 0.18).getLettre(), '@');
 		assertEquals(new NoeudHuffman('\t', 0.18).getLettre(), '	');
-		assertEquals(new NoeudHuffman(1).getLettre(), ' ');
+		assertEquals(new NoeudHuffman(new NoeudHuffman('9', 1 / 70.0),
+                     new NoeudHuffman('8', 1 / 70.0)).getLettre(), ' ');
 	}
 	
 	@Test
 	public void testGetNombreEnfants() {
-		
-		// Devrait en même temps tester setIncrementNombreEnfants()
-		NoeudHuffman noeudDeTest = new NoeudHuffman(1);
-		NoeudHuffman noeudDeTest2 = new NoeudHuffman(1);
-		NoeudHuffman noeudDeTest3 = new NoeudHuffman(1);
-		
-		assertEquals(noeudDeTest.getNombreEnfants(), 0);
-		
-		noeudDeTest2.setNoeudParent(noeudDeTest);
-		assertEquals(noeudDeTest.getNombreEnfants(), 1);
-		
-		noeudDeTest3.setNoeudParent(noeudDeTest);
-		assertEquals(noeudDeTest.getNombreEnfants(), 2);
+		fail("not yet implanted");
 	}
 	
 	@Test
 	public void testGetNoeudParent() {
-		
-		NoeudHuffman noeudDeTest = new NoeudHuffman(1);
-		NoeudHuffman noeudDeTest2 = new NoeudHuffman(1);
-		noeudDeTest.setNoeudParent(noeudDeTest2);
-		
-		assertEquals(noeudDeTest.getNoeudParent(), noeudDeTest2);
-		assertEquals(noeudDeTest2.getNoeudParent(), null);
+		fail("not yet implanted");
 	}
 }
