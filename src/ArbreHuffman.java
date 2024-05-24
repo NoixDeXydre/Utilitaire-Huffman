@@ -74,67 +74,6 @@ public class ArbreHuffman {
     }
     
     /**
-     * Retourne un liseur pouvant lire un fichier caractère par caractère
-     * dans l'encodage UTF-8.
-     * 
-     * @param fichierTexte
-     * @return le liseur
-     * @throws FileNotFoundException @see java.lang.FileNotFoundException
-     */
-    private static BufferedReader getLiseurChar(File fichierTexte) 
-    			   throws FileNotFoundException {
-    	
-    	return new BufferedReader(new InputStreamReader
-    							 (new FileInputStream(fichierTexte),
-    							      Charset.forName(ENCODAGE_TEXTE)));
-    }
-    
-    /**
-     * Donne un dictionnaire des lettres et des fréquences associées 
-     * à partir d'un fichier texte.
-     * 
-     * Avant d'être retourné, le dictionnaire est trié par ordre croissant.
-     * 
-     * On peut calculer la fréquence d'un caractère 
-     * à l'aide de la méthode itérative suivante :
-     * 
-     * <p> u0 = 0;</p>
-     * <p> un + 1 = un + 1 / nbrCaractereTotal;</p>
-     * Où nbrCaractereTotal est le nombre de caractère total dans un texte.
-     * 
-     * @param fichierTexte
-     * @return le dictionnaire des lettres et des fréquences
-     * @throws IOException @see java.lang.IOException
-     */
-    private static LinkedHashMap<Character, Double> 
-    			   getDictLettreFrequence(File fichierTexte) 
-    		throws IOException {
-    	
-    	LinkedHashMap<Character, Double> lettreFrequence 
-    	= new LinkedHashMap<>();
-    	
-    	char lettreAnalyse;
-    	int tampon; // récupère la valeur binaire du caractère
-    	/* longueur totale */
-    	long nombreCaracteresTexte = getLongueurTexte(fichierTexte); 
-    	
-    	BufferedReader curseurTexte = getLiseurChar(fichierTexte);
-    	while ((tampon = curseurTexte.read()) != -1) {
-    		// récupère la lettre en binaire et la converti en char
-    		lettreAnalyse = (char) tampon;
-    		lettreFrequence.putIfAbsent(lettreAnalyse, .0);
-    		
-    		// Calcul de la fréquence
-    		lettreFrequence.put(lettreAnalyse, 
-    				 			lettreFrequence.get(lettreAnalyse) 
-    					        + (double) 1 / nombreCaracteresTexte);
-    	}
-    	
-    	curseurTexte.close();
-    	return trierDictionnaire(lettreFrequence);
-    }
-    
-    /**
      * Calcule la longueur d'un texte caractère par caractère.
      * 
      * @param fichierTexte
@@ -152,27 +91,6 @@ public class ArbreHuffman {
     	
     	curseurTexte.close();
     	return nombreCaracteres;
-    }
-    
-    /**
-     * Tri du dictionnaire par rapport aux valeurs de façon croissante.
-     * 
-     * @param dictionnaire
-     * @return le dictionnaire trié
-     */
-    private static LinkedHashMap<Character, Double> trierDictionnaire
-                  (LinkedHashMap<Character, Double> dictionnaire) {
-    	
-    	LinkedHashMap<Character, Double> dictionnaireTrie 
-    	= new LinkedHashMap<>();
-    	
-    	// Tri des valeurs en utilisant les fonctions lambdas et stream()
-    	dictionnaire.entrySet().stream()
-    	  			.sorted(Map.Entry.comparingByValue())
-    	  			.forEach(entry -> dictionnaireTrie.put
-    	  				    (entry.getKey(), entry.getValue()));
-    	  
-    	return dictionnaireTrie;
     }
     
     // TODO faire le reste en suivant le diagramme des classes
