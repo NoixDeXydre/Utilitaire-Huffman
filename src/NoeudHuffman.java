@@ -37,6 +37,10 @@ public class NoeudHuffman {
     /** Le nombre d'enfants que possède le noeud */
     private int nbrEnfants = 0;
     
+    /** Noeuds enfant du parent */
+    private NoeudHuffman noeudEnfantDroit, 
+    					 noeudEnfantGauche;
+    
     /** Noeud parent associé */
     private NoeudHuffman noeudParent;
     
@@ -73,35 +77,18 @@ public class NoeudHuffman {
      * @see java.lang.IllegalArgumentException   
      */
     public NoeudHuffman(NoeudHuffman enfantGauche,
-    		                   NoeudHuffman enfantDroit) {
-    	this.freq = enfantGauche.getFreq() + enfantDroit.getFreq();
-    	/* les deux enfants sont forcément supérieur à 0 */
+    		            NoeudHuffman enfantDroit) {
+    	freq = enfantGauche.getFreq() + enfantDroit.getFreq();
+    	
+    	// Les deux enfants sont forcément supérieurs à 0
     	if (freq > 1.0) { 
     		throw new IllegalArgumentException(ERREUR_FREQ_INVALIDE);
     	}
     	
-    	this.lettre = ' ';
+    	lettre = ' ';
     	estFeuille = false;
-    	// TODO setNoeudParent();
-
     	
-    	/*
-    	if (this.noeudParent != null) {
-    		throw new IllegalArgumentException (
-    				  ERREUR_NOEUD_PARENT_DEJA_DEFINI);
-    	} else if (noeudParent.estFeuille()) {
-    		throw new IllegalArgumentException (
-    				  ERREUR_NOEUD_PARENT_EST_FEUILLE);
-    	} else if (noeudParent.getNombreEnfants() >= NOMBRE_MAX_ENFANTS) {
-    		throw new IllegalArgumentException
-    				 (ERREUR_NOEUD_PARENT_LIMITE_ENFANTS);
-    	}
-    	
-    	// TODO fusionner la fréquence du noeud parent avec son noeud enfant
-    	
-    	this.noeudParent = noeudParent;
-    	nbrEnfants++;
-    	*/
+    	setNoeudsEnfant(enfantGauche, enfantDroit);
     }
 
 	/**
@@ -143,5 +130,41 @@ public class NoeudHuffman {
      */
     public NoeudHuffman getNoeudParent() {
     	return noeudParent;
+    }
+    
+    // TODO getter noeudEnfantGauche et Droit
+    
+    /** 
+     * Attache un parent à l'enfant.
+     * 
+     */
+    private void setNoeudParent(NoeudHuffman noeudParent) {
+    	
+    	if (this.noeudParent != null) {
+    		throw new IllegalArgumentException (
+    				  ERREUR_NOEUD_PARENT_DEJA_DEFINI);
+    	} else if (noeudParent.estFeuille()) {
+    		throw new IllegalArgumentException (
+    				  ERREUR_NOEUD_PARENT_EST_FEUILLE);
+    	} else if (noeudParent.getNombreEnfants() >= NOMBRE_MAX_ENFANTS) {
+    		throw new IllegalArgumentException
+    				 (ERREUR_NOEUD_PARENT_LIMITE_ENFANTS);
+    	}
+    	
+    	this.noeudParent = noeudParent;
+    	nbrEnfants++;
+    }
+    
+    /**
+     * Attache deux enfants dans le noeud pour en faire un parent.
+     * @param enfantGauche
+     * @param enfanDroit
+     */
+    private void setNoeudsEnfant(NoeudHuffman enfantDroit, NoeudHuffman enfantGauche) {
+    	this.noeudEnfantDroit = noeudEnfantDroit;
+    	this.noeudEnfantGauche = noeudEnfantGauche;
+    	
+    	noeudEnfantDroit.setNoeudParent(this);
+    	noeudEnfantGauche.setNoeudParent(this);
     }
 }
