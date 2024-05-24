@@ -26,13 +26,20 @@ public class NoeudHuffman {
 	final public static int NOMBRE_MAX_ENFANTS = 2;
     
     /** Lettre contenue dans le noeud */
-    final private char lettre;
+    private char lettre;
     
     /** Fréquence du noeud */
     private double freq;
     
+    /** Vérification si le noeud est une feuille */
+    private boolean estFeuille;
+    
     /** Le nombre d'enfants que possède le noeud */
     private int nbrEnfants = 0;
+    
+    /** Noeuds enfant du parent */
+    private NoeudHuffman noeudEnfantDroit, 
+    					 noeudEnfantGauche;
     
     /** Noeud parent associé */
     private NoeudHuffman noeudParent;
@@ -44,7 +51,7 @@ public class NoeudHuffman {
      * @param freq le nombre d'apparition pondéré du
      * @throws IllegalArgumentException si la fréquence 
      *         n'est pas comprise entre 0 (non inclut) et 1
-     *        @see java.lang.IllegalArgumentException   
+     * @see java.lang.IllegalArgumentException   
      */
     public NoeudHuffman(char lettre, double freq) {
     	
@@ -55,62 +62,42 @@ public class NoeudHuffman {
     	// on calcule la fréquence d'apparition de la lettre
         this.lettre = lettre;
         this.freq = freq;
+        estFeuille = true;
     }
-    
-    /**
-     * Créer un noeud de Huffman sans lettre associée.
-     * @param freq le nombre d'apparition pondéré du
-     *        caractère dans le texte
-     */
-    public NoeudHuffman(double freq) {
-        
-        // FIXME conflit avec caractère espace ? À vérifier dans les tests.
-    	this(' ', freq); 
-    }
-    
-    /**
-     * Insère dans le noeud actuel son parent.
-     * Attention, le parent voit alors son instance modifiée !
-     * 
-     * @param noeudParent noeud du parent
-     * @throws IllegalArgumentException si :
-     *    <ul>
-     *    <li>- le noeud possède déjà un parent</li>
-     *    <li>- le parent est une feuille</li>
-     *    <li>- le parent a trop d'enfants</li>
-     *    </ul>
-     *    @see java.lang.IllegalArgumentException
-     *    <br>
-     *    @see NOMBRE_MAX_ENFANTS
-     */
-    public void setNoeudParent(NoeudHuffman noeudParent) {
 
-    	if (this.noeudParent != null) {
-    		throw new IllegalArgumentException (
-    				  ERREUR_NOEUD_PARENT_DEJA_DEFINI);
-    		
-    	} else if (noeudParent.estFeuille()) {
-    		throw new IllegalArgumentException (
-    				  ERREUR_NOEUD_PARENT_EST_FEUILLE);
-    		
-    	} else if (noeudParent.getNombreEnfants() >= NOMBRE_MAX_ENFANTS) {
-    		throw new IllegalArgumentException
-    				 (ERREUR_NOEUD_PARENT_LIMITE_ENFANTS);
+    
+    /**
+     * Créer un noeud de Huffman parent de deux noeud feuille
+     * sans lettre associée en aditionnant les deux fréquences des
+     * noeuds fils.
+     * @param enfantGauche l'enfant gauche du futur noeud parent
+     * @param enfantDroit l'enfant droit du futur noeud parent
+     * @throws IllegalArgumentException si la fréquence n'est pas
+     *         inférieur à 1
+     * @see java.lang.IllegalArgumentException   
+     */
+    public NoeudHuffman(NoeudHuffman enfantGauche,
+    		            NoeudHuffman enfantDroit) {
+    	freq = enfantGauche.getFreq() + enfantDroit.getFreq();
+    	
+    	// Les deux enfants sont forcément supérieurs à 0
+    	if (freq > 1.0) { 
+    		throw new IllegalArgumentException(ERREUR_FREQ_INVALIDE);
     	}
     	
-    	// TODO fusionner la fréquence du noeud parent avec son noeud enfant
+    	lettre = ' ';
+    	estFeuille = false;
     	
-    	this.noeudParent = noeudParent;
-    	nbrEnfants++;
+    	setNoeudsEnfant(enfantGauche, enfantDroit);
     }
-    
-    /**
+
+	/**
      * Informe si le noeud est une feuille, en d'autres termes, 
      * s'il ne possède pas de lettre.
      * @return true s'il s'agit d'une feuille, sinon false.
      */
     public boolean estFeuille() {
-    	return lettre != ' ';
+    	return estFeuille;
     }
 
     /**
@@ -143,5 +130,41 @@ public class NoeudHuffman {
      */
     public NoeudHuffman getNoeudParent() {
     	return noeudParent;
+    }
+    
+    // TODO getter noeudEnfantGauche et Droit
+    
+    /** 
+     * Attache un parent à l'enfant.
+     * 
+     */
+    private void setNoeudParent(NoeudHuffman noeudParent) {
+    	
+    	if (this.noeudParent != null) {
+    		throw new IllegalArgumentException (
+    				  ERREUR_NOEUD_PARENT_DEJA_DEFINI);
+    	} else if (noeudParent.estFeuille()) {
+    		throw new IllegalArgumentException (
+    				  ERREUR_NOEUD_PARENT_EST_FEUILLE);
+    	} else if (noeudParent.getNombreEnfants() >= NOMBRE_MAX_ENFANTS) {
+    		throw new IllegalArgumentException
+    				 (ERREUR_NOEUD_PARENT_LIMITE_ENFANTS);
+    	}
+    	
+    	this.noeudParent = noeudParent;
+    	nbrEnfants++;
+    }
+    
+    /**
+     * Attache deux enfants dans le noeud pour en faire un parent.
+     * @param enfantGauche
+     * @param enfanDroit
+     */
+    private void setNoeudsEnfant(NoeudHuffman enfantDroit, NoeudHuffman enfantGauche) {
+    	this.noeudEnfantDroit = noeudEnfantDroit;
+    	this.noeudEnfantGauche = noeudEnfantGauche;
+    	
+    	noeudEnfantDroit.setNoeudParent(this);
+    	noeudEnfantGauche.setNoeudParent(this);
     }
 }

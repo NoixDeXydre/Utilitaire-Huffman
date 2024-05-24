@@ -59,7 +59,8 @@ public class ArbreHuffman {
     	
     	// ======== Construction progressive de l'arbre ========
     	
-    	/* Récupération des lettres et de leur fréquence dans le texte 
+    	/* 
+    	 * Récupération des lettres et de leur fréquence dans le texte 
     	 * à partir d'un dictionnaire.
     	 */
     	dictionnaireLettresFrequences = getDictLettreFrequence(fichierTexte);
