@@ -6,7 +6,6 @@
 package iut.info1.codagehuffman;
 
 import java.io.IOException;
-
 import iut.info1.codagehuffman.src.ArbreHuffman;
 
 /**
@@ -59,11 +58,7 @@ public class UtilitaireHuffman {
         final String DOCUMENTATION = 
                 """
                   $> encode <fichier> output <fichierCodé> abr <arbreHuffman>
-<<<<<<< HEAD
-                 Compresse le fichier grâce à l\'arbre Huffman spécifié.
-=======
                  Compresse le fichier grâce à l'arbre Huffman spécifié.
->>>>>>> 6445b1e7015bf6d256b7f4592124b12770787443
                  
                   $> encode <fichier> <fichierCodé> <arbreHuffman>
                  Même commande que la précédente mais sans les commandes
@@ -92,7 +87,7 @@ public class UtilitaireHuffman {
                 """
                 _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
                 |        Programme de compression via arbre de Huffman        |
-                |                VERSION 0.1 PREPRODUCTION DEMO               |
+                |                VERSION 0.2 PREPRODUCTION DEMO               |
                 |-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-|
                 
                 Tapez "help" en argument pour une liste des commandes 
@@ -172,8 +167,6 @@ public class UtilitaireHuffman {
                 Arrêt du programme.
                 """;
         
-        int noArgUtile;
-        
         boolean argCorrect = false;
         
         // Chemins d'accès
@@ -218,12 +211,12 @@ public class UtilitaireHuffman {
                 
                 fichierSource = args[1];
                 try {
-					new ArbreHuffman(fichierSource);
-					System.out.println("La création de l'arbre n'a pas été "
-							          + "effectuée avec succès !"); // stub
-				} catch (IOException e) {
-					System.out.println(LECTURE_FICHIER_ERREUR);
-				}
+                    new ArbreHuffman(fichierSource);
+                    System.out.println("La création de l'arbre n'a pas été "
+                                              + "effectuée avec succès !"); // stub
+                } catch (IOException e) {
+                    System.out.println(LECTURE_FICHIER_ERREUR);
+                }
             }
             
             if ("help".equalsIgnoreCase(args[0])) {
