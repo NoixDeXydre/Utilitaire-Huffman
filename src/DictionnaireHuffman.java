@@ -1,0 +1,88 @@
+/**
+ * DictionnaireHuffman.java         24/05/2024
+ * IUT de Rodez, pas de copyright
+ */
+
+ package iut.info1.codagehuffman.src;
+
+ import java.io.BufferedReader;
+ import java.io.File;
+ import java.io.FileInputStream;
+ import java.io.FileNotFoundException;
+ import java.io.IOException;
+ import java.io.InputStreamReader;
+ 
+ import java.nio.charset.Charset;
+ 
+ // Les LinkedHashMaps ne s'arrangent pas automatiquement !
+ import java.util.LinkedHashMap;
+ 
+ import java.util.Map;
+
+ public class DictionnaireHuffman {
+    /**
+     * Donne un dictionnaire des lettres et des fréquences associées 
+     * à partir d'un fichier texte.
+     * 
+     * Avant d'être retourné, le dictionnaire est trié par ordre croissant.
+     * 
+     * On peut calculer la fréquence d'un caractère 
+     * à l'aide de la méthode itérative suivante :
+     * 
+     * <p> u0 = 0;</p>
+     * <p> un + 1 = un + 1 / nbrCaractereTotal;</p>
+     * Où nbrCaractereTotal est le nombre de caractère total dans un texte.
+     * 
+     * @param fichierTexte
+     * @return le dictionnaire des lettres et des fréquences
+     * @throws IOException @see java.lang.IOException
+     */
+    private static LinkedHashMap<Character, Double> 
+    			   getDictLettreFrequence(File fichierTexte) 
+    		throws IOException {
+    	
+    	LinkedHashMap<Character, Double> lettreFrequence 
+    	= new LinkedHashMap<>();
+    	
+    	char lettreAnalyse;
+    	int tampon; // récupère la valeur binaire du caractère
+    	/* longueur totale */
+    	long nombreCaracteresTexte = getLongueurTexte(fichierTexte); 
+    	
+    	BufferedReader curseurTexte = getLiseurChar(fichierTexte);
+    	while ((tampon = curseurTexte.read()) != -1) {
+    		// récupère la lettre en binaire et la converti en char
+    		lettreAnalyse = (char) tampon;
+    		lettreFrequence.putIfAbsent(lettreAnalyse, .0);
+    		
+    		// Calcul de la fréquence
+    		lettreFrequence.put(lettreAnalyse, 
+    				 			lettreFrequence.get(lettreAnalyse) 
+    					        + (double) 1 / nombreCaracteresTexte);
+    	}
+    	
+    	curseurTexte.close();
+    	return trierDictionnaire(lettreFrequence);
+    }
+
+    /**
+     * Tri du dictionnaire par rapport aux valeurs de façon croissante.
+     * 
+     * @param dictionnaire
+     * @return le dictionnaire trié
+     */
+    private static LinkedHashMap<Character, Double> trierDictionnaireParValeur
+                  (LinkedHashMap<Character, Double> dictionnaire) {
+    	
+    	LinkedHashMap<Character, Double> dictionnaireTrie 
+    	= new LinkedHashMap<>();
+    	
+    	// Tri des valeurs en utilisant les fonctions lambdas et stream()
+    	dictionnaire.entrySet().stream()
+    	  			.sorted(Map.Entry.comparingByValue())
+    	  			.forEach(entry -> dictionnaireTrie.put
+    	  				    (entry.getKey(), entry.getValue()));
+    	  
+    	return dictionnaireTrie;
+    }
+ }
