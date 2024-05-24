@@ -136,7 +136,12 @@ public class NoeudHuffman {
     
     /** 
      * Attache un parent à l'enfant.
-     * 
+     * @throws IllegalArgumentException lévée si :
+     * <ul>
+     * <li>Le noeud parent est nul</li>
+     * <li>Le noeud parent est une feuille</li>
+     * <li>le noeud parent à déjà 2 enfants ou plus</li>
+     * </ul>
      */
     private void setNoeudParent(NoeudHuffman noeudParent) {
     	
