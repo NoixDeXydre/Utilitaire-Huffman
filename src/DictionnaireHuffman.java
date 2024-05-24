@@ -3,16 +3,13 @@
  * IUT de Rodez, pas de copyright
  */
 
- package iut.info1.codagehuffman.src;
+ package iut.info1.codeurhuffman.src;
 
  import java.io.BufferedReader;
  import java.io.File;
- import java.io.FileInputStream;
- import java.io.FileNotFoundException;
  import java.io.IOException;
- import java.io.InputStreamReader;
  
- import java.nio.charset.Charset;
+ import iut.info1.codeurhuffman.src.LectureFichierHuffman;
  
  // Les LinkedHashMaps ne s'arrangent pas automatiquement !
  import java.util.LinkedHashMap;
@@ -37,7 +34,7 @@
      * @return le dictionnaire des lettres et des fréquences
      * @throws IOException @see java.lang.IOException
      */
-    private static LinkedHashMap<Character, Double> 
+    public static LinkedHashMap<Character, Double> 
     			   getDictLettreFrequence(File fichierTexte) 
     		throws IOException {
     	
@@ -47,9 +44,9 @@
     	char lettreAnalyse;
     	int tampon; // récupère la valeur binaire du caractère
     	/* longueur totale */
-    	long nombreCaracteresTexte = getLongueurTexte(fichierTexte); 
+    	long nombreCaracteresTexte = ArbreHuffman.getLongueurTexte(fichierTexte); 
     	
-    	BufferedReader curseurTexte = getLiseurChar(fichierTexte);
+    	BufferedReader curseurTexte = LectureFichierHuffman.getLiseurChar(fichierTexte);
     	while ((tampon = curseurTexte.read()) != -1) {
     		// récupère la lettre en binaire et la converti en char
     		lettreAnalyse = (char) tampon;
@@ -62,7 +59,7 @@
     	}
     	
     	curseurTexte.close();
-    	return trierDictionnaire(lettreFrequence);
+    	return trierDictionnaireParValeur(lettreFrequence);
     }
 
     /**
