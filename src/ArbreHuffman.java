@@ -3,21 +3,17 @@
  * IUT de Rodez, pas de copyright
  */
 
-package iut.info1.codagehuffman.src;
+package iut.info1.codeurhuffman.src;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
-import java.nio.charset.Charset;
+import iut.info1.codeurhuffman.src.DictionnaireHuffman;
 
 // Les LinkedHashMaps ne s'arrangent pas automatiquement !
 import java.util.LinkedHashMap;
 
-import java.util.Map;
 
 //import utilitairehuffman.src.NoeudHuffman;
 
@@ -36,9 +32,6 @@ import java.util.Map;
  * @author TD 2 Groupe 4 Noa M'Tima Lesniak
  */
 public class ArbreHuffman {
-	
-    /** Encodage supporté par l'arbre */
-    public final static String ENCODAGE_TEXTE = "UTF-8";
 	
     /** 
      * Dictionnaire ayant pour clé un caractère, et pour valeur sa fréquence.
@@ -62,7 +55,8 @@ public class ArbreHuffman {
     	/* Récupération des lettres et de leur fréquence dans le texte 
     	 * à partir d'un dictionnaire.
     	 */
-    	dictionnaireLettresFrequences = getDictLettreFrequence(fichierTexte);
+    	dictionnaireLettresFrequences = 
+        DictionnaireHuffman.getDictLettreFrequence(fichierTexte);
     }
     
     /**
@@ -80,10 +74,11 @@ public class ArbreHuffman {
      * @return le nombre de caractère au total
      * @throws IOException @see java.lang.IOException
      */
-    private static long getLongueurTexte(File fichierTexte) throws IOException {
+    public static long getLongueurTexte(File fichierTexte) throws IOException {
     	
     	long nombreCaracteres = 0l;
-    	BufferedReader curseurTexte = getLiseurChar(fichierTexte);
+    	BufferedReader curseurTexte = 
+        LectureFichierHuffman.getLiseurChar(fichierTexte);
     	
     	while (curseurTexte.read() != -1) {
     		nombreCaracteres++;
