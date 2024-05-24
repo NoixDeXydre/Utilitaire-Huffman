@@ -187,13 +187,23 @@ public class UtilitaireHuffman {
         }
         // ----
         
-        try {                                                                   // TODO traitement du deuxièmme argument
+        try {
             if ("encode".equalsIgnoreCase(args[0])) {
                 System.out.println("Demande d'encodage"); // DEBUG
 
                 // TODO faire le lien avec ArbreHuffman()
                 argCorrect = true;
                 fichierSource = args[1];
+                arbreSource = args[2]; // TODO comme dans make-abr pour les autres arguments
+                
+                
+//          try {
+//               new compresserFichier(fichierSource, arbreSource);
+//               System.out.println("Appel de la compression correcte"); // stub
+//          } catch (IOException e) {
+//               System.out.println(LECTURE_FICHIER_ERREUR); // TODO quand implémenté : 2 messages d'erreurs si chemin fichier et/ou arbre incorrect
+//          }
+                
                 System.out.println("pas encore fini"); // stub
             }
 
@@ -210,10 +220,19 @@ public class UtilitaireHuffman {
                 argCorrect = true;
                 
                 fichierSource = args[1];
+                
+                // On saute "output"
+                if (args[2].equalsIgnoreCase("output")) {
+                    fichierDestination = args[3];
+                } else {
+                    fichierDestination = args[2];
+                }
+                
                 try {
-                    new ArbreHuffman(fichierSource);
-                    System.out.println("La création de l'arbre n'a pas été "
-                                              + "effectuée avec succès !"); // stub
+                    new ArbreHuffman(fichierSource); // , fichierDestination
+                    System.out.println(
+                      "Appel de la création de l'arbre correcte"); // stub
+                    
                 } catch (IOException e) {
                     System.out.println(LECTURE_FICHIER_ERREUR);
                 }
