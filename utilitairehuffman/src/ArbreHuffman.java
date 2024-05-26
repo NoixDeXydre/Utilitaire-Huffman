@@ -9,7 +9,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 
-import iut.info1.codeurhuffman.src.DictionnaireHuffman;
+import utilitairehuffman.src.DictionnaireHuffman;
 
 // Les LinkedHashMaps ne s'arrangent pas automatiquement !
 import java.util.LinkedHashMap;

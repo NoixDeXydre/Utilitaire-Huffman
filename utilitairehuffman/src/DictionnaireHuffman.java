@@ -9,7 +9,7 @@
  import java.io.File;
  import java.io.IOException;
  
- import iut.info1.codeurhuffman.src.LectureFichierHuffman;
+ import utilitairehuffman.src.LectureFichierHuffman;
  
  // Les LinkedHashMaps ne s'arrangent pas automatiquement !
  import java.util.LinkedHashMap;

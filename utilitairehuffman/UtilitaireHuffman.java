@@ -5,8 +5,9 @@
 
 package utilitairehuffman;
 
+import utilitairehuffman.src.ArbreHuffman;
+
 import java.io.IOException;
-import iut.info1.codagehuffman.src.ArbreHuffman;
 
 /**
  * Gestion de l'entrée utilisateur pour le fonctionnement de 
