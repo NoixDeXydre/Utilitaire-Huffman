@@ -24,18 +24,26 @@ public class TestNoeudHuffman {
 				     ()-> new NoeudHuffman(new NoeudHuffman('b', 1),
 				    		               new NoeudHuffman('a', 0.01)));
 		assertThrows(IllegalArgumentException.class,
-			     ()-> new NoeudHuffman(new NoeudHuffman('b', 0.6),
-			    		               new NoeudHuffman('a', 0.5)));
+			     	 ()-> new NoeudHuffman(new NoeudHuffman('b', 0.6),
+			    		               	   new NoeudHuffman('a', 0.5)));
 		assertThrows(IllegalArgumentException.class,
-			     ()-> new NoeudHuffman(new NoeudHuffman('b', 0.01),
-			    		               new NoeudHuffman('a', 1)));
+			     	 ()-> new NoeudHuffman(new NoeudHuffman('b', 0.01),
+			    		               	   new NoeudHuffman('a', 1)));
 		assertThrows(IllegalArgumentException.class,
-			     ()-> new NoeudHuffman(new NoeudHuffman('b',0.02),
-			    		               new NoeudHuffman('a', 0.99)));
+			     	 ()-> new NoeudHuffman(new NoeudHuffman('b',0.02),
+			    		               	   new NoeudHuffman('a', 0.99)));
 		
 		// Un des noeuds a déjà un parent
+		NoeudHuffman enfant1 = new NoeudHuffman('a', 0.18);
+		NoeudHuffman enfant2 = new NoeudHuffman('b', 0.18);
+		NoeudHuffman parent = new NoeudHuffman(enfant1, enfant2);
+		assertThrows(IllegalArgumentException.class,
+				 	 ()-> new NoeudHuffman(enfant1, enfant2));
 		
-		// TODO Cas nominal
+		// Cas nominal
+		assertDoesNotThrow(() -> new NoeudHuffman
+								(new NoeudHuffman('a', 0.19),
+					 			 new NoeudHuffman('b', 0.19)));
 	}
 	
 	@Test
@@ -103,16 +111,27 @@ public class TestNoeudHuffman {
 	
 	@Test
 	public void testGetEnfantGauche() {
-		fail("not yet implanted");
+		NoeudHuffman enfant1 = new NoeudHuffman('a', 0.18);
+		NoeudHuffman enfant2 = new NoeudHuffman('b', 0.18);
+		NoeudHuffman parent = new NoeudHuffman(enfant1, enfant2);
+		assertEquals(parent.getNoeudEnfantGauche(), enfant1);
 	}
 	
 	@Test
 	public void testGetEnfantDroit() {
-		fail("not yet implanted");
+		NoeudHuffman enfant1 = new NoeudHuffman('a', 0.18);
+		NoeudHuffman enfant2 = new NoeudHuffman('b', 0.18);
+		NoeudHuffman parent = new NoeudHuffman(enfant1, enfant2);
+		assertEquals(parent.getNoeudEnfantDroit(), enfant2);
 	}
 	
 	@Test
 	public void testGetNoeudParent() {
-		fail("not yet implanted");
+		NoeudHuffman enfant1 = new NoeudHuffman('a', 0.18);
+		NoeudHuffman enfant2 = new NoeudHuffman('b', 0.18);
+		NoeudHuffman parent = new NoeudHuffman(enfant1, enfant2);
+		
+		assertEquals(enfant1.getNoeudParent(), parent);
+		assertEquals(enfant2.getNoeudParent(), parent);
 	}
 }
