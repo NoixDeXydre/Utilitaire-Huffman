@@ -2,3 +2,6 @@
 bin
 .classpath
 .project
+utilitairehuffman/.gitignore
+utilitairehuffman/src/.gitignore
+utilitairehuffman/test/.gitignore
