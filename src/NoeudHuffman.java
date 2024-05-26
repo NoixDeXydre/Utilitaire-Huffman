@@ -8,22 +8,23 @@ package iut.info1.codagehuffman.src;
 /**
  * Composant servant à créer des noeuds de Huffman.
  * Similaire à un noeud classique, à la seule différence 
- * que ces noeuds peuvent uniquement remonter à son noeud parent.
+ * que ces noeuds peuvent aussi remonter à son noeud parent 
+ * que descendre à ses noeuds enfant.
  * @author TD 2 Groupe 4 : Adrien Vigué, Noa M'Tima Lesniak
  */
 public class NoeudHuffman {
 	
+	final private static String ERREUR_NOEUD_DEJA_ENFANT
+	= "Un noeud est déjà enfant d'un autre parent";
+	
 	final private static String ERREUR_FREQ_INVALIDE
 	= "La fréquence n'est pas comprise entre 0 et 1";
-	final private static String ERREUR_NOEUD_PARENT_DEJA_DEFINI 
-	= "Il existe déjà un parent au noeud associé";
-	final private static String ERREUR_NOEUD_PARENT_EST_FEUILLE 
-	= "Le parent est une feuille et ne peut donc pas recevoir d'enfants";
-	final private static String ERREUR_NOEUD_PARENT_LIMITE_ENFANTS
-	= "Le parent possède un nombre d'enfants trop élevé";
 	
-	/** Le nombre maximum d'enfants qu'un noeud peut avoir */
-	final public static int NOMBRE_MAX_ENFANTS = 2;
+	final private static String ERREUR_FREQ_DEPASSEMENT
+	= "L'addition des fréquences enfant est supérieure à 1";
+	
+	final private static String ERREUR_NOEUD_PARENT_NON_FEUILLE 
+	= "Le noeud n'est pas une feuille et ne contient donc pas lettre";
     
     /** Lettre contenue dans le noeud */
     private char lettre;
@@ -33,9 +34,6 @@ public class NoeudHuffman {
     
     /** Vérification si le noeud est une feuille */
     private boolean estFeuille;
-    
-    /** Le nombre d'enfants que possède le noeud */
-    private int nbrEnfants = 0;
     
     /** Noeuds enfant du parent */
     private NoeudHuffman noeudEnfantDroit, 
@@ -59,7 +57,6 @@ public class NoeudHuffman {
     		throw new IllegalArgumentException(ERREUR_FREQ_INVALIDE);
     	}
     	
-    	// on calcule la fréquence d'apparition de la lettre
         this.lettre = lettre;
         this.freq = freq;
         estFeuille = true;
@@ -76,19 +73,20 @@ public class NoeudHuffman {
      *         inférieur à 1
      * @see java.lang.IllegalArgumentException   
      */
-    public NoeudHuffman(NoeudHuffman enfantGauche,
-    		            NoeudHuffman enfantDroit) {
-    	freq = enfantGauche.getFreq() + enfantDroit.getFreq();
+    public NoeudHuffman(NoeudHuffman noeudEnfantGauche,
+    		            NoeudHuffman noeudEnfantDroit) {
     	
-    	// Les deux enfants sont forcément supérieurs à 0
-    	if (freq > 1.0) { 
-    		throw new IllegalArgumentException(ERREUR_FREQ_INVALIDE);
+    	if (noeudEnfantGauche.getFreq() 
+    	  + noeudEnfantDroit.getFreq() > 1) {
+    		throw new IllegalArgumentException(ERREUR_FREQ_DEPASSEMENT);
+    		
+    	} else if (noeudEnfantGauche.getNoeudParent() != null 
+    			|| noeudEnfantDroit.getNoeudParent()  != null) {
+    		throw new IllegalArgumentException(ERREUR_NOEUD_DEJA_ENFANT);
     	}
     	
-    	lettre = ' ';
     	estFeuille = false;
-    	
-    	setNoeudsEnfant(enfantGauche, enfantDroit);
+    	setNoeudsEnfant(noeudEnfantGauche, noeudEnfantDroit);
     }
 
 	/**
@@ -101,7 +99,7 @@ public class NoeudHuffman {
     }
 
     /**
-     * Getter de la fréquence
+     * Getter de la fréquence.
      * @return la fréquence d'apparition du noeud dans le texte.
      */
     public double getFreq() {
@@ -109,67 +107,70 @@ public class NoeudHuffman {
     }
     
     /**
-     * Getter de lettre
+     * Getter de la lettre
      * @return la lettre associée au noeud.
+     * @throws IllegalStateException si le noeud n'est pas une feuille
+     * 		   (ne contient pas de lettre)
      */
     public char getLettre() {
+    	
+    	if (!estFeuille()) {
+    		throw new IllegalStateException(ERREUR_NOEUD_PARENT_NON_FEUILLE);
+    	}
         return lettre;
     }
     
     /**
-     * Getter du nombre d'enfants
-     * @return le nombre d'enfants attachés au noeud
+     * Getter du noeud enfant de gauche.
+     * @return son enfant de gauche
      */
-    public int getNombreEnfants() {
-    	return nbrEnfants;
+    public NoeudHuffman getNoeudEnfantGauche() {
+    	return noeudEnfantGauche;
     }
     
     /**
-     * Getter du noeud parent
+     * Getter du noeud enfant de droite.
+     * @return son enfant de droite
+     */
+    public NoeudHuffman getNoeudEnfantDroit() {
+    	return noeudEnfantDroit;
+    }
+    
+    /**
+     * Getter du noeud parent.
      * @return son noeud parent
      */
     public NoeudHuffman getNoeudParent() {
     	return noeudParent;
     }
     
-    // TODO getter noeudEnfantGauche et Droit
-    
-    /** 
-     * Attache un parent à l'enfant.
-     * @throws IllegalArgumentException lévée si :
-     * <ul>
-     * <li>Le noeud parent est nul</li>
-     * <li>Le noeud parent est une feuille</li>
-     * <li>le noeud parent à déjà 2 enfants ou plus</li>
-     * </ul>
-     */
-    private void setNoeudParent(NoeudHuffman noeudParent) {
-    	
-    	if (this.noeudParent != null) {
-    		throw new IllegalArgumentException (
-    				  ERREUR_NOEUD_PARENT_DEJA_DEFINI);
-    	} else if (noeudParent.estFeuille()) {
-    		throw new IllegalArgumentException (
-    				  ERREUR_NOEUD_PARENT_EST_FEUILLE);
-    	} else if (noeudParent.getNombreEnfants() >= NOMBRE_MAX_ENFANTS) {
-    		throw new IllegalArgumentException
-    				 (ERREUR_NOEUD_PARENT_LIMITE_ENFANTS);
-    	}
-    	
-    	this.noeudParent = noeudParent;
-    	nbrEnfants++;
-    }
-    
     /**
-     * Attache deux enfants dans le noeud pour en faire un parent.
+     * Attache deux enfants dans le noeud pour en faire un parent
+     * et fusionne la fréquence des deux enfants d'après
+     * l'algorithme de Huffman.
      * @param enfantGauche
      * @param enfanDroit
+     * @throws IllegalArgumentException si les deux fréquences
+     * 		   sont supérieures à 1
      */
-    private void setNoeudsEnfant(NoeudHuffman enfantDroit, NoeudHuffman enfantGauche) {
-    	this.noeudEnfantDroit = noeudEnfantDroit;
+    private void setNoeudsEnfant(NoeudHuffman noeudEnfantGauche,
+    							 NoeudHuffman noeudEnfantDroit) {
+    	
     	this.noeudEnfantGauche = noeudEnfantGauche;
+    	this.noeudEnfantDroit = noeudEnfantDroit;
     	
     	noeudEnfantDroit.setNoeudParent(this);
     	noeudEnfantGauche.setNoeudParent(this);
+    	
+    	freq = noeudEnfantGauche.getFreq() 
+			 + noeudEnfantDroit.getFreq();
+    }
+    
+    /** 
+     * Attache un parent à l'enfant.
+     * @param noeudParent le noeud parent
+     */
+    private void setNoeudParent(NoeudHuffman noeudParent) {
+    	this.noeudParent = noeudParent;
     }
 }

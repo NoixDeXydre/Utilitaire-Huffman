@@ -16,8 +16,10 @@ import org.junit.jupiter.api.Test;
 public class TestNoeudHuffman {
 	
 	@Test
-	public void testNoeudHuffman() {
+	// Test de la construction d'un parent
+	public void testNoeudHuffmanParent() {
 		
+		// Fréquences invalides
 		assertThrows(IllegalArgumentException.class,
 				     ()-> new NoeudHuffman(new NoeudHuffman('b', 1),
 				    		               new NoeudHuffman('a', 0.01)));
@@ -30,9 +32,14 @@ public class TestNoeudHuffman {
 		assertThrows(IllegalArgumentException.class,
 			     ()-> new NoeudHuffman(new NoeudHuffman('b',0.02),
 			    		               new NoeudHuffman('a', 0.99)));
+		
+		// Un des noeuds a déjà un parent
+		
+		// TODO Cas nominal
 	}
 	
 	@Test
+	// Test de la construction d'un noeud simple
 	public void testNoeudHuffmanFeuille() {
 		
 		assertThrows(IllegalArgumentException.class,
@@ -65,26 +72,42 @@ public class TestNoeudHuffman {
 
 	@Test
 	public void testGetFreq() {
+		
+		// Un getter simple
 		assertEquals(new NoeudHuffman('a', 0.18).getFreq(), 0.18);
-		assertEquals(new NoeudHuffman(new NoeudHuffman('9', 1 / 70.0),
-				                      new NoeudHuffman('8', 1 / 70.0)).getFreq(),
-		             (double) 2 / 70.0);
+		
+		// Version avec la mise en place d'un parent et deux enfants.
+		NoeudHuffman enfant1 = new NoeudHuffman('a', 0.18);
+		NoeudHuffman enfant2 = new NoeudHuffman('b', 0.18);
+		NoeudHuffman parent = new NoeudHuffman(enfant1, enfant2);
+		assertEquals(parent.getFreq(), enfant1.getFreq() 
+									 + enfant2.getFreq());
 	}
 	
 	@Test
 	public void testGetLettre() {
+		
 		assertEquals(new NoeudHuffman('a', 0.18).getLettre(), 'a');
 		assertEquals(new NoeudHuffman('2', 0.18).getLettre(), '2');
 		assertEquals(new NoeudHuffman('>', 0.18).getLettre(), '>');
 		assertEquals(new NoeudHuffman('é', 0.18).getLettre(), 'é');
 		assertEquals(new NoeudHuffman('@', 0.18).getLettre(), '@');
 		assertEquals(new NoeudHuffman('\t', 0.18).getLettre(), '	');
-		assertEquals(new NoeudHuffman(new NoeudHuffman('9', 1 / 70.0),
-                     new NoeudHuffman('8', 1 / 70.0)).getLettre(), ' ');
+		
+		// Cas où le noeud est une feuille
+		assertThrows(IllegalStateException.class,
+					() -> new NoeudHuffman(new NoeudHuffman('a', 0.19),
+						 			   	   new NoeudHuffman('b', 0.19))
+				    	 .getLettre());
 	}
 	
 	@Test
-	public void testGetNombreEnfants() {
+	public void testGetEnfantGauche() {
+		fail("not yet implanted");
+	}
+	
+	@Test
+	public void testGetEnfantDroit() {
 		fail("not yet implanted");
 	}
 	
