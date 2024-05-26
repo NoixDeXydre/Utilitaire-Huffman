@@ -3,7 +3,7 @@
  * IUT de Rodez, pas de copyright.
  */
 
-package iut.info1.codagehuffman.test;
+package utilitairehuffman.test;
 
 //import utilitairehuffman.src.ArbreHuffman;
 

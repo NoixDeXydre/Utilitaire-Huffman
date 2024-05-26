@@ -3,7 +3,7 @@
  * IUT de Rodez, pas de copyright.
  */
 
-package iut.info1.codagehuffman;
+package utilitairehuffman;
 
 import java.io.IOException;
 import iut.info1.codagehuffman.src.ArbreHuffman;

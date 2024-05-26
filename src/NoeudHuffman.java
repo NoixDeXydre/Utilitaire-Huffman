@@ -3,7 +3,7 @@
  * IUT de Rodez, pas de copyright.
  */
 
-package iut.info1.codagehuffman.src;
+package utilitairehuffman.src;
 
 /**
  * Composant servant à créer des noeuds de Huffman.

@@ -3,7 +3,7 @@
  * IUT de Rodez, pas de copyright
  */
 
- package iut.info1.codeurhuffman.src;
+ package utilitairehuffman.src;
 
  import java.io.BufferedReader;
  import java.io.File;
