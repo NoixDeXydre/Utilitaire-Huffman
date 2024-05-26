@@ -68,26 +68,5 @@ public class ArbreHuffman {
     	return dictionnaireLettresFrequences;
     }
     
-    /**
-     * Calcule la longueur d'un texte caractère par caractère.
-     * 
-     * @param fichierTexte
-     * @return le nombre de caractère au total
-     * @throws IOException @see java.lang.IOException
-     */
-    public static long getLongueurTexte(File fichierTexte) throws IOException {
-    	
-    	long nombreCaracteres = 0l;
-    	BufferedReader curseurTexte = 
-        LectureFichierHuffman.getLiseurChar(fichierTexte);
-    	
-    	while (curseurTexte.read() != -1) {
-    		nombreCaracteres++;
-    	}
-    	
-    	curseurTexte.close();
-    	return nombreCaracteres;
-    }
-    
     // TODO faire le reste en suivant le diagramme des classes
 }

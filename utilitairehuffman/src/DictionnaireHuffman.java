@@ -3,21 +3,23 @@
  * IUT de Rodez, pas de copyright
  */
 
- package utilitairehuffman.src;
+package utilitairehuffman.src;
 
- import java.io.BufferedReader;
- import java.io.File;
- import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
  
- import utilitairehuffman.src.LectureFichierHuffman;
+import static utilitairehuffman.src.LectureFichier.getLiseurChar;
+import static utilitairehuffman.src.LectureFichier.getLongueurTexte;
  
- // Les LinkedHashMaps ne s'arrangent pas automatiquement !
- import java.util.LinkedHashMap;
+// Les LinkedHashMaps ne s'arrangent pas automatiquement !
+import java.util.LinkedHashMap;
  
- import java.util.Map;
+import java.util.Map;
 
- public class DictionnaireHuffman {
-    /**
+public class DictionnaireHuffman {
+	
+	/**
      * Donne un dictionnaire des lettres et des fréquences associées 
      * à partir d'un fichier texte.
      * 
@@ -42,13 +44,15 @@
     	= new LinkedHashMap<>();
     	
     	char lettreAnalyse;
-    	int tampon; // récupère la valeur binaire du caractère
-    	/* longueur totale */
-    	long nombreCaracteresTexte = ArbreHuffman.getLongueurTexte(fichierTexte); 
+    	int tampon; // Récupère la valeur binaire du caractère
     	
-    	BufferedReader curseurTexte = LectureFichierHuffman.getLiseurChar(fichierTexte);
+    	// Longueur totale
+    	long nombreCaracteresTexte = getLongueurTexte(fichierTexte); 
+    	
+    	BufferedReader curseurTexte = getLiseurChar(fichierTexte);
     	while ((tampon = curseurTexte.read()) != -1) {
-    		// récupère la lettre en binaire et la converti en char
+    		
+    		// Récupère la lettre en binaire et la converti en char
     		lettreAnalyse = (char) tampon;
     		lettreFrequence.putIfAbsent(lettreAnalyse, .0);
     		
@@ -82,4 +86,4 @@
     	  
     	return dictionnaireTrie;
     }
- }
+}
