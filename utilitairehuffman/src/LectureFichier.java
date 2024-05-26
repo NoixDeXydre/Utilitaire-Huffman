@@ -14,6 +14,11 @@ import java.io.InputStreamReader;
  
 import java.nio.charset.Charset;
 
+/**
+ * Offre des méthodes utiles afin de lire des fichiers textes.
+ * 
+ * @author TD 2 Groupe 4 Noa M'Tima Lesniak, Tom Le Beuze
+ */
 public class LectureFichier {
     
 	// TODO faire en sorte que ce soit l'appelant qui précise l'encodage
@@ -22,8 +27,14 @@ public class LectureFichier {
     public final static String ENCODAGE_TEXTE = "UTF-8";
     
     /**
+     * <p>
      * Retourne un liseur pouvant lire un fichier caractère par caractère
      * dans l'encodage UTF-8.
+     * 
+     * <p>
+     * Les données que donne la liseuse sont sous la forme de bytecode,
+     * il faut donc effectuer du casting pour bien lire les données.
+     * @see java.io.BufferedReader
      * 
      * @param fichierTexte
      * @return le liseur
@@ -47,9 +58,7 @@ public class LectureFichier {
     public static long getLongueurTexte(File fichierTexte) throws IOException {
     	
     	long nombreCaracteres = 0l;
-    	BufferedReader curseurTexte = 
-        getLiseurChar(fichierTexte);
-    	
+    	BufferedReader curseurTexte = getLiseurChar(fichierTexte);
     	while (curseurTexte.read() != -1) {
     		nombreCaracteres++;
     	}

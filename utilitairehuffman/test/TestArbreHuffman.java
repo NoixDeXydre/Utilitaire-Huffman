@@ -7,8 +7,6 @@ package utilitairehuffman.test;
 
 //import utilitairehuffman.src.ArbreHuffman;
 
-//import java.util.HashMap;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
@@ -41,7 +39,7 @@ public class TestArbreHuffman {
 	}
 	
 	@Test
-	public void testGetDictLettreFrequence() {
+	public void testGetDictHuffman() {
 		fail("Not yet implemented");
 	}
 }

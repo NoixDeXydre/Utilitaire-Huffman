@@ -17,14 +17,23 @@ import java.util.LinkedHashMap;
  
 import java.util.Map;
 
+/**
+ * Composant utilitaire à {@link utilitairehuffman.src.ArbreHuffman}
+ * permettant de manipuler des dictionnaires.
+ * 
+ * @author TD 2 Groupe 4 Noa M'Tima Lesniak, Tom Le Beuze
+ */
 public class DictionnaireHuffman {
 	
 	/**
-     * Donne un dictionnaire des lettres et des fréquences associées 
-     * à partir d'un fichier texte.
+	 * <p>
+     * Donne un dictionnaire avec en clé des lettres 
+     * et en valeur des fréquences associées à partir d'un fichier texte.
      * 
+     * <p>
      * Avant d'être retourné, le dictionnaire est trié par ordre croissant.
      * 
+     * <p>
      * On peut calculer la fréquence d'un caractère 
      * à l'aide de la méthode itérative suivante :
      * 
@@ -37,7 +46,7 @@ public class DictionnaireHuffman {
      * @throws IOException @see java.lang.IOException
      */
     public static LinkedHashMap<Character, Double> 
-    			   getDictLettreFrequence(File fichierTexte) 
+    			   getDictLettresFrequences(File fichierTexte) 
     		throws IOException {
     	
     	LinkedHashMap<Character, Double> lettreFrequence 

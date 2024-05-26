@@ -5,17 +5,15 @@
 
 package utilitairehuffman.src;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 
-import utilitairehuffman.src.DictionnaireHuffman;
+//import utilitairehuffman.src.NoeudHuffman;
+import static utilitairehuffman.src.DictionnaireHuffman
+								   .getDictLettresFrequences;
 
 // Les LinkedHashMaps ne s'arrangent pas automatiquement !
 import java.util.LinkedHashMap;
-
-
-//import utilitairehuffman.src.NoeudHuffman;
 
 //TODO meilleure description du composant
 
@@ -29,7 +27,7 @@ import java.util.LinkedHashMap;
  * D'après les spécifications du document, 
  * l'arbre de Huffman ne supporte que la lecture des fichiers UTF-8 !
  * 
- * @author TD 2 Groupe 4 Noa M'Tima Lesniak
+ * @author TD 2 Groupe 4 Noa M'Tima Lesniak, Tom Le Beuze
  */
 public class ArbreHuffman {
 	
@@ -56,15 +54,14 @@ public class ArbreHuffman {
     	 * Récupération des lettres et de leur fréquence dans le texte 
     	 * à partir d'un dictionnaire.
     	 */
-    	dictionnaireLettresFrequences = 
-        DictionnaireHuffman.getDictLettreFrequence(fichierTexte);
+    	dictionnaireLettresFrequences = getDictLettresFrequences(fichierTexte);
     }
     
     /**
      * Getter de dictionnaireLettresFrequences
      * @return le dictionnaire des lettres et des fréquences
      */
-    public LinkedHashMap<Character, Double> getDictLettreFrequence() {
+    public LinkedHashMap<Character, Double> getDictHuffman() {
     	return dictionnaireLettresFrequences;
     }
     
