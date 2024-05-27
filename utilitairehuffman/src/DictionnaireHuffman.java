@@ -6,7 +6,6 @@
 package utilitairehuffman.src;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
  
 import static utilitairehuffman.src.LectureFichier.getLiseurChar;
