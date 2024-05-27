@@ -37,7 +37,14 @@ public class ArbreHuffman {
 	/** Contient tout les noeuds possédant des lettres */
 	private NoeudHuffman[] noeudsFeuilles;
 	
-	/** Noeuds permettant de contruire le noeud de Huffman */
+	/** 
+	 * <p>
+	 * Noeuds permettant de contruire le noeud de Huffman.
+	 * 
+	 * <p>
+	 * En d'autres termes, il s'agit d'un tableau 
+	 * qui contient les noeuds feuilles ou non à fusionner.
+	 */
 	private NoeudHuffman[] noeudsTampon;
 	
     /** 
@@ -53,9 +60,26 @@ public class ArbreHuffman {
      * @param cheminFichier le chemin vers le fichier texte.
      * @throws IOException @see java.lang.IOException
      */
-    public ArbreHuffman(String cheminFichier) throws IOException {    	
-    	dictionnaireLettresFrequences = getDictLettresFrequences(cheminFichier);
+    public ArbreHuffman(String cheminFichier) throws IOException { 
+
+    	dictionnaireLettresFrequences 
+    	= getDictLettresFrequences(cheminFichier);
+    	
+    	// Prépare les noeuds à utiliser
     	setInitNoeuds();
+    	
+    	// Sinon, cela veut dire que l'arbre est vide
+    	if (noeudsFeuilles.length != 0) {
+    		
+    		int i = 1;
+        	int o = 0;
+        	noeudsTampon[0] = noeudsFeuilles[0];
+        	
+        	// Condition d'arrêt : la racine a une fréquence de 1
+        	while (noeudsTampon[o].getFreq() != 1.0) {
+        		// TODO boucle
+        	}
+    	}
     }
     
     /**
@@ -99,17 +123,19 @@ public class ArbreHuffman {
     	int i = 0;
     	noeudsFeuilles = new NoeudHuffman[nbrLettres];
     	for (char k : dictionnaireLettresFrequences.keySet()) {
-    		noeudsFeuilles[i++] 
+    		noeudsFeuilles[i++] // À vérifier
     		= new NoeudHuffman(k, dictionnaireLettresFrequences.get(k));
     	}
     	
     	/* 
+    	 * Création des noeuds tampon.
+    	 * 
     	 * Il a été vu après plusieurs itérations manuelles que 
     	 * le nombre maximal de noeuds pouvant être créé est de n² - 1.
     	 * 
     	 * Si n est égal à 1 ou 0, alors le nombre maximal est de n.
     	 */
-    	if (nbrLettres > 1) {
+    	if (nbrLettres > 1) { // À vérifier
     		noeudsTampon = new NoeudHuffman[nbrLettres * nbrLettres - 1];
     	} else {
     		noeudsTampon = new NoeudHuffman[nbrLettres];
