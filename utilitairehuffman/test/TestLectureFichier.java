@@ -8,6 +8,8 @@ package utilitairehuffman.test;
 import static utilitairehuffman.src.LectureFichier.getLiseurChar;
 import static utilitairehuffman.src.LectureFichier.getLongueurTexte;
 
+import java.io.FileNotFoundException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
@@ -21,6 +23,9 @@ public class TestLectureFichier {
 	@Test
 	public void testGetLiseurChar() {
 		
+		// Cas d'erreur
+		assertThrows(FileNotFoundException.class, 
+					() -> getLiseurChar("a"));
 	}
 	
 	@Test
