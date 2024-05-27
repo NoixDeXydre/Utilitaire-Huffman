@@ -55,7 +55,29 @@ public class ArbreHuffman {
     private LinkedHashMap<Character, Double> dictionnaireLettresFrequences;
 	
     /**
-     * Création d'un arbre de Huffman à partir d'un fichier texte en chemin.
+     * <p>
+     * Création d'un arbre de Huffman à partir d'un fichier texte.
+     * 
+     * <p>
+     * Fonctionnement de l'algorithme :
+     * 
+     * <ul>
+     * <li> Initialisation des noeuds feuilles triés 
+     * 		par fréquences dans un tableau ainsi qu'un 
+     * 		autre tableau contenant des noeuds en tant que tampon.
+     * </li>
+     * <li> DEBUT DE LA BOUCLE </li>
+     * <li> 	Y a t-il le noeud[i] ET un noeud tampon qui est plus 
+     * 			petit ou égal aux noeuds noeud[i + n] ?
+     * </li>
+     * <li> 	Oui : on créer un parent à partir 
+     * 			des deux noeuds sélectionnés. 
+     * </li>
+     * <li> 	Non : on place le noeud[i] dans le tampon 
+     *      	en attendant qu'il créer un parent.
+     * </li>
+     * <li> FIN lorsqu'un noeud possède une fréquence de 1. </li>
+     * </ul>
      * 
      * @param cheminFichier le chemin vers le fichier texte.
      * @throws IOException @see java.lang.IOException
