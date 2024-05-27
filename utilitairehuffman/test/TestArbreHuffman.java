@@ -19,13 +19,6 @@ import org.junit.jupiter.api.Test;
  */
 public class TestArbreHuffman {
 	
-	// TODO faire le jeu de test manuel
-	
-	/* 
-	 * FIXME puisque certaines méthodes sont private,
-	 * il faut les tester indirectement
-	 */
-	
 	final String[] cheminsFichiers = {
 		"cajouj.txt",
 		"java.txt",
@@ -40,6 +33,11 @@ public class TestArbreHuffman {
 	
 	@Test
 	public void testGetDictHuffman() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testToString() {
 		fail("Not yet implemented");
 	}
 }
