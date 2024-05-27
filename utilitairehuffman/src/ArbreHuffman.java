@@ -55,6 +55,7 @@ public class ArbreHuffman {
      */
     public ArbreHuffman(String cheminFichier) throws IOException {    	
     	dictionnaireLettresFrequences = getDictLettresFrequences(cheminFichier);
+    	setInitNoeuds();
     }
     
     /**
@@ -66,16 +67,53 @@ public class ArbreHuffman {
     }
     
     /**
+     * <p>
      * Représente l'arbre de Huffman sous forme d'un texte multilignes
      * avec le code encodé, décodé et le symbole char de chaque noeud.
      * @see FORMATAGE_ARBRE_HUFFMAN
+     * 
+     * <p>
+     * Chaque code de Huffman doit être déterminé en 
+     * remontant les noeuds feuilles de l'arbre. On remarquera ainsi que
+     * remonter depuis la gauche 
+     * ajoute “1” et remonter depuis la droite ajoute “0"
      * 
      * @return représentation de l'arbre de Huffman
      */
     @Override 
     public String toString() {
     	
+    	// TODO méthode
     	// stub
     	return "";
+    }
+    
+    /**
+     * Initialise les noeuds feuilles et les noeuds tampon.
+     */
+    private void setInitNoeuds() {
+    	
+    	int nbrLettres = dictionnaireLettresFrequences.size();
+    	
+    	// Création des noeuds feuilles
+    	int i = 0;
+    	noeudsFeuilles = new NoeudHuffman[nbrLettres];
+    	for (char k : dictionnaireLettresFrequences.keySet()) {
+    		noeudsFeuilles[i++] 
+    		= new NoeudHuffman(k, dictionnaireLettresFrequences.get(k));
+    	}
+    	
+    	/* 
+    	 * Il a été vu après plusieurs itérations manuelles que 
+    	 * le nombre maximal de noeuds pouvant être créé est de n² - 1.
+    	 * 
+    	 * Si n est égal à 1 ou 0, alors le nombre maximal est de n.
+    	 */
+    	if (nbrLettres > 1) {
+    		noeudsTampon = new NoeudHuffman[nbrLettres * nbrLettres - 1];
+    	} else {
+    		noeudsTampon = new NoeudHuffman[nbrLettres];
+    	}
+    	
     }
 }
