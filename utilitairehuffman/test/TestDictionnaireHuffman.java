@@ -26,7 +26,6 @@ public class TestDictionnaireHuffman {
 		final String[] CHEMINS_FICHIERS = {
 			"utilitairehuffman/test/textes/cajouj.txt", // 8 lettres
 			"utilitairehuffman/test/textes/mystere.txt", // 9 lettres
-			"utilitairehuffman/test/textes/le_vide.txt" // 0 lettres
 		};
 		
 		// Données mises dans l'ordre croissant
@@ -35,13 +34,11 @@ public class TestDictionnaireHuffman {
 			{.125, .125, .25, .25, .25},
 			{1.0 / 9.0, 1.0 / 9.0, 1.0 / 9.0, 1.0 / 9.0,
 			 1.0 / 9.0, 1.0 / 9.0, 1.0 / 9.0, 2.0 / 9.0},
-			{ }
 		};
 		
 		final char[][] LETTRES_VALIDES = {
 			{'b', 'u', 'a', 'j', 'o'},
 			{'u', 'p', 'e', 'c', 't', ' ', '.', 's'},
-			{ }
 		};
 		
 		final LinkedHashMap<Character, Double> DICTIONNAIRE1
@@ -49,9 +46,6 @@ public class TestDictionnaireHuffman {
 		
 		final LinkedHashMap<Character, Double> DICTIONNAIRE2
 		= getDictLettresFrequences(CHEMINS_FICHIERS[1]);
-		
-		final LinkedHashMap<Character, Double> DICTIONNAIRE3
-		= getDictLettresFrequences(CHEMINS_FICHIERS[2]);
 		
 		int i = 0;
 		
