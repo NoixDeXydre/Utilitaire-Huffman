@@ -20,7 +20,8 @@ import java.util.LinkedHashMap;
  * un ensemble de données.
  * 
  * <p>
- * Contrairement à un arbre classique, il se créer à partir de ses feuilles.
+ * Contrairement à un arbre classique, il se créer à partir de ses feuilles,
+ * composant provenant de {@link utilitairehuffman.src.NoeudHuffman}
  * 
  * <p>
  * D'après les spécifications du document, 
