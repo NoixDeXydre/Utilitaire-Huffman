@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test de la classe DictionnaireHuffman.
- * @author TD 2 Groupe 4 : Noa M'Tima Lesniak
+ * @author TD 2 Groupe 4 : Noa M'tima Lesniak
  */
 public class TestDictionnaireHuffman {
 
