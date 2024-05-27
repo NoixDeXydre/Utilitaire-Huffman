@@ -36,13 +36,14 @@ public class LectureFichier {
      * il faut donc effectuer du casting pour bien lire les données.
      * @see java.io.BufferedReader
      * 
-     * @param fichierTexte
+     * @param cheminFichier
      * @return le liseur
      * @throws FileNotFoundException @see java.lang.FileNotFoundException
      */
-    public static BufferedReader getLiseurChar(File fichierTexte) 
+    public static BufferedReader getLiseurChar(String cheminFichier) 
     			   throws FileNotFoundException {
     	
+    	File fichierTexte = new File(cheminFichier);
     	return new BufferedReader(new InputStreamReader
     							 (new FileInputStream(fichierTexte),
     							      Charset.forName(ENCODAGE_TEXTE)));
@@ -55,10 +56,11 @@ public class LectureFichier {
      * @return le nombre de caractère au total
      * @throws IOException @see java.lang.IOException
      */
-    public static long getLongueurTexte(File fichierTexte) throws IOException {
+    public static long getLongueurTexte(String cheminFichier) 
+    			throws IOException {
     	
     	long nombreCaracteres = 0l;
-    	BufferedReader curseurTexte = getLiseurChar(fichierTexte);
+    	BufferedReader curseurTexte = getLiseurChar(cheminFichier);
     	while (curseurTexte.read() != -1) {
     		nombreCaracteres++;
     	}

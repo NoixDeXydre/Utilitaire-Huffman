@@ -5,6 +5,9 @@
 
 package utilitairehuffman.test;
 
+import static utilitairehuffman.src.LectureFichier.getLiseurChar;
+import static utilitairehuffman.src.LectureFichier.getLongueurTexte;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
@@ -17,12 +20,24 @@ public class TestLectureFichier {
 	
 	@Test
 	public void testGetLiseurChar() {
-		fail("Not yet implemented");
+		
 	}
 	
 	@Test
-	public void testGetLongueurTexte() {
-		fail("Not yet implemented");
+	public void testGetLongueurTexte() throws Exception {
+		
+		final String[] cheminsFichiers = {
+			"utilitairehuffman/test/textes/cajouj.txt",
+			"utilitairehuffman/test/textes/java.txt",
+			"utilitairehuffman/test/textes/mystere.txt",
+			"utilitairehuffman/test/textes/oeufman.txt"
+		};
+
+		assertEquals(getLongueurTexte(cheminsFichiers[0]), 8);
+		assertEquals(getLongueurTexte(cheminsFichiers[1]), 47);
+		assertEquals(getLongueurTexte(cheminsFichiers[2]), 9);
+		assertEquals(getLongueurTexte(cheminsFichiers[3]), 45);
+		
 	}
 
 }

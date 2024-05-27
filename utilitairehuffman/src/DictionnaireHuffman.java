@@ -46,7 +46,7 @@ public class DictionnaireHuffman {
      * @throws IOException @see java.lang.IOException
      */
     public static LinkedHashMap<Character, Double> 
-    			   getDictLettresFrequences(File fichierTexte) 
+    			   getDictLettresFrequences(String cheminTexte) 
     		throws IOException {
     	
     	LinkedHashMap<Character, Double> lettreFrequence 
@@ -56,9 +56,9 @@ public class DictionnaireHuffman {
     	int tampon; // Récupère la valeur binaire du caractère
     	
     	// Longueur totale
-    	long nombreCaracteresTexte = getLongueurTexte(fichierTexte); 
+    	long nombreCaracteresTexte = getLongueurTexte(cheminTexte); 
     	
-    	BufferedReader curseurTexte = getLiseurChar(fichierTexte);
+    	BufferedReader curseurTexte = getLiseurChar(cheminTexte);
     	while ((tampon = curseurTexte.read()) != -1) {
     		
     		// Récupère la lettre en binaire et la converti en char

@@ -46,15 +46,13 @@ public class ArbreHuffman {
      */
     public ArbreHuffman(String cheminFichier) throws IOException {
     	
-    	File fichierTexte = new File(cheminFichier);
-    	
     	// ======== Construction progressive de l'arbre ========
     	
     	/* 
     	 * Récupération des lettres et de leur fréquence dans le texte 
     	 * à partir d'un dictionnaire.
     	 */
-    	dictionnaireLettresFrequences = getDictLettresFrequences(fichierTexte);
+    	dictionnaireLettresFrequences = getDictLettresFrequences(cheminFichier);
     }
     
     /**
