@@ -72,7 +72,7 @@ public class DictionnaireHuffman {
     	}
     	
     	curseurTexte.close();
-    	return trierDictionnaireParValeur(lettreFrequence);
+    	return trierDictionnaireParValeur(lettreFrequence); 
     }
 
     /**
@@ -88,9 +88,11 @@ public class DictionnaireHuffman {
     	= new LinkedHashMap<>();
     	
     	// Tri des valeurs en utilisant les fonctions lambdas et stream()
-    	dictionnaire.entrySet().stream()
+    	dictionnaire.entrySet().stream() // Sépare les clés et les valeurs
     	  			.sorted(Map.Entry.comparingByValue())
-    	  			.forEach(entry -> dictionnaireTrie.put
+    	  			
+    	  			// Réecrit les données dans un autre dictionnaire
+    	  			.forEach(entry -> dictionnaireTrie.put 
     	  				    (entry.getKey(), entry.getValue()));
     	  
     	return dictionnaireTrie;
