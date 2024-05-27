@@ -8,7 +8,7 @@ package utilitairehuffman.test;
 import static utilitairehuffman.src.LectureFichier.getLiseurChar;
 import static utilitairehuffman.src.LectureFichier.getLongueurTexte;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,14 +22,14 @@ public class TestLectureFichier {
 	
 	@Test
 	public void testGetLiseurChar() {
-		
+
 		// Cas d'erreur
-		assertThrows(FileNotFoundException.class, 
+		assertThrows(IOException.class, 
 					() -> getLiseurChar("a"));
 	}
 	
 	@Test
-	public void testGetLongueurTexte() throws Exception {
+	public void testGetLongueurTexte() throws IOException {
 		
 		final String[] cheminsFichiers = {
 			"utilitairehuffman/test/textes/cajouj.txt",

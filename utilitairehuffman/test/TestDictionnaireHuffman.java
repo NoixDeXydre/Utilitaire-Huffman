@@ -5,6 +5,9 @@
 
 package utilitairehuffman.test;
 
+import static utilitairehuffman.src.DictionnaireHuffman
+								   .getDictLettresFrequences;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
@@ -17,11 +20,6 @@ public class TestDictionnaireHuffman {
 
 	@Test
 	public void testGetDictLettresFrequences() {
-		fail("Not yet implemented");
-	}
-	
-	@Test
-	public void testTrierDictionnaireParValeur() {
 		fail("Not yet implemented");
 	}
 }
