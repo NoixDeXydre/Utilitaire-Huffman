@@ -35,13 +35,15 @@ public class TestLectureFichier {
 			"utilitairehuffman/test/textes/cajouj.txt",
 			"utilitairehuffman/test/textes/java.txt",
 			"utilitairehuffman/test/textes/mystere.txt",
-			"utilitairehuffman/test/textes/oeufman.txt"
+			"utilitairehuffman/test/textes/oeufman.txt",
+			"utilitairehuffman/test/textes/le_vide.txt"
 		};
 
 		assertEquals(getLongueurTexte(cheminsFichiers[0]), 8);
 		assertEquals(getLongueurTexte(cheminsFichiers[1]), 47);
 		assertEquals(getLongueurTexte(cheminsFichiers[2]), 9);
 		assertEquals(getLongueurTexte(cheminsFichiers[3]), 45);
+		assertEquals(getLongueurTexte(cheminsFichiers[4]), 0);
 		
 	}
 
