@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
  * Test de la classe ArbreHuffman.
  * 
  * TODO changer les auteurs
- * @author TD 2 Groupe 4
+ * @author TD 2 Groupe 4 : Noa M'tima Lesniak
  */
 public class TestArbreHuffman {
 	
