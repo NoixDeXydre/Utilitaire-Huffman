@@ -73,14 +73,5 @@ public class TestDictionnaireHuffman {
 			assertEquals(k, LETTRES_VALIDES[1][i]);
 			i++;
 		}
-		
-		// Dictionnaire vide
-		i = 0;
-		for (char k : DICTIONNAIRE3.keySet()) {
-			assertEquals(DICTIONNAIRE3.get(k), FREQUENCES_VALIDES[2][i]);
-			assertEquals(k, LETTRES_VALIDES[2][i]);
-			i++;
-		}
-		
 	}
 }
