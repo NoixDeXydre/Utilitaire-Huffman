@@ -100,7 +100,18 @@ public class ArbreHuffman {
         	
         	// Condition d'arrêt : la racine a une fréquence de 1
         	while (noeudsTampon[o].getFreq() != 1.0) {
-        		// TODO boucle
+        		if (sontFrequencesPlusPetites(noeudsFeuilles[i],
+        									  noeudsTampon[o], i)) {
+        			noeudsTampon[o + 1] 
+        			= new NoeudHuffman(noeudsFeuilles[i], noeudsTampon[o]);
+        			o++;
+        		}
+        		
+        		for (int v = 0 ; i < noeudsTampon.length ; i++) {
+        			noeudsTampon[v] = noeudsTampon[v] == null 
+        							? noeudsFeuilles[i] : noeudsTampon[v];
+        		}
+        		i++;
         	}
     	}
     }
@@ -133,6 +144,29 @@ public class ArbreHuffman {
     	// TODO méthode
     	// stub
     	return "";
+    }
+    
+    /**
+     * Vérifie à la fois si la fréquence 
+     * d'un noeud feuille et d'un noeud du tampon
+     * est inférieur ou égal à tout les noeuds feuilles actuelles.
+     * 
+     * @param noeudFeuille un des noeuds feuilles de l'arbre Huffman
+     * @param noeudTampon un des noeuds tampon de l'arbre Huffman
+     * @return true si les fréquences sont plus petites, sinon false
+     */
+    private boolean sontFrequencesPlusPetites(NoeudHuffman noeudFeuille,
+    										  NoeudHuffman noeudTampon,
+    										  int indexCommencementFeuille) {
+    	
+    	int i = indexCommencementFeuille;
+    	boolean estPlusPetit = true;
+    	while (estPlusPetit && i < noeudsFeuilles.length) {
+    		estPlusPetit = noeudFeuille.getFreq() 
+    					<= noeudsFeuilles[i].getFreq();
+    	}
+    	
+    	return estPlusPetit;
     }
     
     /**
