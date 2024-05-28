@@ -56,29 +56,7 @@ public class ArbreHuffman {
     private LinkedHashMap<Character, Double> dictionnaireLettresFrequences;
 	
     /**
-     * <p>
      * Création d'un arbre de Huffman à partir d'un fichier texte.
-     * 
-     * <p>
-     * Fonctionnement de l'algorithme :
-     * 
-     * <ul>
-     * <li> Initialisation des noeuds feuilles triés 
-     * 		par fréquences dans un tableau ainsi qu'un 
-     * 		autre tableau contenant des noeuds en tant que tampon.
-     * </li>
-     * <li> DEBUT DE LA BOUCLE </li>
-     * <li> 	Y a t-il le noeud[i] ET un noeud tampon qui est plus 
-     * 			petit ou égal aux noeuds noeud[i + n] ?
-     * </li>
-     * <li> 	Oui : on créer un parent à partir 
-     * 			des deux noeuds sélectionnés. 
-     * </li>
-     * <li> 	Non : on place le noeud[i] dans le tampon 
-     *      	en attendant qu'il créer un parent.
-     * </li>
-     * <li> FIN lorsqu'un noeud possède une fréquence de 1. </li>
-     * </ul>
      * 
      * @param cheminFichier le chemin vers le fichier texte.
      * @throws IOException @see java.lang.IOException
@@ -93,26 +71,7 @@ public class ArbreHuffman {
     	
     	// Sinon, cela veut dire que l'arbre est vide
     	if (noeudsFeuilles.length != 0) {
-    		
-    		int i = 1;
-        	int o = 0;
-        	noeudsTampon[0] = noeudsFeuilles[0];
-        	
-        	// Condition d'arrêt : la racine a une fréquence de 1
-        	while (noeudsTampon[o].getFreq() != 1.0) {
-        		if (sontFrequencesPlusPetites(noeudsFeuilles[i],
-        									  noeudsTampon[o], i)) {
-        			noeudsTampon[o + 1] 
-        			= new NoeudHuffman(noeudsFeuilles[i], noeudsTampon[o]);
-        			o++;
-        		}
-        		
-        		for (int v = 0 ; i < noeudsTampon.length ; i++) {
-        			noeudsTampon[v] = noeudsTampon[v] == null 
-        							? noeudsFeuilles[i] : noeudsTampon[v];
-        		}
-        		i++;
-        	}
+    		setConnexionsNoeuds();
     	}
     }
     
@@ -167,6 +126,60 @@ public class ArbreHuffman {
     	}
     	
     	return estPlusPetit;
+    }
+    
+    /**
+     * <p>
+     * Met en place les noeuds parents et leurs connexions 
+     * dans l'arbre de Huffman.
+     * 
+     * <p>
+     * Fonctionnement de l'algorithme :
+     * 
+     * <ul>
+     * <li> Initialisation des noeuds feuilles triés 
+     * 		par fréquences dans un tableau ainsi qu'un 
+     * 		autre tableau contenant des noeuds en tant que tampon.
+     * </li>
+     * <li> DEBUT DE LA BOUCLE </li>
+     * <li> 	Y a t-il le noeud[i] ET un noeud tampon qui est plus 
+     * 			petit ou égal aux noeuds noeud[i + n] ?
+     * </li>
+     * <li> 	Oui : on créer un parent à partir 
+     * 			des deux noeuds sélectionnés,
+     * 		    et on place ce parent dans le tampon
+     * </li>
+     * <li> 	Non : on place le noeud[i] dans le tampon 
+     *      	en attendant qu'il créer un parent.
+     * </li>
+     * <li> FIN lorsqu'un noeud possède une fréquence de 1. </li>
+     * </ul>
+     */
+    private void setConnexionsNoeuds() {
+    	
+    	int i = 1;
+    	int o = 0;
+    	noeudsTampon[0] = noeudsFeuilles[0];
+    	
+    	// Condition d'arrêt : la racine a une fréquence de 1
+    	while (noeudsTampon[o].getFreq() != 1.0) {
+    		if (sontFrequencesPlusPetites(noeudsFeuilles[i],
+    									  noeudsTampon[o], i)) {
+    			noeudsTampon[o + 1] 
+    			= new NoeudHuffman(noeudsFeuilles[i], noeudsTampon[o]);
+    			o++; // Place le noeud parent dans le tampon
+    		}
+    		
+    		/* 
+    		 * Place un noeud feuille dans le tampon
+    		 * dans le prochain endroit libre.
+    		 */
+    		for (int v = 0 ; i < noeudsTampon.length ; i++) {
+    			noeudsTampon[v] = noeudsTampon[v] == null 
+    							? noeudsFeuilles[i] : noeudsTampon[v];
+    		}
+    		i++;
+    	}
     }
     
     /**
