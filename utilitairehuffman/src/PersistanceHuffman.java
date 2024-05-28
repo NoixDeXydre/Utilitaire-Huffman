@@ -8,9 +8,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * Gestion de la sauvegarde des fichiers compressés et des arbres de 
+ * Gestion de la sauvegarde des fichiers compréssés et des arbres de 
  * Huffman.
- * @author TD 2 Groupe 4 : Adrien Vigué, Cylian Poupin
+ * @author TD 2 Groupe 4 : Cylian Poupin
  */
 public class PersistanceHuffman {
     
@@ -21,15 +21,13 @@ public class PersistanceHuffman {
      * @throws IOException Si une erreur s'est produite durant 
      *                     l'écriture du fichier
      */
-    public static void ecrireDonnees(String donnees, String destination)    // FIXME A tester pour voir si le problème est résolu
+    public static void ecrireDonnees(String donnees, String destination)    // FIXME ne marche pas (boucle infinie)
                        throws IOException {
 
         FileWriter persistance = new FileWriter(destination);
 
-        for (int i = 0; i <= donnees.length(); i++) {
-            persistance.write(donnees.charAt(i));
-        }
-        
+        persistance.write(donnees);
+
         persistance.close();
     }
 }
