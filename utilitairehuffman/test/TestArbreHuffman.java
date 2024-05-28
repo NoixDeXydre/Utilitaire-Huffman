@@ -5,9 +5,11 @@
 
 package utilitairehuffman.test;
 
-//import utilitairehuffman.src.ArbreHuffman;
+import utilitairehuffman.src.ArbreHuffman;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,14 +22,15 @@ import org.junit.jupiter.api.Test;
 public class TestArbreHuffman {
 	
 	final String[] cheminsFichiers = {
-		"cajouj.txt",
-		"java.txt",
-		"mystere.txt",
-		"oeufman.txt"
+		"utilitairehuffman/test/textes/cajouj.txt",
+		"utilitairehuffman/test/textes/java.txt",
+		"utilitairehuffman/test/textes/mystere.txt",
+		"utilitairehuffman/test/textes/oeufman.txt"
 	};
 	
 	@Test
-	public void testArbreHuffman() {
+	public void testArbreHuffman() throws IOException {
+		ArbreHuffman test = new ArbreHuffman(cheminsFichiers[0]);
 		fail("Not yet implemented");
 	}
 	
