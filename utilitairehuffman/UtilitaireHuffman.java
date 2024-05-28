@@ -106,7 +106,7 @@ public class UtilitaireHuffman {
                 ---
                 Arrêt du programme.
                 
-                Ce rogramme a été réalisé par : 
+                Ce programme a été réalisé par : 
                 Noa M'TIMA LESNIAK, Cylian POUPIN, Adrien VIGUE, Tom LE BEUZE
                 """;
         
@@ -251,5 +251,6 @@ public class UtilitaireHuffman {
         } catch (ArrayIndexOutOfBoundsException aucunArgument) {
             System.out.println(ARGUMENT_MANQUANT_ERREUR);
         }
+        System.out.println(ARRET_PROGRAMME_MESSAGE);
     }
 }
