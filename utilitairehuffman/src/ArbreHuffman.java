@@ -104,33 +104,6 @@ public class ArbreHuffman {
     }
     
     /**
-     * Vérifie à la fois si la fréquence 
-     * d'un noeud feuille et d'un noeud du tampon
-     * est inférieur ou égal à tout les noeuds feuilles actuelles.
-     * 
-     * @param noeudFeuille un des noeuds feuilles de l'arbre Huffman
-     * @param noeudTampon un des noeuds tampon de l'arbre Huffman
-     * @return true si les fréquences sont plus petites, sinon false
-     */
-    private boolean sontFrequencesPlusPetites(NoeudHuffman noeudFeuille,
-    										  NoeudHuffman noeudTampon,
-    										  int indexCommencementFeuille) {
-    	
-    	int i = indexCommencementFeuille;
-    	boolean estPlusPetit = true;
-    	while (estPlusPetit && i < noeudsFeuilles.length) {
-    		estPlusPetit = noeudFeuille.getFreq() 
-    					<= noeudsFeuilles[i].getFreq() 
-    					&& noeudTampon.getFreq() 
-    					<= noeudsFeuilles[i].getFreq();
-    		i++;
-    	}
-    	
-    	//System.out.println(estPlusPetit);
-    	return estPlusPetit;
-    }
-    
-    /**
      * <p>
      * Met en place les noeuds parents et leurs connexions 
      * dans l'arbre de Huffman.
@@ -158,61 +131,15 @@ public class ArbreHuffman {
      * </ul>
      */
     private void setConnexionsNoeuds() {
-    	
-    	int i = 0; // index de noeudsFeuilles
-    	int o = 0; // index de noeudsTampon
-    	int nbrNoeudsSeuls = 0; // nombre de noeud à fusionner
-    	do {
-    		
-    		/*
-    		if (i >= noeudsFeuilles.length) {
-    			if (noeudsTampon[o].getNoeudParent() != null) {
-    				noeudsTampon[o + 1] = new NoeudHuffman(noeudsTampon[o],
-    													   noeudsTampon[o + 1]);
-    			}
-    			
-    			o++;
-    		}
-    		*/
-    		
-    		if (nbrNoeudsSeuls > 1 && sontFrequencesPlusPetites
-					  				 (noeudsTampon[o],
-					  				  noeudsTampon[o + 2], i + 1)) {
-    			noeudsTampon[o + 2] = new NoeudHuffman(noeudsTampon[o],
-    												   noeudsTampon[o + 1]);
-    			o += 2;
-    			nbrNoeudsSeuls--;
-    		}
-    		
-    		else if (noeudsTampon[o] != null && sontFrequencesPlusPetites
-    									  (noeudsFeuilles[i],
-    								       noeudsTampon[o], i + 1)) {
-    			
-    			noeudsTampon[o + 1] = new NoeudHuffman(noeudsTampon[o++],
-    											       noeudsFeuilles[i]);
-    			nbrNoeudsSeuls--;
-    		} else {
-    			
-    			/* 
-        		 * Place un noeud feuille dans le tampon
-        		 * vers le prochain endroit libre.
-        		 */
-        		for (int v = 0 ; v < noeudsTampon.length ; v++) {
-        			noeudsTampon[v] = noeudsTampon[v] == null 
-        							? noeudsFeuilles[i] : noeudsTampon[v];
-        		}
-        		nbrNoeudsSeuls++;
-    		}
-    		
-    		if (noeudsTampon[o].estFeuille()) {
-    			System.out.println(noeudsTampon[o].getLettre());
-    		} System.out.println(noeudsTampon[o].getFreq());
-    		//System.out.println(o);
-    		
-    		i++;
-    		
-    	} while (noeudsTampon[o].getFreq() != 1.0);
-    	// Condition d'arrêt : la racine a une fréquence de 1
+
+        int i = 0;
+        int o = noeudsFeuilles.length;
+        while (i + 1 < o) {
+        	NoeudHuffman gauche = noeudsTampon[i++];
+            NoeudHuffman droite = noeudsTampon[i++];
+
+            noeudsTampon[o++] = new NoeudHuffman(gauche, droite);
+        } // TODO explications
     }
     
     /**
@@ -226,7 +153,7 @@ public class ArbreHuffman {
     	int i = 0;
     	noeudsFeuilles = new NoeudHuffman[nbrLettres];
     	for (char k : dictionnaireLettresFrequences.keySet()) {
-    		noeudsFeuilles[i++] // À vérifier
+    		noeudsFeuilles[i++]
     		= new NoeudHuffman(k, dictionnaireLettresFrequences.get(k));
     	}
     	
@@ -234,15 +161,20 @@ public class ArbreHuffman {
     	 * Création des noeuds tampon.
     	 * 
     	 * Il a été vu après plusieurs itérations manuelles que 
-    	 * le nombre maximal de noeuds pouvant être créé est de n² - 1.
+    	 * le nombre maximal de noeuds pouvant être créé est de 2n - 1.
     	 * 
     	 * Si n est égal à 1 ou 0, alors le nombre maximal est de n.
     	 */
     	if (nbrLettres > 1) {
-    		noeudsTampon = new NoeudHuffman[nbrLettres * nbrLettres - 1];
+    		noeudsTampon = new NoeudHuffman[2 * nbrLettres - 1];
     	} else {
     		noeudsTampon = new NoeudHuffman[nbrLettres];
     	}
+    	
+    	// Placement des feuilles dans le tampon
+    	for (i = 0; i < noeudsFeuilles.length ; i++) {
+            noeudsTampon[i] = noeudsFeuilles[i];
+        }
     	
     }
 }
