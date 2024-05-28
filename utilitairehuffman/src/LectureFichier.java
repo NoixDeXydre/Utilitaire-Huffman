@@ -41,7 +41,7 @@ public class LectureFichier {
      * @throws FileNotFoundException @see java.lang.FileNotFoundException
      */
     public static BufferedReader getLiseurChar(String cheminFichier) 
-    			   throws FileNotFoundException {
+    			   throws IOException {
     	
     	File fichierTexte = new File(cheminFichier);
     	return new BufferedReader(new InputStreamReader
