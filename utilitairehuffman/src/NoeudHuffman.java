@@ -67,14 +67,15 @@ public class NoeudHuffman {
      * Créer un noeud de Huffman parent de deux noeud feuille
      * sans lettre associée en aditionnant les deux fréquences des
      * noeuds fils.
-     * @param enfantGauche l'enfant gauche du futur noeud parent
-     * @param enfantDroit l'enfant droit du futur noeud parent
+     * 
+     * @param noeudEnfantGauche l'enfant gauche du futur noeud parent
+     * @param noeudEnfantDroit l'enfant droit du futur noeud parent
      * @throws IllegalArgumentException si la fréquence n'est pas
      *         inférieur à 1
      * @see java.lang.IllegalArgumentException   
      */
     public NoeudHuffman(NoeudHuffman noeudEnfantGauche,
-    		            NoeudHuffman noeudEnfantDroit) {
+    		        NoeudHuffman noeudEnfantDroit) {
     	
     	if (noeudEnfantGauche.getFreq() 
     	  + noeudEnfantDroit.getFreq() > 1) {
