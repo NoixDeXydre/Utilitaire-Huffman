@@ -199,7 +199,7 @@ public class UtilitaireHuffman {
                 
                 
 //          try {
-//               new compresserFichier(fichierSource, arbreSource);
+//               new CompresserFichier(fichierSource, arbreSource);
 //               System.out.println("Appel de la compression correcte"); // stub
 //          } catch (IOException e) {
 //               System.out.println(LECTURE_FICHIER_ERREUR); // TODO quand implémenté : 2 messages d'erreurs si chemin fichier et/ou arbre incorrect
