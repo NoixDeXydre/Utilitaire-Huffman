@@ -126,7 +126,7 @@ public class ArbreHuffman {
     					<= noeudsFeuilles[i].getFreq();
     		i++;
     	}
-
+    	
     	return estPlusPetit;
     }
     
@@ -166,13 +166,21 @@ public class ArbreHuffman {
     	// Condition d'arrêt : la racine a une fréquence de 1
     	while (noeudsTampon[o].getFreq() != 1.0) {
     		
-    		System.out.println(o);
-    		if (noeudsFeuilles[i] != null 
-    		 && sontFrequencesPlusPetites(noeudsFeuilles[i],
-    									  noeudsTampon[o], i + 1)) {
+    		System.out.println(noeudsTampon[o].getFreq());
+    		
+    		// Si tout les noeuds feuilles ont été itérés
+    		if (i == noeudsFeuilles.length - 1) {
     			noeudsTampon[o + 1] 
-    			= new NoeudHuffman(noeudsFeuilles[i], noeudsTampon[o]);
-    			o++; // Place le noeud parent dans le tampon
+    			= new NoeudHuffman(noeudsTampon[o + 1], noeudsTampon[o + 2]);
+    			o++;
+    			i--;
+    		}
+    		
+    		else if (sontFrequencesPlusPetites(noeudsFeuilles[i],
+    										   noeudsTampon[o], i + 1)) {
+    			noeudsTampon[o + 1] 
+    			= new NoeudHuffman(noeudsFeuilles[i], noeudsTampon[o++]);
+    			// Place le noeud parent dans le tampon
     		} else {
     			
     			/* 
