@@ -21,11 +21,11 @@ public class PersistanceHuffman {
      * @throws IOException Si une erreur s'est produite durant 
      *                     l'écriture du fichier
      */
-    public static void ecrireDonnees(String donnees, String destination)    // FIXME ne marche pas (boucle infinie)
+    public static void ecrireDonnees(String donnees, String destination)
                        throws IOException {
-
-        FileWriter persistance = new FileWriter(destination);
-
+    	// On règle la destination du fichier à écrire
+    	FileWriter persistance = new FileWriter(destination);
+    	// On écrit les données
         persistance.write(donnees);
 
         persistance.close();

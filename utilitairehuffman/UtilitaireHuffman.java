@@ -237,12 +237,18 @@ public class UtilitaireHuffman {
                     
                 } catch (IOException e) {
                     System.out.println(LECTURE_FICHIER_ERREUR);
+                    System.exit(1);
                 }
                 
+                System.out.println("Demande l'écriture du fichier"); // DEBUG
                 try {
                     ecrireDonnees("données de test", fichierDestination);  // Données STUB
+                    
+                    System.out.println("Fichier écrit"); // DEBUG
+                    
                 } catch (IOException erreurEcriture) {
                     System.out.println(ECRITURE_ARBRE_ERREUR);
+                    System.exit(2);
                 }
                 
             }
