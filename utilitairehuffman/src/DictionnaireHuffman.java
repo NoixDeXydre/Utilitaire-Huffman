@@ -6,7 +6,6 @@
 package utilitairehuffman.src;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
  
 import static utilitairehuffman.src.LectureFichier.getLiseurChar;
@@ -46,8 +45,8 @@ public class DictionnaireHuffman {
      * @throws IOException @see java.lang.IOException
      */
     public static LinkedHashMap<Character, Double> 
-    			   getDictLettresFrequences(String cheminTexte) 
-    		throws IOException {
+    			  getDictLettresFrequences(String cheminTexte) 
+           throws IOException {
     	
     	LinkedHashMap<Character, Double> lettreFrequence 
     	= new LinkedHashMap<>();
@@ -72,7 +71,7 @@ public class DictionnaireHuffman {
     	}
     	
     	curseurTexte.close();
-    	return trierDictionnaireParValeur(lettreFrequence);
+    	return trierDictionnaireParValeur(lettreFrequence); 
     }
 
     /**
@@ -88,9 +87,11 @@ public class DictionnaireHuffman {
     	= new LinkedHashMap<>();
     	
     	// Tri des valeurs en utilisant les fonctions lambdas et stream()
-    	dictionnaire.entrySet().stream()
+    	dictionnaire.entrySet().stream() // Sépare les clés et les valeurs
     	  			.sorted(Map.Entry.comparingByValue())
-    	  			.forEach(entry -> dictionnaireTrie.put
+    	  			
+    	  			// Réecrit les données dans un autre dictionnaire
+    	  			.forEach(entry -> dictionnaireTrie.put 
     	  				    (entry.getKey(), entry.getValue()));
     	  
     	return dictionnaireTrie;

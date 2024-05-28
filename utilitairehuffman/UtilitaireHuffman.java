@@ -6,6 +6,7 @@
 package utilitairehuffman;
 
 import utilitairehuffman.src.ArbreHuffman;
+import static utilitairehuffman.src.PersistanceHuffman.ecrireDonnees;
 
 import java.io.IOException;
 
@@ -106,7 +107,7 @@ public class UtilitaireHuffman {
                 ---
                 Arrêt du programme.
                 
-                Ce programme a été réalisé par : 
+                Ce rogramme a été réalisé par : 
                 Noa M'TIMA LESNIAK, Cylian POUPIN, Adrien VIGUE, Tom LE BEUZE
                 """;
         
@@ -149,7 +150,7 @@ public class UtilitaireHuffman {
         final String ECRITURE_ARBRE_ERREUR =
                 """
                 !-!-!!-!-!
-                ! Erreur ! : Impossible d'ouvrir l'arbre
+                ! Erreur ! : Impossible d'enregistrer l'arbre
                 !-!-!!-!-!
                 """;
         
@@ -237,6 +238,13 @@ public class UtilitaireHuffman {
                 } catch (IOException e) {
                     System.out.println(LECTURE_FICHIER_ERREUR);
                 }
+                
+                try {
+                    ecrireDonnees("données de test", fichierDestination);  // Données STUB
+                } catch (IOException erreurEcriture) {
+                    System.out.println(ECRITURE_ARBRE_ERREUR);
+                }
+                
             }
             
             if ("help".equalsIgnoreCase(args[0])) {
@@ -251,6 +259,5 @@ public class UtilitaireHuffman {
         } catch (ArrayIndexOutOfBoundsException aucunArgument) {
             System.out.println(ARGUMENT_MANQUANT_ERREUR);
         }
-        System.out.println(ARRET_PROGRAMME_MESSAGE);
     }
 }
