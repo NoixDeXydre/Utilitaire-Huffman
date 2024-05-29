@@ -87,14 +87,6 @@ public class ArbreHuffman {
     }
     
     /**
-     * Getter de dictionnaireLettresFrequences
-     * @return le dictionnaire des lettres et des fréquences
-     */
-    public LinkedHashMap<Character, Double> getDictHuffman() {
-    	return dictionnaireLettresFrequences;
-    }
-    
-    /**
      * <p>
      * Représente l'arbre de Huffman sous forme d'un texte multilignes
      * avec le code encodé, décodé et le symbole char de chaque noeud.

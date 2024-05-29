@@ -25,6 +25,7 @@ public class TestArbreHuffman {
 	
 	final String[] cheminsFichiers = {
 		"utilitairehuffman/test/textes/cajouj.txt",
+		"utilitairehuffman/test/textes/gros_fichier.txt",
 		"utilitairehuffman/test/textes/java.txt",
 		"utilitairehuffman/test/textes/le_vide.txt",
 		"utilitairehuffman/test/textes/mystere.txt",
@@ -39,14 +40,13 @@ public class TestArbreHuffman {
 		assertDoesNotThrow(() -> new ArbreHuffman(getDictLettresFrequences
 												 (cheminsFichiers[0])));
 		assertDoesNotThrow(() -> new ArbreHuffman(getDictLettresFrequences
-												 (cheminsFichiers[2])));
+												 (cheminsFichiers[3])));
 		assertDoesNotThrow(() -> new ArbreHuffman(getDictLettresFrequences
-												 (cheminsFichiers[5])));
-	}
-	
-	@Test
-	public void testGetDictHuffman() {
-		fail("Not yet implemented");
+												 (cheminsFichiers[6])));
+		
+		// Erreur de dépassement ?
+		assertDoesNotThrow(() -> new ArbreHuffman(getDictLettresFrequences
+				 								 (cheminsFichiers[1])));
 	}
 	
 	@Test
@@ -54,6 +54,6 @@ public class TestArbreHuffman {
 		
 		// Cas où l'arbre de Huffman est vide (dictionnaire vide.)
 		assertEquals("", new ArbreHuffman(getDictLettresFrequences
-										 (cheminsFichiers[2])).toString());
+										 (cheminsFichiers[3])).toString());
 	}
 }
