@@ -212,7 +212,6 @@ public class ArbreHuffman {
 
             // Ajoute le nouveau nœud parent à noeudsTampon.
             noeudsTampon[o++] = parent;
-            
         }
     }
     
@@ -246,10 +245,8 @@ public class ArbreHuffman {
     		noeudsTampon = new NoeudHuffman[nbrLettres];
     	}
     	
-    	// Placement des feuilles dans le tampon
-    	for (i = 0; i < noeudsFeuilles.length ; i++) {
-            noeudsTampon[i] = noeudsFeuilles[i];
-        }
+    	System.arraycopy(noeudsFeuilles, 0, noeudsTampon,
+    					                 0, noeudsFeuilles.length);
     	
     }
 }

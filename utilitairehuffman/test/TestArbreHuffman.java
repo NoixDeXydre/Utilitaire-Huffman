@@ -24,13 +24,14 @@ public class TestArbreHuffman {
 	final String[] cheminsFichiers = {
 		"utilitairehuffman/test/textes/cajouj.txt",
 		"utilitairehuffman/test/textes/java.txt",
+		"utilitairehuffman/test/textes/le_vide.txt",
 		"utilitairehuffman/test/textes/mystere.txt",
 		"utilitairehuffman/test/textes/oeufman.txt"
 	};
 	
 	@Test
 	public void testArbreHuffman() throws IOException {
-		ArbreHuffman test = new ArbreHuffman(cheminsFichiers[0]);
+		ArbreHuffman test = new ArbreHuffman(cheminsFichiers[4]);
 		System.out.print(test);
 		fail("Not yet implemented");
 	}
