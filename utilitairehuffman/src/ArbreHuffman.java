@@ -203,15 +203,11 @@ public class ArbreHuffman {
         	
             /*
              *  Prend les deux nœuds ayant les
-             *  plus petites fréquences par paire.
+             *  plus petites fréquences par paire,
+             *  puis ajoute le nouveau nœud parent à noeudsTampon.
              */
-            NoeudHuffman gauche = noeudsTampon[i++];
-            NoeudHuffman droite = noeudsTampon[i++];
-
-            NoeudHuffman parent = new NoeudHuffman(gauche, droite);
-
-            // Ajoute le nouveau nœud parent à noeudsTampon.
-            noeudsTampon[o++] = parent;
+            noeudsTampon[o++] = new NoeudHuffman(noeudsTampon[i++],
+            									 noeudsTampon[i++]);
         }
     }
     
