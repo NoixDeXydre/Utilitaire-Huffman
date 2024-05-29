@@ -14,9 +14,8 @@ import java.util.LinkedHashMap;
 
 /**
  * <p>
- * ArbreHuffman est un composant permettant de créer
- * un arbre binaire étant utile à coder et décoder 
- * un ensemble de données.
+ * L'Arbre de Huffman est une structure de données représentant des noeuds
+ * dans un arbre binaire.
  * 
  * <p>
  * Contrairement à un arbre classique, il se créer à partir de ses feuilles,
@@ -24,11 +23,15 @@ import java.util.LinkedHashMap;
  * 
  * <p>
  * D'après les spécifications du document, 
- * l'arbre de Huffman ne supporte que la lecture des fichiers UTF-8 !
+ * cette implémentation de l'arbre de Huffman
+ * ne représente que les caractère en UTF-8.
  * 
  * @author TD 2 Groupe 4 Noa M'Tima Lesniak, Tom Le Beuze
  */
 public class ArbreHuffman {
+	
+	private static final String ERREUR_ENCODAGE
+	= "L'arbre n'a pas pu se représenter en encodage UTF-8";
 	
 	/** Représentation d'un noeud sous forme texte */
 	private static final String FORMAT_ARBRE_HUFFMAN
@@ -88,7 +91,8 @@ public class ArbreHuffman {
      * avec le code encodé, décodé et le symbole char de chaque noeud.
      * @see FORMATAGE_ARBRE_HUFFMAN
      * 
-     * @return représentation de l'arbre de Huffman
+     * @return représentation de l'arbre de Huffman, ou une chaîne vide
+     * 		   si l'arbre de Huffman est lui-même vide
      */
     @Override 
     public String toString() {
@@ -146,7 +150,7 @@ public class ArbreHuffman {
     		bits = Character.toString(noeudFeuille.getLettre())
     						.getBytes("UTF-8");
     	} catch (UnsupportedEncodingException e) {
-    		// Corps vide
+    		throw new IllegalStateException(ERREUR_ENCODAGE);
     	}
     	
     	// Distribution des paquets dans une chaîne

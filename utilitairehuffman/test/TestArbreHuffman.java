@@ -26,14 +26,16 @@ public class TestArbreHuffman {
 		"utilitairehuffman/test/textes/java.txt",
 		"utilitairehuffman/test/textes/le_vide.txt",
 		"utilitairehuffman/test/textes/mystere.txt",
-		"utilitairehuffman/test/textes/oeufman.txt"
+		"utilitairehuffman/test/textes/oeufman.txt",
+		"utilitairehuffman/test/textes/texte_binaire.txt"
 	};
 	
 	@Test
-	public void testArbreHuffman() throws IOException {
-		ArbreHuffman test = new ArbreHuffman(cheminsFichiers[4]);
-		System.out.print(test);
-		fail("Not yet implemented");
+	public void testArbreHuffman() {
+		
+		// Ne devrait pas envoyer "erreur d'encodage"
+		assertDoesNotThrow(() -> new ArbreHuffman(cheminsFichiers[1]));
+		assertDoesNotThrow(() -> new ArbreHuffman(cheminsFichiers[5]));
 	}
 	
 	@Test
@@ -42,7 +44,9 @@ public class TestArbreHuffman {
 	}
 	
 	@Test
-	public void testToString() {
-		fail("Not yet implemented");
+	public void testToString() throws IOException {
+		
+		// Cas où l'arbre de Huffman est vide (dictionnaire vide.)
+		assertEquals("", new ArbreHuffman(cheminsFichiers[2]).toString());
 	}
 }
