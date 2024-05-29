@@ -31,6 +31,7 @@ public class TestArbreHuffman {
 	@Test
 	public void testArbreHuffman() throws IOException {
 		ArbreHuffman test = new ArbreHuffman(cheminsFichiers[0]);
+		System.out.print(test);
 		fail("Not yet implemented");
 	}
 	
