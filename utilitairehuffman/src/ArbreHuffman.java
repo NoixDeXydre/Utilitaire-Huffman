@@ -30,8 +30,8 @@ import java.util.LinkedHashMap;
 public class ArbreHuffman {
 	
 	/** Représentation d'un noeud sous forme texte */
-	private static final String FORMATAGE_ARBRE_HUFFMAN
-	= "codeHuffman = %s ; encode = %s ; symbole = %c";
+	private static final String FORMAT_ARBRE_HUFFMAN
+	= "codeHuffman = %s ; encode = %s ; symbole = %c%n";
 	
 	/** Contient tout les noeuds possédant des lettres */
 	private NoeudHuffman[] noeudsFeuilles;
@@ -87,22 +87,59 @@ public class ArbreHuffman {
      * avec le code encodé, décodé et le symbole char de chaque noeud.
      * @see FORMATAGE_ARBRE_HUFFMAN
      * 
-     * <p>
-     * Chaque code de Huffman doit être déterminé en 
-     * remontant les noeuds feuilles de l'arbre. On remarquera ainsi que
-     * remonter depuis la gauche 
-     * ajoute “1” et remonter depuis la droite ajoute “0"
-     * 
      * @return représentation de l'arbre de Huffman
      */
     @Override 
     public String toString() {
     	
-    	// TODO méthode
-    	// stub
-    	return "";
+    	/*
+    	 *  Itérer la boucle dans le sens inverse
+    	 *  pour trier de façon croissante.
+    	 */
+    	String representationHuffman = "";
+    	for (int i = noeudsFeuilles.length - 1 ; i != -1 ; i--) {
+    		representationHuffman 
+    		+= construireRepresentationNoeud(noeudsFeuilles[i]);
+    	}
+    	
+    	return representationHuffman;
     }
     
+    /**
+     * Construit la représentation d'un seul noeud contenu
+     * dans le noeud de Huffman.
+     * 
+     * <p>
+     * Un code de Huffman se détermine en remontant 
+     * à partir d'un noeud feuille jusqu'à la racine.
+     * On remarquera ainsi que remonter depuis la gauche 
+     * ajoute “1” et remonter depuis la droite ajoute “0".
+     * 
+     * @param noeud un noeud appartenant à l'arbre de Huffman
+     * @return représentation d'un noeud
+     */
+    private static String construireRepresentationNoeud(NoeudHuffman noeud) {
+    	
+    	NoeudHuffman noeudFeuille = noeud;
+    	NoeudHuffman noeudEnfant;
+    	String codeHuffman = "";
+    	do {
+			noeudEnfant = noeud;
+			noeud = noeud.getNoeudParent();
+			if (noeud.getNoeudEnfantGauche() == noeudEnfant) {
+				codeHuffman += "1";
+			} else {
+				codeHuffman += "0";
+			}
+		
+		} while (noeud.getNoeudParent() != null);
+    	
+		return String.format(FORMAT_ARBRE_HUFFMAN, codeHuffman, 
+							 Integer.toBinaryString(noeudFeuille.getLettre()), // marche pas
+							 noeudFeuille.getLettre());
+    }
+    
+    // TODO mettre à jour JAVADOC
     /**
      * <p>
      * Met en place les noeuds parents et leurs connexions 
