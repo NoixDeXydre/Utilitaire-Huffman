@@ -9,6 +9,7 @@ import static utilitairehuffman.src.DictionnaireHuffman
 .getDictLettresFrequences;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.LinkedHashMap;
 
 /**
@@ -117,9 +118,11 @@ public class ArbreHuffman {
      * 
      * @param noeud un noeud appartenant à l'arbre de Huffman
      * @return représentation d'un noeud
+     * @throws UnsupportedEncodingException 
      */
     private static String construireRepresentationNoeud(NoeudHuffman noeud) {
     	
+    	// Détermination du code de Huffman
     	NoeudHuffman noeudFeuille = noeud;
     	NoeudHuffman noeudEnfant;
     	String codeHuffman = "";
@@ -127,19 +130,37 @@ public class ArbreHuffman {
 			noeudEnfant = noeud;
 			noeud = noeud.getNoeudParent();
 			if (noeud.getNoeudEnfantGauche() == noeudEnfant) {
-				codeHuffman += "1";
+				codeHuffman += "1"; // remonte depuis la gauche
 			} else {
-				codeHuffman += "0";
+				codeHuffman += "0"; // remonte depuis la gauche
 			}
 		
 		} while (noeud.getNoeudParent() != null);
     	
+    	// Conversion du caractère en sa représentation binaire UTF-8
+    	
+    	byte[] bits = {};
+    	try {
+    		
+    		// String = char* ; division en paquet de 8 bits
+    		bits = Character.toString(noeudFeuille.getLettre())
+    						.getBytes("UTF-8");
+    	} catch (UnsupportedEncodingException e) {
+    		// Corps vide
+    	}
+    	
+    	// Distribution des paquets dans une chaîne
+    	String codeBinaireUTF8 = "";
+    	for (byte b : bits) {
+    		codeBinaireUTF8 
+    		+= (String.format("%8s",
+    			Integer.toBinaryString(b & 0xFF)).replace(' ', '0'));
+    	}
+    	
 		return String.format(FORMAT_ARBRE_HUFFMAN, codeHuffman, 
-							 Integer.toBinaryString(noeudFeuille.getLettre()), // marche pas
-							 noeudFeuille.getLettre());
+							 codeBinaireUTF8, noeudFeuille.getLettre());
     }
     
-    // TODO mettre à jour JAVADOC
     /**
      * <p>
      * Met en place les noeuds parents et leurs connexions 
@@ -148,35 +169,50 @@ public class ArbreHuffman {
      * <p>
      * Fonctionnement de l'algorithme :
      * 
+     * <p>
      * <ul>
-     * <li> Initialisation des noeuds feuilles triés 
-     * 		par fréquences dans un tableau ainsi qu'un 
-     * 		autre tableau contenant des noeuds en tant que tampon.
+     * <li> 
+     * 		Initialisation d'un tableau 
+     * 		contenant les noeuds feuilles 
      * </li>
-     * <li> DEBUT DE LA BOUCLE </li>
-     * <li> 	Y a t-il le noeud[i] ET un noeud tampon qui est plus 
-     * 			petit ou égal aux noeuds noeud[i + n] ?
+     * <li> DEBUT DE LA BOUCLE </li> 
+     * <li>
+     * 		Existe t-il deux noeuds 
+     *		à fusionner dans le tableau ? 
      * </li>
-     * <li> 	Oui : on créer un parent à partir 
-     * 			des deux noeuds sélectionnés,
-     * 		    et on place ce parent dans le tampon
+     * <li> 
+     * 		Oui : création d'un parent à partir des deux noeuds,
+     * 	    puis mettre le parent dans le tableau.
      * </li>
-     * <li> 	Non : on place le noeud[i] dans le tampon 
-     *      	en attendant qu'il créer un parent.
-     * </li>
-     * <li> FIN lorsqu'un noeud possède une fréquence de 1. </li>
-     * </ul>
+     * <li> Non : STOP </li>
      */
     private void setConnexionsNoeuds() {
+    	
+    	/*
+    	 * Indice pour itérer dans les noeuds tampon
+    	 * en commençant par les noeuds feuilles.
+    	 */
+    	int i = 0; 
+        int o = noeudsFeuilles.length; // Indice des noeuds fusionnés
 
-        int i = 0;
-        int o = noeudsFeuilles.length;
+        /*
+         *  Continue de fusionner les nœuds tant
+         *  qu'il reste plus d'un nœud à fusionner.
+         */
         while (i + 1 < o) {
-        	NoeudHuffman gauche = noeudsTampon[i++];
+        	
+            /*
+             *  Prend les deux nœuds ayant les
+             *  plus petites fréquences par paire.
+             */
+            NoeudHuffman gauche = noeudsTampon[i++];
             NoeudHuffman droite = noeudsTampon[i++];
 
-            noeudsTampon[o++] = new NoeudHuffman(gauche, droite);
-        } // TODO explications
+            NoeudHuffman parent = new NoeudHuffman(gauche, droite);
+
+            // Ajoute le nouveau nœud parent à noeudsTampon.
+            noeudsTampon[o++] = parent;   
+        }
     }
     
     /**
@@ -195,7 +231,8 @@ public class ArbreHuffman {
     	}
     	
     	/* 
-    	 * Création des noeuds tampon.
+    	 * Création des noeuds tampon servant à stocker à la fois 
+    	 * les noeuds feuilles et les nouveaux noeuds parents.
     	 * 
     	 * Il a été vu après plusieurs itérations manuelles que 
     	 * le nombre maximal de noeuds pouvant être créé est de 2n - 1.
