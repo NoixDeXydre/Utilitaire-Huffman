@@ -5,9 +5,6 @@
 
 package utilitairehuffman.src;
 
-import static utilitairehuffman.src.DictionnaireHuffman
-.getDictLettresFrequences;
-
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.LinkedHashMap;
@@ -15,7 +12,9 @@ import java.util.LinkedHashMap;
 /**
  * <p>
  * L'Arbre de Huffman est une structure de données représentant des noeuds
- * dans un arbre binaire.
+ * dans un arbre binaire. 
+ * Il peut s'utiliser pour procéder au codage de Huffman, une méthode
+ * de compression sans perte.
  * 
  * <p>
  * Contrairement à un arbre classique, il se créer à partir de ses feuilles,
@@ -58,15 +57,25 @@ public class ArbreHuffman {
     private LinkedHashMap<Character, Double> dictionnaireLettresFrequences;
 	
     /**
-     * Création d'un arbre de Huffman à partir d'un fichier texte.
+     * <p>
+     * Création d'un arbre de Huffman à partir d'un dictionnaire
+     * de caractères en clé et de fréquences en valeur.
      * 
-     * @param cheminFichier le chemin vers le fichier texte.
+     * <p>
+     * Le dictionnaire doit être au préalable 
+     * trié dans l'ordre croissant pour correctement
+     * effectuer la connexion des noeuds.
+     * 
+     * <p>
+     * Le dictionnaire peut éventuellement se récupérer 
+     * à l'aide du composant {@link utilitairehuffman.src.DictionnaireHuffman}
+     * 
+     * @param dictionnaire le dictionnaire utilisé par l'arbre.
      * @throws IOException @see java.lang.IOException
      */
-    public ArbreHuffman(String cheminFichier) throws IOException { 
+    public ArbreHuffman(LinkedHashMap<Character, Double> dictionnaire) { 
 
-    	dictionnaireLettresFrequences 
-    	= getDictLettresFrequences(cheminFichier);
+    	dictionnaireLettresFrequences = dictionnaire;
     	
     	// Prépare les noeuds à utiliser
     	setInitNoeuds();

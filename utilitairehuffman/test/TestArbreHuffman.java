@@ -6,6 +6,8 @@
 package utilitairehuffman.test;
 
 import utilitairehuffman.src.ArbreHuffman;
+import static utilitairehuffman.src.DictionnaireHuffman
+								   .getDictLettresFrequences;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,8 +36,12 @@ public class TestArbreHuffman {
 	public void testArbreHuffman() {
 		
 		// Ne devrait pas envoyer "erreur d'encodage"
-		assertDoesNotThrow(() -> new ArbreHuffman(cheminsFichiers[1]));
-		assertDoesNotThrow(() -> new ArbreHuffman(cheminsFichiers[5]));
+		assertDoesNotThrow(() -> new ArbreHuffman(getDictLettresFrequences
+												 (cheminsFichiers[0])));
+		assertDoesNotThrow(() -> new ArbreHuffman(getDictLettresFrequences
+												 (cheminsFichiers[2])));
+		assertDoesNotThrow(() -> new ArbreHuffman(getDictLettresFrequences
+												 (cheminsFichiers[5])));
 	}
 	
 	@Test
@@ -47,6 +53,7 @@ public class TestArbreHuffman {
 	public void testToString() throws IOException {
 		
 		// Cas où l'arbre de Huffman est vide (dictionnaire vide.)
-		assertEquals("", new ArbreHuffman(cheminsFichiers[2]).toString());
+		assertEquals("", new ArbreHuffman(getDictLettresFrequences
+										 (cheminsFichiers[2])).toString());
 	}
 }
