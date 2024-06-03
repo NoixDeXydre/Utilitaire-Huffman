@@ -24,6 +24,8 @@ public class CompressionHuffman {
 	 *		  compresser
 	 * @param le chemin vers l'arbre de Huffman qui servira pour le
 	 *		  codage
+	 * @param fichierCompresse le chemin vers l'endroit où sera placé
+	 *        le fichier compressé
 	 * @throws IOException @see java.lang.IOException
 	 * 		   FileNotFoundException @see java.lang.IOException
 	 */

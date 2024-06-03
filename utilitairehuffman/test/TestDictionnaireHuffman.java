@@ -5,12 +5,12 @@
 
 package utilitairehuffman.test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static utilitairehuffman.src.DictionnaireHuffman
 								   .getDictLettresFrequences;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,8 +20,13 @@ import org.junit.jupiter.api.Test;
  */
 public class TestDictionnaireHuffman {
 
+    /**
+     * Tests de getDictLettresFrequences
+     * 
+     * @throws IOException @see java.lang.IOException
+     */
 	@Test
-	public void testGetDictLettresFrequences() throws IOException {
+        public static void testGetDictLettresFrequences() throws IOException { // static auto d'Eclipse
 		
 		final String[] CHEMINS_FICHIERS = {
 			"utilitairehuffman/test/textes/cajouj.txt", // 8 lettres
@@ -53,7 +58,6 @@ public class TestDictionnaireHuffman {
 		 *  Vérifie si les fréquences sont bien triées,
 		 *  puis vérifie ensuite l'ordre des clés
 		 */
-		
 		i = 0;
 		for (char k : DICTIONNAIRE1.keySet()) {
 			assertEquals(DICTIONNAIRE1.get(k), FREQUENCES_VALIDES[0][i]);

@@ -5,12 +5,12 @@
 
 package utilitairehuffman.test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static utilitairehuffman.src.LectureFichier.getLiseurChar;
 import static utilitairehuffman.src.LectureFichier.getLongueurTexte;
 
 import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,16 +20,24 @@ import org.junit.jupiter.api.Test;
  */
 public class TestLectureFichier {
 	
+    /**
+     * Tests de getLiseurChar
+     */
 	@Test
-	public void testGetLiseurChar() {
+    public static void testGetLiseurChar() { // static auto d'Eclipse
 
 		// Cas d'erreur
 		assertThrows(IOException.class, 
 					() -> getLiseurChar("a"));
 	}
 	
+        /**
+         * Tests de getLongeurTexte
+         * 
+         * @throws IOException @see java.lang.IOException
+         */
 	@Test
-	public void testGetLongueurTexte() throws IOException {
+        public static void testGetLongueurTexte() throws IOException { // static auto d'Eclipse
 		
 		final String[] cheminsFichiers = {
 			"utilitairehuffman/test/textes/cajouj.txt",
