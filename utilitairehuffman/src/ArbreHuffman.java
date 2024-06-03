@@ -149,6 +149,7 @@ public class ArbreHuffman {
     	
     	// Conversion du caractère en sa représentation binaire UTF-8
     	
+
     	byte[] bits = {};
     	try {
     		
@@ -197,7 +198,6 @@ public class ArbreHuffman {
      * <li> Non : STOP </li>
      */
     private void setConnexionsNoeuds() {
-
     	/*
     	 * Indice pour itérer dans les noeuds tampon
     	 * en commençant par les noeuds feuilles.

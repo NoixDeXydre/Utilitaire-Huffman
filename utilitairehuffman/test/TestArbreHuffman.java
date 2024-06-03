@@ -9,7 +9,8 @@ import utilitairehuffman.src.ArbreHuffman;
 import static utilitairehuffman.src.DictionnaireHuffman
 								   .getDictLettresFrequences;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 
@@ -30,6 +31,9 @@ public class TestArbreHuffman {
 		"utilitairehuffman/test/textes/texte_binaire.txt"
 	};
 	
+        /**
+         * Tests de arbreHuffman
+         */
 	@Test
 	public void testArbreHuffman() {
 		
@@ -42,8 +46,12 @@ public class TestArbreHuffman {
 		// Erreur de dépassement ?
 		assertDoesNotThrow(() -> new ArbreHuffman(getDictLettresFrequences
 				 								 (cheminsFichiers[1])));
-	}
 	
+        /**
+         * Tests de toString
+         * 
+         * @throws IOException @see java.lang.IOException
+         */
 	@Test
 	public void testToString() throws IOException {
 		

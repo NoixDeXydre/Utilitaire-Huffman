@@ -232,10 +232,10 @@ public class UtilitaireHuffman {
                     fichierDestination = args[2];
                 }
                 
+                ArbreHuffman fichierHuffman = null;
                 try {
-                	
-                	// fichierDestination
-                    new ArbreHuffman(getDictLettresFrequences(fichierSource)); 
+              
+                	fichierHuffman = new ArbreHuffman(getDictLettresFrequences(fichierSource)); 
                     System.out.println(
                       "Appel de la création de l'arbre correcte"); // stub
                     
@@ -246,7 +246,7 @@ public class UtilitaireHuffman {
                 
                 System.out.println("Demande l'écriture du fichier"); // DEBUG
                 try {
-                    ecrireDonnees("données de test", fichierDestination);  // Données STUB
+                    ecrireDonnees(fichierHuffman.toString(), fichierDestination);  // Données STUB
                     
                     System.out.println("Fichier écrit"); // DEBUG
                     

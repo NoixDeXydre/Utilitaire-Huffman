@@ -5,9 +5,13 @@
 
 package utilitairehuffman.test;
 
-import utilitairehuffman.src.NoeudHuffman;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
+
+import utilitairehuffman.src.NoeudHuffman;
 
 /**
  * Test de la classe NoeudHuffman.
@@ -15,9 +19,11 @@ import org.junit.jupiter.api.Test;
  */
 public class TestNoeudHuffman {
 	
+    /**
+     * Test de la construction d'un parent (noeudHuffmanParent)
+     */
 	@Test
-	// Test de la construction d'un parent
-	public void testNoeudHuffmanParent() {
+    public static void testNoeudHuffmanParent() { // static auto d'Eclipse
 		
 		// Fréquences invalides
 		assertThrows(IllegalArgumentException.class,
@@ -46,9 +52,12 @@ public class TestNoeudHuffman {
 					 			 new NoeudHuffman('b', 0.19)));
 	}
 	
+        /**
+         * Tests de noeudHuffmanFeuille
+         */
 	@Test
 	// Test de la construction d'un noeud simple
-	public void testNoeudHuffmanFeuille() {
+        public static void testNoeudHuffmanFeuille() { // static auto d'Eclipse
 		
 		assertThrows(IllegalArgumentException.class,
 				    () -> new NoeudHuffman('a', -0.1));
@@ -60,8 +69,11 @@ public class TestNoeudHuffman {
 				() -> new NoeudHuffman('<', 5));
 	}
 	
+        /**
+         * Tests de estFeuille
+         */
 	@Test
-	public void testEstFeuille() {
+        public static void testEstFeuille() { // static auto d'Eclipse
 		
 		// Le noeud est sensé être une feuille
 		assertEquals(new NoeudHuffman('a', 1).estFeuille(), true);
@@ -78,8 +90,11 @@ public class TestNoeudHuffman {
 				     new NoeudHuffman('8', 0.5)).estFeuille(), false);
 	}
 
+        /**
+         * Tests de getFreq
+         */
 	@Test
-	public void testGetFreq() {
+        public static void testGetFreq() {
 		
 		// Un getter simple
 		assertEquals(new NoeudHuffman('a', 0.18).getFreq(), 0.18);
@@ -92,8 +107,11 @@ public class TestNoeudHuffman {
 									 + enfant2.getFreq());
 	}
 	
+        /**
+         * Tests de getLettre
+         */
 	@Test
-	public void testGetLettre() {
+        public static void testGetLettre() { // static auto d'Eclipse
 		
 		assertEquals(new NoeudHuffman('a', 0.18).getLettre(), 'a');
 		assertEquals(new NoeudHuffman('2', 0.18).getLettre(), '2');
@@ -104,29 +122,37 @@ public class TestNoeudHuffman {
 		
 		// Cas où le noeud est une feuille
 		assertThrows(IllegalStateException.class,
-					() -> new NoeudHuffman(new NoeudHuffman('a', 0.19),
-						 			   	   new NoeudHuffman('b', 0.19))
-				    	 .getLettre());
+				() -> new NoeudHuffman(new NoeudHuffman('a', 0.19),
+                                new NoeudHuffman('b', 0.19)).getLettre());
 	}
 	
+        /**
+         * Tests de getEnfantGauche
+         */
 	@Test
-	public void testGetEnfantGauche() {
+        public static void testGetEnfantGauche() { // static auto d'Eclipse
 		NoeudHuffman enfant1 = new NoeudHuffman('a', 0.18);
 		NoeudHuffman enfant2 = new NoeudHuffman('b', 0.18);
 		NoeudHuffman parent = new NoeudHuffman(enfant1, enfant2);
 		assertEquals(parent.getNoeudEnfantGauche(), enfant1);
 	}
 	
+        /**
+         * Tests de getEnfantDroit
+         */
 	@Test
-	public void testGetEnfantDroit() {
+        public static void testGetEnfantDroit() { // static auto d'Eclipse
 		NoeudHuffman enfant1 = new NoeudHuffman('a', 0.18);
 		NoeudHuffman enfant2 = new NoeudHuffman('b', 0.18);
 		NoeudHuffman parent = new NoeudHuffman(enfant1, enfant2);
 		assertEquals(parent.getNoeudEnfantDroit(), enfant2);
 	}
 	
+        /**
+         * Tests de getNoeudParent
+         */
 	@Test
-	public void testGetNoeudParent() {
+        public static void testGetNoeudParent() { // static auto d'Eclipse
 		NoeudHuffman enfant1 = new NoeudHuffman('a', 0.18);
 		NoeudHuffman enfant2 = new NoeudHuffman('b', 0.18);
 		NoeudHuffman parent = new NoeudHuffman(enfant1, enfant2);

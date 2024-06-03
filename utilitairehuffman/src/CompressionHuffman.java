@@ -6,6 +6,7 @@ package utilitairehuffman.src;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  * Compresse un fichier selon un arbre de huffman donné puis créé un
@@ -17,18 +18,22 @@ import java.io.IOException;
  */
 public class CompressionHuffman {
 
-	/**
-	 * TODO définir la fonction du constructeur
-	 * @param fichierACompresser le chemin vers le fichier à
-	 *		  compresser
-	 * @param le chemin vers l'arbre de Huffman qui servira pour le
-	 *		  codage
-	 * @throws IOException @see java.lang.IOException
-	 */
+    /**
+     * TODO définir la fonction du constructeur
+     * 
+     * @param fichierACompresser le chemin vers le fichier à compresser
+     * @param arbre              le chemin vers l'arbre de Huffman qui servira pour
+     *                           le codage
+     * @throws IOException @see java.lang.IOException
+     */
 	public CompressionHuffman(String fichierACompresser, String arbre) 
 			throws IOException {
+		String donnees;
 		
 		File fichierCompression = new File(fichierACompresser);
-		// TODO Auto-generated constructor stub
+		Scanner liseur = new Scanner(fichierCompression);
+		donnees = liseur.nextLine();
+		PersistanceHuffman.ecrireDonnees(donnees, fichierACompresser);
+		fichierCompression.delete();
 	}
 }
