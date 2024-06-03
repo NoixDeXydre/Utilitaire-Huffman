@@ -11,7 +11,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
- 
 import java.nio.charset.Charset;
 
 /**
@@ -28,16 +27,18 @@ public class LectureFichier {
     
     /**
      * <p>
-     * Retourne un liseur pouvant lire un fichier caractère par caractère
-     * dans l'encodage UTF-8.
+     * Retourne un liseur pouvant lire un fichier caractère par caractère dans
+     * l'encodage UTF-8.
      * 
      * <p>
-     * Les données que donne la liseuse sont sous la forme de bytecode,
-     * il faut donc effectuer du casting pour bien lire les données.
+     * Les données que donne la liseuse sont sous la forme de bytecode, il faut donc
+     * effectuer du casting pour bien lire les données.
+     * 
      * @see java.io.BufferedReader
      * 
      * @param cheminFichier
      * @return le liseur
+     * @throws IOException           @see java.lang.IOException
      * @throws FileNotFoundException @see java.lang.FileNotFoundException
      */
     public static BufferedReader getLiseurChar(String cheminFichier) 
@@ -45,14 +46,14 @@ public class LectureFichier {
     	
     	File fichierTexte = new File(cheminFichier);
     	return new BufferedReader(new InputStreamReader
-    							 (new FileInputStream(fichierTexte),
-    							      Charset.forName(ENCODAGE_TEXTE)));
+        (new FileInputStream(fichierTexte), Charset.forName(ENCODAGE_TEXTE)));
     }
     
     /**
      * Calcule la longueur d'un texte caractère par caractère.
      * 
-     * @param fichierTexte
+     * @param cheminFichier chemin du fichier à partir duquel la longeur sera
+     *                      calculée.
      * @return le nombre de caractère au total
      * @throws IOException @see java.lang.IOException
      */
