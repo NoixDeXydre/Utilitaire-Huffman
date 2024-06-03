@@ -67,17 +67,13 @@ public class TestDictionnaireHuffman {
 			i++;
 		}
 		
-		i = 0;
-		for (char k : DICTIONNAIRE2.keySet()) {
-			assertEquals(DICTIONNAIRE2.get(k), FREQUENCES_VALIDES[1][i]);
-			assertEquals(k, LETTRES_VALIDES[1][i]);
-			i++;
-		}
+		// Dictionnaire vide
+		assertEquals(0, DICTIONNAIRE2.size());
 		
 		i = 0;
 		for (char k : DICTIONNAIRE3.keySet()) {
-			assertEquals(DICTIONNAIRE3.get(k), FREQUENCES_VALIDES[3][i]);
-			assertEquals(k, LETTRES_VALIDES[3][i]);
+			assertEquals(DICTIONNAIRE3.get(k), FREQUENCES_VALIDES[2][i]);
+			assertEquals(k, LETTRES_VALIDES[2][i]);
 			i++;
 		}
 	}

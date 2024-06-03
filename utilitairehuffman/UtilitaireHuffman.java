@@ -7,6 +7,8 @@ package utilitairehuffman;
 
 import utilitairehuffman.src.ArbreHuffman;
 import static utilitairehuffman.src.PersistanceHuffman.ecrireDonnees;
+import static utilitairehuffman.src.DictionnaireHuffman
+							       .getDictLettresFrequences;
 
 import java.io.IOException;
 
@@ -231,7 +233,9 @@ public class UtilitaireHuffman {
                 }
                 
                 try {
-                    new ArbreHuffman(fichierSource); // , fichierDestination
+                	
+                	// fichierDestination
+                    new ArbreHuffman(getDictLettresFrequences(fichierSource)); 
                     System.out.println(
                       "Appel de la création de l'arbre correcte"); // stub
                     

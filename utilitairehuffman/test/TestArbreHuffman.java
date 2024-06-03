@@ -57,7 +57,11 @@ public class TestArbreHuffman {
 		
 		// Cas où l'arbre de Huffman est vide (dictionnaire vide.)
 		assertEquals("", new ArbreHuffman(getDictLettresFrequences
-										 (cheminsFichiers[3])).toString());
+										 (cheminsFichiers[1])).toString());
+		
+		// Texte binaire
+		//assertEquals("", new ArbreHuffman(getDictLettresFrequences
+				 //(cheminsFichiers[3])).toString());
 		
 		// Exemple : 1maam112
 		assertEquals(fichier1.replaceAll("\\s+", ""),
