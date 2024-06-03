@@ -5,13 +5,15 @@
 
 package utilitairehuffman.test;
 
-import utilitairehuffman.src.ArbreHuffman;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
+
+import utilitairehuffman.src.ArbreHuffman;
 
 /**
  * Test de la classe ArbreHuffman.
@@ -30,6 +32,9 @@ public class TestArbreHuffman {
 		"utilitairehuffman/test/textes/texte_binaire.txt"
 	};
 	
+        /**
+         * Tests de arbreHuffman
+         */
 	@Test
 	public void testArbreHuffman() {
 		
@@ -38,11 +43,19 @@ public class TestArbreHuffman {
 		assertDoesNotThrow(() -> new ArbreHuffman(cheminsFichiers[5]));
 	}
 	
+        /**
+         * Tests de getDictHuffman
+         */
 	@Test
 	public void testGetDictHuffman() {
 		fail("Not yet implemented");
 	}
 	
+        /**
+         * Tests de toString
+         * 
+         * @throws IOException @see java.lang.IOException
+         */
 	@Test
 	public void testToString() throws IOException {
 		

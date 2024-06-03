@@ -5,15 +5,13 @@
 
 package utilitairehuffman.src;
 
-import java.io.BufferedReader;
-import java.io.IOException;
- 
 import static utilitairehuffman.src.LectureFichier.getLiseurChar;
 import static utilitairehuffman.src.LectureFichier.getLongueurTexte;
- 
+
+import java.io.BufferedReader;
+import java.io.IOException;
 // Les LinkedHashMaps ne s'arrangent pas automatiquement !
 import java.util.LinkedHashMap;
- 
 import java.util.Map;
 
 /**
@@ -24,23 +22,28 @@ import java.util.Map;
  */
 public class DictionnaireHuffman {
 	
-	/**
-	 * <p>
-     * Donne un dictionnaire avec en clé des lettres 
-     * et en valeur des fréquences associées à partir d'un fichier texte.
+    /**
+     * <p>
+     * Donne un dictionnaire avec en clé des lettres et en valeur des fréquences
+     * associées à partir d'un fichier texte.
      * 
      * <p>
      * Avant d'être retourné, le dictionnaire est trié par ordre croissant.
      * 
      * <p>
-     * On peut calculer la fréquence d'un caractère 
-     * à l'aide de la méthode itérative suivante :
+     * On peut calculer la fréquence d'un caractère à l'aide de la méthode itérative
+     * suivante :
      * 
-     * <p> u0 = 0;</p>
-     * <p> un + 1 = un + 1 / nbrCaractereTotal;</p>
+     * <p>
+     * u0 = 0;
+     * </p>
+     * <p>
+     * un + 1 = un + 1 / nbrCaractereTotal;
+     * </p>
      * Où nbrCaractereTotal est le nombre de caractère total dans un texte.
      * 
-     * @param fichierTexte
+     * @param cheminTexte chemin du fichier à partir duquel le dictionnaire sera
+     *                    créé.
      * @return le dictionnaire des lettres et des fréquences
      * @throws IOException @see java.lang.IOException
      */

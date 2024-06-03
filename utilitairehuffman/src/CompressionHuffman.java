@@ -18,15 +18,14 @@ import java.util.Scanner;
  */
 public class CompressionHuffman {
 
-	/**
-	 * TODO définir la fonction du constructeur
-	 * @param fichierACompresser le chemin vers le fichier à
-	 *		  compresser
-	 * @param le chemin vers l'arbre de Huffman qui servira pour le
-	 *		  codage
-	 * @throws IOException @see java.lang.IOException
-	 * 		   FileNotFoundException @see java.lang.IOException
-	 */
+    /**
+     * TODO définir la fonction du constructeur
+     * 
+     * @param fichierACompresser le chemin vers le fichier à compresser
+     * @param arbre              le chemin vers l'arbre de Huffman qui servira pour
+     *                           le codage
+     * @throws IOException @see java.lang.IOException
+     */
 	public CompressionHuffman(String fichierACompresser, String arbre) 
 			throws IOException {
 		String donnees;
