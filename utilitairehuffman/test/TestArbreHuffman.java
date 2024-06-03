@@ -46,12 +46,13 @@ public class TestArbreHuffman {
 		// Erreur de dépassement ?
 		assertDoesNotThrow(() -> new ArbreHuffman(getDictLettresFrequences
 				 								 (cheminsFichiers[1])));
+	}
 	
-        /**
-         * Tests de toString
-         * 
-         * @throws IOException @see java.lang.IOException
-         */
+   /**
+    * Tests de toString
+    * 
+    * @throws IOException @see java.lang.IOException
+    */
 	@Test
 	public void testToString() throws IOException {
 		
@@ -67,7 +68,7 @@ public class TestArbreHuffman {
 		assertEquals("", new ArbreHuffman(getDictLettresFrequences
 										 (cheminsFichiers[1])).toString());
 		
-		// Texte binaire
+		// Texte binaire (bug non utf-8)
 		//assertEquals("", new ArbreHuffman(getDictLettresFrequences
 				 //(cheminsFichiers[3])).toString());
 		
