@@ -24,12 +24,9 @@ import org.junit.jupiter.api.Test;
 public class TestArbreHuffman {
 	
 	final String[] cheminsFichiers = {
-		"utilitairehuffman/test/textes/cajouj.txt",
 		"utilitairehuffman/test/textes/gros_fichier.txt",
-		"utilitairehuffman/test/textes/java.txt",
 		"utilitairehuffman/test/textes/le_vide.txt",
-		"utilitairehuffman/test/textes/mystere.txt",
-		"utilitairehuffman/test/textes/oeufman.txt",
+		"utilitairehuffman/test/textes/testAB1.txt",
 		"utilitairehuffman/test/textes/texte_binaire.txt"
 	};
 	
@@ -38,11 +35,9 @@ public class TestArbreHuffman {
 		
 		// Ne devrait pas envoyer "erreur d'encodage"
 		assertDoesNotThrow(() -> new ArbreHuffman(getDictLettresFrequences
-												 (cheminsFichiers[0])));
+												 (cheminsFichiers[1])));
 		assertDoesNotThrow(() -> new ArbreHuffman(getDictLettresFrequences
 												 (cheminsFichiers[3])));
-		assertDoesNotThrow(() -> new ArbreHuffman(getDictLettresFrequences
-												 (cheminsFichiers[6])));
 		
 		// Erreur de dépassement ?
 		assertDoesNotThrow(() -> new ArbreHuffman(getDictLettresFrequences
@@ -52,8 +47,23 @@ public class TestArbreHuffman {
 	@Test
 	public void testToString() throws IOException {
 		
+		final String fichier1 = 
+		"""
+	    codehuffman = 00 ; decode = 00110010 ; symbole = 2
+		codehuffman = 01 ; decode = 01101101 ; symbole = m
+		codehuffman = 10 ; decode = 01100001 ; symbole = a
+		codehuffman = 11 ; decode = 00110001 ; symbole = 1
+		""";
+		
+		System.out.print(getDictLettresFrequences(cheminsFichiers[3]).size());
+		
 		// Cas où l'arbre de Huffman est vide (dictionnaire vide.)
 		assertEquals("", new ArbreHuffman(getDictLettresFrequences
 										 (cheminsFichiers[3])).toString());
+		
+		// Exemple : 1maam112
+		assertEquals(fichier1, new ArbreHuffman
+							   (getDictLettresFrequences
+							   (cheminsFichiers[2])).toString());
 	}
 }

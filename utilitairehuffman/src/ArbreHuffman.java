@@ -63,7 +63,7 @@ public class ArbreHuffman {
      * 
      * <p>
      * Le dictionnaire doit être au préalable 
-     * trié dans l'ordre croissant pour correctement
+     * trié dans l'ordre décroissant pour correctement
      * effectuer la connexion des noeuds.
      * 
      * <p>
@@ -74,7 +74,7 @@ public class ArbreHuffman {
      * @throws IOException @see java.lang.IOException
      */
     public ArbreHuffman(LinkedHashMap<Character, Double> dictionnaire) { 
-
+    	
     	dictionnaireLettresFrequences = dictionnaire;
     	
     	// Prépare les noeuds à utiliser
@@ -98,11 +98,12 @@ public class ArbreHuffman {
     @Override 
     public String toString() {
     	
+    	String representationHuffman = "";
+    	
     	/*
     	 *  Itérer la boucle dans le sens inverse
-    	 *  pour trier de façon croissante.
+    	 *  pour trier de façon décroissante.
     	 */
-    	String representationHuffman = "";
     	for (int i = noeudsFeuilles.length - 1 ; i != -1 ; i--) {
     		representationHuffman 
     		+= construireRepresentationNoeud(noeudsFeuilles[i]);
@@ -134,7 +135,7 @@ public class ArbreHuffman {
     	do {
 			noeudEnfant = noeud;
 			noeud = noeud.getNoeudParent();
-			if (noeud.getNoeudEnfantGauche() == noeudEnfant) {
+			if (noeud.getNoeudEnfantGauche().equals(noeudEnfant)) {
 				codeHuffman += "1"; // remonte depuis la gauche
 			} else {
 				codeHuffman += "0"; // remonte depuis la gauche
