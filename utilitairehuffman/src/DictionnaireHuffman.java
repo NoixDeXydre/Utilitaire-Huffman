@@ -103,44 +103,82 @@ public class DictionnaireHuffman {
          * l'un dépend donc de l'autre !!!
          */
         
-        // TODO méthode à séparer en morceaux
-        
         LinkedHashMap<Character, String> dictCompression 
         = new LinkedHashMap<>();
         Scanner analyseur = getLiseurString(cheminArbreHuffman);
         
         String texteAnalyse;
 
-        int indexEncode,
+        int indexCode,
             indexSymbole,
             indexSymboleFin;
+        
+        String valeur;
+        char cle;
         while (analyseur.hasNextLine()) {
             
             texteAnalyse = analyseur.nextLine();
 
             // Recherche des données dans la ligne
-            indexSymbole = texteAnalyse.indexOf("symbole = ");
-            indexEncode = texteAnalyse.indexOf("encode = ");
+            indexSymbole = texteAnalyse.indexOf("symbole =") + 10;
+            indexCode = texteAnalyse.indexOf("codehuffman =") + 14;
             indexSymboleFin = texteAnalyse.length();
-
-            if (indexSymbole != -1 && indexEncode != -1) {
-                
-                // Extraction des valeurs
-                int indexCle = indexSymbole + 10;
+            
+            // Evite un dépassement dans le String
+            if (indexSymbole - 10 != -1 && indexCode - 14 != -1) {
                 
                 // Vérification si la clé existe à l'index prévu (\n)
-                char cle = indexCle < indexSymboleFin 
-                         ? texteAnalyse.charAt(indexCle) : '\n'; 
-                String valeur 
-                = texteAnalyse.substring(indexEncode + 9,
-                                         texteAnalyse.indexOf(" ; symbole",
-                                                              indexEncode));
+                cle = indexSymbole < indexSymboleFin 
+                         ? texteAnalyse.charAt(indexSymbole) : '\n'; 
+                valeur = texteAnalyse.substring
+                        (indexCode, texteAnalyse.indexOf(" ; encode",
+                                                         indexCode));
 
                 dictCompression.put(cle, valeur);
             }
         }
-
+        
+        analyseur.close();
         return dictCompression;
+    }
+    
+    /**
+     * <p>
+     * À partir d'un fichier arbre de Huffman 
+     * généré par {@link utilitairehuffman.src.ArbreHuffman},
+     * rend un dictionnaire des codes compressés 
+     * de chaque caractère en tant que clé,
+     * et le caractère UTF-8 en valeur.
+     * 
+     * * <p>
+     * Cela est utile pour la decompression en faisant 
+     * une analyse octet par octet d'un fichier.
+     * 
+     * @param cheminArbreHuffman chemin du fichier Huffman indiqué
+     * @return dictionnaire pour la décompression
+     * @throws FileNotFoundException
+     */
+    public static LinkedHashMap<String, String> 
+                  getDictDecompression(String cheminArbreHuffman)
+           throws FileNotFoundException {
+        
+        // TODO méthode
+        
+        LinkedHashMap<String, String> dictCompression 
+        = new LinkedHashMap<>();
+        Scanner analyseur = getLiseurString(cheminArbreHuffman);
+        
+        String texteAnalyse;
+
+        int indexCode,
+            indexEncode;
+        while (analyseur.hasNextLine()) {
+            
+            texteAnalyse = analyseur.nextLine();
+        }
+        
+        //stub
+        return new LinkedHashMap<String, String>();
     }
 
     /**

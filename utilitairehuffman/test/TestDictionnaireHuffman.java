@@ -33,7 +33,7 @@ public class TestDictionnaireHuffman {
     };
     
     /**
-     * Tests de testGetDictCompression.
+     * Tests de getDictCompression.
      * @throws FileNotFoundException 
      *
      * @throws IOException @see java.lang.IOException
@@ -42,10 +42,9 @@ public class TestDictionnaireHuffman {
     public void testGetDictCompression() throws FileNotFoundException {
         
         final String[] DICT_VALIDES = {
-            "{1=00110001, a=01100001, m=01101101, 2=00110010}",
+            "{1=00, a=10, m=01, 2=11}",
             "{}",
-            "{\n"
-            + "=00110001, é=0110000100011010}"
+            "{\n=1, é=0}"
         };
         
         assertEquals(DICT_VALIDES[0],
@@ -58,6 +57,33 @@ public class TestDictionnaireHuffman {
         // Cas particulier avec un saut de ligne et un accent
         assertEquals(DICT_VALIDES[2],
                 getDictCompression(CHEMINS_ARBRES[1]).toString());
+    }
+    
+    /**
+     * Tests de getDictCompression.
+     * @throws FileNotFoundException 
+     *
+     * @throws IOException @see java.lang.IOException
+     */
+    @Test
+    public void testGetDictDecompression() throws FileNotFoundException {
+        
+        final String[] DICT_VALIDES = {
+            "{00=1, 10=a, 01=m, 11=2}",
+            "{1=\n}",
+            "{1=\n, 0=é}"
+        };
+        
+        assertEquals(DICT_VALIDES[0],
+                getDictDecompression(CHEMINS_ARBRES[0]).toString());
+   
+       // Arbre vide
+       assertEquals(DICT_VALIDES[1],
+               getDictDecompression(CHEMINS_FICHIERS[1]).toString());
+       
+       // Cas particulier avec un saut de ligne et un accent
+       assertEquals(DICT_VALIDES[2],
+               getDictDecompression(CHEMINS_ARBRES[1]).toString());
     }
 
     /**
