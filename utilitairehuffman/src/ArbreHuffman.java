@@ -99,7 +99,6 @@ public class ArbreHuffman {
     public String toString() {
     	
     	String representationHuffman = "";
-    	System.out.print(noeudsFeuilles.length);
     	if (noeudsFeuilles.length == 0) {
     		return representationHuffman;
     	}

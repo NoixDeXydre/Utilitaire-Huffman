@@ -1,0 +1,3 @@
+codehuffman = 1 ; encode = 00110001 ; symbole = 
+
+codehuffman = 0 ; encode = 0110000100011010 ; symbole = é

@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.util.Scanner;
 
 /**
  * Offre des méthodes utiles afin de lire des fichiers textes.
@@ -27,19 +28,18 @@ public class LectureFichier {
     
     /**
      * <p>
-     * Retourne un liseur pouvant lire un fichier caractère par caractère dans
-     * l'encodage UTF-8.
+     * Retourne un analyseur pouvant lire 
+     * un fichier caractère par caractère dans l'encodage UTF-8.
      * 
      * <p>
-     * Les données que donne la liseuse sont sous la forme de bytecode, il faut donc
-     * effectuer du casting pour bien lire les données.
+     * Les données que donne la liseuse sont sous la forme de bytecode,
+     * il faut donc effectuer du casting pour bien lire les données.
      * 
      * @see java.io.BufferedReader
      * 
      * @param cheminFichier
      * @return le liseur
      * @throws IOException           @see java.lang.IOException
-     * @throws FileNotFoundException @see java.lang.FileNotFoundException
      */
     public static BufferedReader getLiseurChar(String cheminFichier) 
     			   throws IOException {
@@ -47,6 +47,21 @@ public class LectureFichier {
     	File fichierTexte = new File(cheminFichier);
     	return new BufferedReader(new InputStreamReader
         (new FileInputStream(fichierTexte), Charset.forName(ENCODAGE_TEXTE)));
+    }
+    
+    /**
+     * Retourne un analyseur pouvant lire des chaînes de caractères dans
+     * un fichier texte.
+     * 
+     * @see java.util.Scanner
+     * 
+     * @param cheminFichier
+     * @return l'analyseur de chaînes
+     * @throws FileNotFoundException 
+     */
+    public static Scanner getLiseurString(String cheminFichier) 
+           throws FileNotFoundException {
+    	return new Scanner(new File(cheminFichier));
     }
     
     /**

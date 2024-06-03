@@ -1,0 +1,4 @@
+codehuffman = 00 ; encode = 00110001 ; symbole = 1
+codehuffman = 10 ; encode = 01100001 ; symbole = a
+codehuffman = 01 ; encode = 01101101 ; symbole = m
+codehuffman = 11 ; encode = 00110010 ; symbole = 2

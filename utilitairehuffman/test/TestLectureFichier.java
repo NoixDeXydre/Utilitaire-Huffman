@@ -19,40 +19,40 @@ import org.junit.jupiter.api.Test;
  * @author TD 2 Groupe 4 : Noa M'Tima Lesniak
  */
 public class TestLectureFichier {
-	
+
     /**
      * Tests de getLiseurChar
      */
-	@Test
-    public static void testGetLiseurChar() { // static auto d'Eclipse
+    @Test
+    public void testGetLiseurChar() { // static auto d'Eclipse
 
-		// Cas d'erreur
-		assertThrows(IOException.class, 
-					() -> getLiseurChar("a"));
-	}
-	
-        /**
-         * Tests de getLongeurTexte
-         * 
-         * @throws IOException @see java.lang.IOException
-         */
-	@Test
-        public static void testGetLongueurTexte() throws IOException { // static auto d'Eclipse
-		
-		final String[] cheminsFichiers = {
-			"utilitairehuffman/test/textes/cajouj.txt",
-			"utilitairehuffman/test/textes/java.txt",
-			"utilitairehuffman/test/textes/mystere.txt",
-			"utilitairehuffman/test/textes/oeufman.txt",
-			"utilitairehuffman/test/textes/le_vide.txt"
-		};
+        // Cas d'erreur
+        assertThrows(IOException.class,
+                    () -> getLiseurChar("a"));
+    }
 
-		assertEquals(getLongueurTexte(cheminsFichiers[0]), 8);
-		assertEquals(getLongueurTexte(cheminsFichiers[1]), 50);
-		assertEquals(getLongueurTexte(cheminsFichiers[2]), 9);
-		assertEquals(getLongueurTexte(cheminsFichiers[3]), 45);
-		assertEquals(getLongueurTexte(cheminsFichiers[4]), 0);
-		
-	}
+    /**
+     * Tests de getLongeurTexte
+     *
+     * @throws IOException @see java.lang.IOException
+     */
+    @Test
+    public void testGetLongueurTexte() throws IOException { // static auto d'Eclipse
+
+        final String[] cheminsFichiers = {
+            "utilitairehuffman/test/textes/cajouj.txt",
+            "utilitairehuffman/test/textes/java.txt",
+            "utilitairehuffman/test/textes/mystere.txt",
+            "utilitairehuffman/test/textes/oeufman.txt",
+            "utilitairehuffman/test/textes/le_vide.txt"
+        };
+
+        assertEquals(getLongueurTexte(cheminsFichiers[0]), 8);
+        assertEquals(getLongueurTexte(cheminsFichiers[1]), 50);
+        assertEquals(getLongueurTexte(cheminsFichiers[2]), 9);
+        assertEquals(getLongueurTexte(cheminsFichiers[3]), 45);
+        assertEquals(getLongueurTexte(cheminsFichiers[4]), 0);
+
+    }
 
 }
