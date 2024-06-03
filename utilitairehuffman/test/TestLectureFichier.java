@@ -40,7 +40,7 @@ public class TestLectureFichier {
 		};
 
 		assertEquals(getLongueurTexte(cheminsFichiers[0]), 8);
-		assertEquals(getLongueurTexte(cheminsFichiers[1]), 47);
+		assertEquals(getLongueurTexte(cheminsFichiers[1]), 50);
 		assertEquals(getLongueurTexte(cheminsFichiers[2]), 9);
 		assertEquals(getLongueurTexte(cheminsFichiers[3]), 45);
 		assertEquals(getLongueurTexte(cheminsFichiers[4]), 0);

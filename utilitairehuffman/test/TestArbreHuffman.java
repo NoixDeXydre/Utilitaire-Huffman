@@ -5,9 +5,11 @@
 
 package utilitairehuffman.test;
 
-//import utilitairehuffman.src.ArbreHuffman;
+import utilitairehuffman.src.ArbreHuffman;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,15 +22,20 @@ import org.junit.jupiter.api.Test;
 public class TestArbreHuffman {
 	
 	final String[] cheminsFichiers = {
-		"cajouj.txt",
-		"java.txt",
-		"mystere.txt",
-		"oeufman.txt"
+		"utilitairehuffman/test/textes/cajouj.txt",
+		"utilitairehuffman/test/textes/java.txt",
+		"utilitairehuffman/test/textes/le_vide.txt",
+		"utilitairehuffman/test/textes/mystere.txt",
+		"utilitairehuffman/test/textes/oeufman.txt",
+		"utilitairehuffman/test/textes/texte_binaire.txt"
 	};
 	
 	@Test
 	public void testArbreHuffman() {
-		fail("Not yet implemented");
+		
+		// Ne devrait pas envoyer "erreur d'encodage"
+		assertDoesNotThrow(() -> new ArbreHuffman(cheminsFichiers[1]));
+		assertDoesNotThrow(() -> new ArbreHuffman(cheminsFichiers[5]));
 	}
 	
 	@Test
@@ -37,7 +44,9 @@ public class TestArbreHuffman {
 	}
 	
 	@Test
-	public void testToString() {
-		fail("Not yet implemented");
+	public void testToString() throws IOException {
+		
+		// Cas où l'arbre de Huffman est vide (dictionnaire vide.)
+		assertEquals("", new ArbreHuffman(cheminsFichiers[2]).toString());
 	}
 }
