@@ -6,6 +6,8 @@
 package utilitairehuffman;
 
 import utilitairehuffman.src.ArbreHuffman;
+import utilitairehuffman.src.CompressionHuffman;
+
 import static utilitairehuffman.src.PersistanceHuffman.ecrireDonnees;
 
 import java.io.IOException;
@@ -196,16 +198,23 @@ public class UtilitaireHuffman {
                 // TODO faire le lien avec ArbreHuffman()
                 argCorrect = true;
                 fichierSource = args[1];
-                arbreSource = args[2]; // TODO comme dans make-abr pour les autres arguments
+                fichierDestination = args[2];
+                fichierDestination += ".jaaj";
+                arbreSource = "";
+                if (args[3].endsWith(".jouj")) {
+                    arbreSource = args[3];
+                } else {
+                    System.out.print(LECTURE_ARBRE_ERREUR);
+                    System.exit(1);
+                }
                 
-                
-//          try {
-//               new compresserFichier(fichierSource, arbreSource);
-//               System.out.println("Appel de la compression correcte"); // stub
-//          } catch (IOException e) {
-//               System.out.println(LECTURE_FICHIER_ERREUR); // TODO quand implémenté : 2 messages d'erreurs si chemin fichier et/ou arbre incorrect
-//          }
-                
+                try {
+                    new CompressionHuffman(fichierSource, arbreSource, fichierDestination);
+                    System.out.println("Appel de la compression correcte"); // stub
+                } catch (IOException e) {
+                    System.out.println(LECTURE_FICHIER_ERREUR);
+                    // TODO quand implémenté : 2 messages d'erreurs si chemin fichier et/ou arbre incorrect
+                }
                 System.out.println("pas encore fini"); // stub
             }
 
@@ -225,11 +234,11 @@ public class UtilitaireHuffman {
                 
                 // On saute "output"
                 if (args[2].equalsIgnoreCase("output")) {
-                    fichierDestination = args[3];
+                    arbreDestination = args[3];
                 } else {
-                    fichierDestination = args[2];
+                    arbreDestination = args[2];
                 }
-                
+                arbreDestination += ".jouj";
                 ArbreHuffman fichierHuffman = null;
                 try {
                 	fichierHuffman = new ArbreHuffman(fichierSource); // , fichierDestination
@@ -243,13 +252,13 @@ public class UtilitaireHuffman {
                 
                 System.out.println("Demande l'écriture du fichier"); // DEBUG
                 try {
-                    ecrireDonnees(fichierHuffman.toString(), fichierDestination);  // Données STUB
+                    ecrireDonnees(fichierHuffman.toString(), arbreDestination);  // Données STUB
                     
                     System.out.println("Fichier écrit"); // DEBUG
                     
                 } catch (IOException erreurEcriture) {
                     System.out.println(ECRITURE_ARBRE_ERREUR);
-                    System.exit(2);
+                    System.exit(1);
                 }
                 
             }

@@ -27,14 +27,13 @@ public class CompressionHuffman {
 	 * @throws IOException @see java.lang.IOException
 	 * 		   FileNotFoundException @see java.lang.IOException
 	 */
-	public CompressionHuffman(String fichierACompresser, String arbre) 
-			throws IOException {
+	public CompressionHuffman(String fichierACompresser, String arbre,
+	                          String fichierCompresse) throws IOException {
 		String donnees;
 		
 		File fichierCompression = new File(fichierACompresser);
 		Scanner liseur = new Scanner(fichierCompression);
 		donnees = liseur.nextLine();
-		PersistanceHuffman.ecrireDonnees(donnees, fichierACompresser);
-		fichierCompression.delete();
+		PersistanceHuffman.ecrireDonnees(donnees, fichierCompresse);
 	}
 }
