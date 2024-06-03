@@ -49,21 +49,20 @@ public class TestArbreHuffman {
 		
 		final String fichier1 = 
 		"""
-codehuffman = 00 ; encode = 00110001 ; symbole = 1
+		codehuffman = 00 ; encode = 00110001 ; symbole = 1
 		codehuffman = 10 ; encode = 01100001 ; symbole = a
 		codehuffman = 01 ; encode = 01101101 ; symbole = m
 		codehuffman = 11 ; encode = 00110010 ; symbole = 2
 		""";
 		
-		System.out.print(getDictLettresFrequences(cheminsFichiers[3]).size());
-		
 		// Cas où l'arbre de Huffman est vide (dictionnaire vide.)
-		//assertEquals("", new ArbreHuffman(getDictLettresFrequences
-										 //(cheminsFichiers[3])).toString());
+		assertEquals("", new ArbreHuffman(getDictLettresFrequences
+										 (cheminsFichiers[3])).toString());
 		
 		// Exemple : 1maam112
-		assertEquals(fichier1, new ArbreHuffman
-							   (getDictLettresFrequences
-							   (cheminsFichiers[2])).toString());
+		assertEquals(fichier1.replaceAll("\\s+", ""),
+					new ArbreHuffman
+					(getDictLettresFrequences
+					(cheminsFichiers[2])).toString().replaceAll("\\s+", ""));
 	}
 }

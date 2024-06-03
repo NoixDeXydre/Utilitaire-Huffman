@@ -34,7 +34,7 @@ public class ArbreHuffman {
 	
 	/** Représentation d'un noeud sous forme texte */
 	private static final String FORMAT_ARBRE_HUFFMAN
-	= "codeHuffman = %s ; encode = %s ; symbole = %c%n";
+	= "codehuffman = %s ; encode = %s ; symbole = %c%n";
 	
 	/** Contient tout les noeuds possédant des lettres */
 	private NoeudHuffman[] noeudsFeuilles;
@@ -99,6 +99,10 @@ public class ArbreHuffman {
     public String toString() {
     	
     	String representationHuffman = "";
+    	System.out.print(noeudsFeuilles.length);
+    	if (noeudsFeuilles.length == 0) {
+    		return representationHuffman;
+    	}
     	
     	/*
     	 *  Itérer la boucle dans le sens inverse
