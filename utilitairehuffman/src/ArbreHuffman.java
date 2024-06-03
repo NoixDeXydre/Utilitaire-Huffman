@@ -5,9 +5,6 @@
 
 package utilitairehuffman.src;
 
-import static utilitairehuffman.src.DictionnaireHuffman
-.getDictLettresFrequences;
-
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.LinkedHashMap;
@@ -15,7 +12,9 @@ import java.util.LinkedHashMap;
 /**
  * <p>
  * L'Arbre de Huffman est une structure de données représentant des noeuds
- * dans un arbre binaire.
+ * dans un arbre binaire. 
+ * Il peut s'utiliser pour procéder au codage de Huffman, une méthode
+ * de compression sans perte.
  * 
  * <p>
  * Contrairement à un arbre classique, il se créer à partir de ses feuilles,
@@ -35,7 +34,7 @@ public class ArbreHuffman {
 	
 	/** Représentation d'un noeud sous forme texte */
 	private static final String FORMAT_ARBRE_HUFFMAN
-	= "codeHuffman = %s ; encode = %s ; symbole = %c%n";
+	= "codehuffman = %s ; encode = %s ; symbole = %c%n";
 	
 	/** Contient tout les noeuds possédant des lettres */
 	private NoeudHuffman[] noeudsFeuilles;
@@ -58,15 +57,25 @@ public class ArbreHuffman {
     private LinkedHashMap<Character, Double> dictionnaireLettresFrequences;
 	
     /**
-     * Création d'un arbre de Huffman à partir d'un fichier texte.
+     * <p>
+     * Création d'un arbre de Huffman à partir d'un dictionnaire
+     * de caractères en clé et de fréquences en valeur.
      * 
-     * @param cheminFichier le chemin vers le fichier texte.
+     * <p>
+     * Le dictionnaire doit être au préalable 
+     * trié dans l'ordre décroissant pour correctement
+     * effectuer la connexion des noeuds.
+     * 
+     * <p>
+     * Le dictionnaire peut éventuellement se récupérer 
+     * à l'aide du composant {@link utilitairehuffman.src.DictionnaireHuffman}
+     * 
+     * @param dictionnaire le dictionnaire utilisé par l'arbre.
      * @throws IOException @see java.lang.IOException
      */
-    public ArbreHuffman(String cheminFichier) throws IOException { 
-
-    	dictionnaireLettresFrequences 
-    	= getDictLettresFrequences(cheminFichier);
+    public ArbreHuffman(LinkedHashMap<Character, Double> dictionnaire) { 
+    	
+    	dictionnaireLettresFrequences = dictionnaire;
     	
     	// Prépare les noeuds à utiliser
     	setInitNoeuds();
@@ -75,14 +84,6 @@ public class ArbreHuffman {
     	if (noeudsFeuilles.length != 0) {
     		setConnexionsNoeuds();
     	}
-    }
-    
-    /**
-     * Getter de dictionnaireLettresFrequences
-     * @return le dictionnaire des lettres et des fréquences
-     */
-    public LinkedHashMap<Character, Double> getDictHuffman() {
-    	return dictionnaireLettresFrequences;
     }
     
     /**
@@ -97,11 +98,16 @@ public class ArbreHuffman {
     @Override 
     public String toString() {
     	
+    	String representationHuffman = "";
+    	System.out.print(noeudsFeuilles.length);
+    	if (noeudsFeuilles.length == 0) {
+    		return representationHuffman;
+    	}
+    	
     	/*
     	 *  Itérer la boucle dans le sens inverse
-    	 *  pour trier de façon croissante.
+    	 *  pour trier de façon décroissante.
     	 */
-    	String representationHuffman = "";
     	for (int i = noeudsFeuilles.length - 1 ; i != -1 ; i--) {
     		representationHuffman 
     		+= construireRepresentationNoeud(noeudsFeuilles[i]);
@@ -133,7 +139,7 @@ public class ArbreHuffman {
     	do {
 			noeudEnfant = noeud;
 			noeud = noeud.getNoeudParent();
-			if (noeud.getNoeudEnfantGauche() == noeudEnfant) {
+			if (noeud.getNoeudEnfantGauche().equals(noeudEnfant)) {
 				codeHuffman += "1"; // remonte depuis la gauche
 			} else {
 				codeHuffman += "0"; // remonte depuis la gauche

@@ -30,6 +30,7 @@ public class TestDictionnaireHuffman {
 		
 		final String[] CHEMINS_FICHIERS = {
 			"utilitairehuffman/test/textes/cajouj.txt", // 8 lettres
+			"utilitairehuffman/test/textes/le_vide.txt", // 0 lettres
 			"utilitairehuffman/test/textes/mystere.txt", // 9 lettres
 		};
 		
@@ -37,20 +38,25 @@ public class TestDictionnaireHuffman {
 		
 		final double[][] FREQUENCES_VALIDES = {
 			{.125, .125, .25, .25, .25},
+			{},
 			{1.0 / 9.0, 1.0 / 9.0, 1.0 / 9.0, 1.0 / 9.0,
 			 1.0 / 9.0, 1.0 / 9.0, 1.0 / 9.0, 2.0 / 9.0},
 		};
 		
 		final char[][] LETTRES_VALIDES = {
 			{'b', 'u', 'a', 'j', 'o'},
+			{},
 			{'u', 'p', 'e', 'c', 't', ' ', '.', 's'},
 		};
 		
 		final LinkedHashMap<Character, Double> DICTIONNAIRE1
 		= getDictLettresFrequences(CHEMINS_FICHIERS[0]);
-		
+
 		final LinkedHashMap<Character, Double> DICTIONNAIRE2
 		= getDictLettresFrequences(CHEMINS_FICHIERS[1]);
+		
+		final LinkedHashMap<Character, Double> DICTIONNAIRE3
+		= getDictLettresFrequences(CHEMINS_FICHIERS[2]);
 		
 		int i = 0;
 		
@@ -65,10 +71,13 @@ public class TestDictionnaireHuffman {
 			i++;
 		}
 		
+		// Dictionnaire vide
+		assertEquals(0, DICTIONNAIRE2.size());
+		
 		i = 0;
-		for (char k : DICTIONNAIRE2.keySet()) {
-			assertEquals(DICTIONNAIRE2.get(k), FREQUENCES_VALIDES[1][i]);
-			assertEquals(k, LETTRES_VALIDES[1][i]);
+		for (char k : DICTIONNAIRE3.keySet()) {
+			assertEquals(DICTIONNAIRE3.get(k), FREQUENCES_VALIDES[2][i]);
+			assertEquals(k, LETTRES_VALIDES[2][i]);
 			i++;
 		}
 	}
