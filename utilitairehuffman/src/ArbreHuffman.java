@@ -7,7 +7,6 @@ package utilitairehuffman.src;
 
 import java.io.IOException;
 
-import utilitairehuffman.src.NoeudHuffman;
 import static utilitairehuffman.src.DictionnaireHuffman
 								   .getDictLettresFrequences;
 
@@ -120,11 +119,14 @@ public class ArbreHuffman {
     	
     	int i = indexCommencementFeuille;
     	boolean estPlusPetit = true;
-    	while (estPlusPetit && i < noeudsFeuilles.length) {
+    	while (estPlusPetit && i < noeudsFeuilles.length - 1) {
     		estPlusPetit = noeudFeuille.getFreq() 
+    					<= noeudsFeuilles[i].getFreq() 
+    					&& noeudTampon.getFreq() 
     					<= noeudsFeuilles[i].getFreq();
+    		i++;
     	}
-    	
+
     	return estPlusPetit;
     }
     
@@ -163,21 +165,25 @@ public class ArbreHuffman {
     	
     	// Condition d'arrêt : la racine a une fréquence de 1
     	while (noeudsTampon[o].getFreq() != 1.0) {
-    		if (sontFrequencesPlusPetites(noeudsFeuilles[i],
-    									  noeudsTampon[o], i)) {
+    		
+    		//System.out.println(o);
+    		if (noeudsFeuilles[i] != null 
+    		 && sontFrequencesPlusPetites(noeudsFeuilles[i],
+    									  noeudsTampon[o], i + 1)) {
     			noeudsTampon[o + 1] 
     			= new NoeudHuffman(noeudsFeuilles[i], noeudsTampon[o]);
     			o++; // Place le noeud parent dans le tampon
+    		} else {
+    			/* 
+        		 * Place un noeud feuille dans le tampon
+        		 * dans le prochain endroit libre.
+        		 */
+        		for (int v = 0 ; v < noeudsTampon.length ; v++) {
+        			noeudsTampon[v] = noeudsTampon[v] == null 
+        							? noeudsFeuilles[i] : noeudsTampon[v];
+        		}
     		}
     		
-    		/* 
-    		 * Place un noeud feuille dans le tampon
-    		 * dans le prochain endroit libre.
-    		 */
-    		for (int v = 0 ; i < noeudsTampon.length ; i++) {
-    			noeudsTampon[v] = noeudsTampon[v] == null 
-    							? noeudsFeuilles[i] : noeudsTampon[v];
-    		}
     		i++;
     	}
     }
@@ -191,7 +197,7 @@ public class ArbreHuffman {
     	
     	// Création des noeuds feuilles
     	int i = 0;
-    	noeudsFeuilles = new NoeudHuffman[nbrLettres];
+    	noeudsFeuilles = new NoeudHuffman[nbrLettres + 1];
     	for (char k : dictionnaireLettresFrequences.keySet()) {
     		noeudsFeuilles[i++] // À vérifier
     		= new NoeudHuffman(k, dictionnaireLettresFrequences.get(k));
@@ -205,7 +211,7 @@ public class ArbreHuffman {
     	 * 
     	 * Si n est égal à 1 ou 0, alors le nombre maximal est de n.
     	 */
-    	if (nbrLettres > 1) { // À vérifier
+    	if (nbrLettres > 1) {
     		noeudsTampon = new NoeudHuffman[nbrLettres * nbrLettres - 1];
     	} else {
     		noeudsTampon = new NoeudHuffman[nbrLettres];
