@@ -50,7 +50,7 @@ public class DictionnaireHuffman {
      * @throws IOException @see java.lang.IOException
      */
     public static LinkedHashMap<Character, Double> 
-    getDictLettresFrequences(String cheminTexte) 
+                  getDictLettresFrequences(String cheminTexte) 
             throws IOException {
 
         LinkedHashMap<Character, Double> lettreFrequence 

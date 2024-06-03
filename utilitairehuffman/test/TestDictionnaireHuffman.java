@@ -23,9 +23,14 @@ public class TestDictionnaireHuffman {
 
     final static String[] CHEMINS_ARBRES = {
         "utilitairehuffman/test/textes/arbres/1maam112.txt",
-        "utilitairehuffman/test/textes/arbres/le_vide.txt",
         "utilitairehuffman/test/textes/arbres/saut.txt"
     }; 
+    
+    final static String[] CHEMINS_FICHIERS = {
+        "utilitairehuffman/test/textes/cajouj.txt", // 8 lettres
+        "utilitairehuffman/test/textes/le_vide.txt", // 0 lettres
+        "utilitairehuffman/test/textes/mystere.txt", // 9 lettres
+    };
     
     /**
      * Tests de testGetDictCompression.
@@ -48,11 +53,11 @@ public class TestDictionnaireHuffman {
         
         // Arbre vide
         assertEquals(DICT_VALIDES[1],
-                getDictCompression(CHEMINS_ARBRES[1]).toString());
+                getDictCompression(CHEMINS_FICHIERS[1]).toString());
         
         // Cas particulier avec un saut de ligne et un accent
         assertEquals(DICT_VALIDES[2],
-                getDictCompression(CHEMINS_ARBRES[2]).toString());
+                getDictCompression(CHEMINS_ARBRES[1]).toString());
     }
 
     /**
@@ -62,12 +67,6 @@ public class TestDictionnaireHuffman {
      */
     @Test
     public void testGetDictLettresFrequences() throws IOException {
-
-        final String[] CHEMINS_FICHIERS = {
-            "utilitairehuffman/test/textes/cajouj.txt", // 8 lettres
-            "utilitairehuffman/test/textes/le_vide.txt", // 0 lettres
-            "utilitairehuffman/test/textes/mystere.txt", // 9 lettres
-        };
 
         // Données mises dans l'ordre croissant
 
