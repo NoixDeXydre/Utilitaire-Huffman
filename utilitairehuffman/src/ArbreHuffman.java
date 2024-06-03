@@ -224,7 +224,7 @@ public class ArbreHuffman {
     	
     	// Création des noeuds feuilles
     	int i = 0;
-    	noeudsFeuilles = new NoeudHuffman[nbrLettres + 1];
+    	noeudsFeuilles = new NoeudHuffman[nbrLettres];
     	for (char k : dictionnaireLettresFrequences.keySet()) {
     		noeudsFeuilles[i++]
     		= new NoeudHuffman(k, dictionnaireLettresFrequences.get(k));
