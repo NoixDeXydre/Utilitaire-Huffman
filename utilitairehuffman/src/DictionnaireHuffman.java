@@ -90,6 +90,8 @@ public class DictionnaireHuffman {
      * Cela est utile pour la compression car chaque lettre détecté en clé
      * pourra être remplacé par son code Huffman.
      * 
+     * @see getDictDecompression
+     * 
      * @param cheminArbreHuffman chemin du fichier Huffman indiqué
      * @return le dictionnaire fait pour la compression
      * @throws FileNotFoundException 
@@ -120,8 +122,8 @@ public class DictionnaireHuffman {
             texteAnalyse = analyseur.nextLine();
 
             // Recherche des données dans la ligne
-            indexSymbole = texteAnalyse.indexOf("symbole =") + 10;
             indexCode = texteAnalyse.indexOf("codehuffman =") + 14;
+            indexSymbole = texteAnalyse.indexOf("symbole =") + 10;
             indexSymboleFin = texteAnalyse.length();
             
             // Evite un dépassement dans le String
@@ -154,31 +156,51 @@ public class DictionnaireHuffman {
      * Cela est utile pour la decompression en faisant 
      * une analyse octet par octet d'un fichier.
      * 
+     * @see getDictCompression
+     * 
      * @param cheminArbreHuffman chemin du fichier Huffman indiqué
      * @return dictionnaire pour la décompression
      * @throws FileNotFoundException
      */
-    public static LinkedHashMap<String, String> 
+    public static LinkedHashMap<String, Character> 
                   getDictDecompression(String cheminArbreHuffman)
            throws FileNotFoundException {
-        
-        // TODO méthode
-        
-        LinkedHashMap<String, String> dictCompression 
+
+        LinkedHashMap<String, Character> dictDecompression 
         = new LinkedHashMap<>();
         Scanner analyseur = getLiseurString(cheminArbreHuffman);
         
         String texteAnalyse;
 
         int indexCode,
-            indexEncode;
+            indexSymbole,
+            indexSymboleFin;
+        
+        char valeur;
+        String cle;
         while (analyseur.hasNextLine()) {
             
             texteAnalyse = analyseur.nextLine();
+            
+            indexCode = texteAnalyse.indexOf("codehuffman =") + 14;
+            indexSymbole = texteAnalyse.indexOf("symbole =") + 10;
+            indexSymboleFin = texteAnalyse.length();
+            
+            if (indexSymbole - 10 != -1 && indexCode - 14 != -1) {
+                
+                // Vérification si la clé existe à l'index prévu (\n)
+                valeur = indexSymbole < indexSymboleFin 
+                         ? texteAnalyse.charAt(indexSymbole) : '\n'; 
+                cle = texteAnalyse.substring
+                        (indexCode, texteAnalyse.indexOf(" ; encode",
+                                                         indexCode));
+
+                dictDecompression.put(cle, valeur);
+            }
         }
         
-        //stub
-        return new LinkedHashMap<String, String>();
+        analyseur.close();
+        return dictDecompression;
     }
 
     /**

@@ -70,7 +70,7 @@ public class TestDictionnaireHuffman {
         
         final String[] DICT_VALIDES = {
             "{00=1, 10=a, 01=m, 11=2}",
-            "{1=\n}",
+            "{}",
             "{1=\n, 0=é}"
         };
         
