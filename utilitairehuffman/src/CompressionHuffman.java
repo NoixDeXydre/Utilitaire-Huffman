@@ -4,8 +4,14 @@
  */
 package utilitairehuffman.src;
 
+import static utilitairehuffman.src.LectureFichier.getLiseurChar;
+import static utilitairehuffman.src.PersistanceHuffman.ecrireDonnees;
+import static utilitairehuffman.src.DictionnaireHuffman.getDictCompression;
+
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 /**
@@ -18,28 +24,41 @@ import java.util.Scanner;
  */
 public class CompressionHuffman {
 
-	/**
-	 * Compresse un fichier selon un 
-	 * {@link utilitairehuffman.src.ArbreHuffman}
-	 * 
-	 * @param cheminFichierACompresser le chemin vers le fichier à
-         *                                 compresser
-	 * @param cheminArbreHuffman le chemin vers l'arbre de Huffman
-	 *                           qui servira pour le codage
-	 * @param cheminFichierCompresse le chemin vers l'endroit où sera placé
-         *                               le fichier compressé
-	 * @throws IOException @see java.lang.IOException
-	 * FileNotFoundException @see java.lang.IOException
-	 */
-	public static void compresserFichier(String cheminFichierACompresser,
-	                                     String cheminArbreHuffman,
-	                                     String cheminFichierCompresse) 
-	              throws IOException {
-	    String donnees;
-		
-	    File fichierCompression = new File(cheminFichierACompresser);
-	    Scanner liseur = new Scanner(fichierCompression);
-	    donnees = liseur.nextLine();
-	    PersistanceHuffman.ecrireDonnees(donnees, cheminFichierCompresse);
-	}
+    /**
+     * Compresse un fichier selon un 
+     * {@link utilitairehuffman.src.ArbreHuffman}
+     * 
+     * @param cheminFichierACompresser le chemin vers le fichier à
+     *                                 compresser
+     * @param cheminArbreHuffman le chemin vers l'arbre de Huffman
+     *                           qui servira pour le codage
+     * @param cheminFichierCompresse le chemin vers l'endroit où sera placé
+     *                               le fichier compressé
+     * @throws IOException @see java.lang.IOException
+     * @throws FileNotFoundException @see java.lang.FileNotFoundException
+     */
+    public static void compresserFichier(String cheminFichierACompresser,
+                                         String cheminArbreHuffman,
+                                         String cheminFichierCompresse) 
+                  throws IOException {
+        String donnees;
+        
+        LinkedHashMap<Character, String> dictCompression 
+        = getDictCompression(cheminArbreHuffman);
+        BufferedReader curseurFichierACompresser 
+        = getLiseurChar(cheminFichierACompresser);
+        
+        int tampon;
+        char lettreLue; 
+        while ((tampon = curseurFichierACompresser.read()) != -1) {
+            lettreLue = (char) tampon;
+            System.out.print(dictCompression.get(lettreLue));
+        }
+            
+        //stub
+        File fichierCompression = new File(cheminFichierACompresser);
+        Scanner liseur = new Scanner(fichierCompression);
+        donnees = liseur.nextLine();
+        ecrireDonnees(donnees, cheminFichierCompresse);
+    }
 }
