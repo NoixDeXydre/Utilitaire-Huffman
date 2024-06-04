@@ -6,11 +6,11 @@
 package utilitairehuffman;
 
 import utilitairehuffman.src.ArbreHuffman;
-import utilitairehuffman.src.CompressionHuffman;
 
+import static utilitairehuffman.src.CompressionHuffman.compresserFichier;
 import static utilitairehuffman.src.PersistanceHuffman.ecrireDonnees;
 import static utilitairehuffman.src.DictionnaireHuffman
-							       .getDictLettresFrequences;
+                                   .getDictLettresFrequences;
 
 import java.io.IOException;
 
@@ -211,7 +211,8 @@ public class UtilitaireHuffman {
                 }
                 
                 try {
-                    new CompressionHuffman(fichierSource, arbreSource, fichierDestination);
+                    compresserFichier(fichierSource, arbreSource,
+                                      fichierDestination);
                     System.out.println("Appel de la compression correcte"); // stub
                 } catch (IOException e) {
                     System.out.println(LECTURE_FICHIER_ERREUR);

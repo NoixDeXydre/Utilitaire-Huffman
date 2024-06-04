@@ -14,28 +14,32 @@ import java.util.Scanner;
  * puis on supprime le fichier original non compressé pour gagner de
  * la place
  * 
- * @author TD2 groupe 4 Adrien Vigué, Cylian Poupin
+ * @author TD2 groupe 4 Adrien Vigué, Cylian Poupin, Noa M'tima Lesniak
  */
 public class CompressionHuffman {
 
 	/**
-	 * TODO définir la fonction du constructeur
-	 * @param fichierACompresser le chemin vers le fichier à
-	 *		  compresser
-	 * @param le chemin vers l'arbre de Huffman qui servira pour le
-	 *		  codage
-	 * @param fichierCompresse le chemin vers l'endroit où sera placé
-	 *        le fichier compressé
+	 * Compresse un fichier selon un 
+	 * {@link utilitairehuffman.src.ArbreHuffman}
+	 * 
+	 * @param cheminFichierACompresser le chemin vers le fichier à
+         *                                 compresser
+	 * @param cheminArbreHuffman le chemin vers l'arbre de Huffman
+	 *                           qui servira pour le codage
+	 * @param cheminFichierCompresse le chemin vers l'endroit où sera placé
+         *                               le fichier compressé
 	 * @throws IOException @see java.lang.IOException
-	 * 		   FileNotFoundException @see java.lang.IOException
+	 * FileNotFoundException @see java.lang.IOException
 	 */
-	public CompressionHuffman(String fichierACompresser, String arbre,
-	                          String fichierCompresse) throws IOException {
-		String donnees;
+	public static void compresserFichier(String cheminFichierACompresser,
+	                                     String cheminArbreHuffman,
+	                                     String cheminFichierCompresse) 
+	              throws IOException {
+	    String donnees;
 		
-		File fichierCompression = new File(fichierACompresser);
-		Scanner liseur = new Scanner(fichierCompression);
-		donnees = liseur.nextLine();
-		PersistanceHuffman.ecrireDonnees(donnees, fichierCompresse);
+	    File fichierCompression = new File(cheminFichierACompresser);
+	    Scanner liseur = new Scanner(fichierCompression);
+	    donnees = liseur.nextLine();
+	    PersistanceHuffman.ecrireDonnees(donnees, cheminFichierCompresse);
 	}
 }
