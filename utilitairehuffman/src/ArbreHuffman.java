@@ -130,8 +130,7 @@ public class ArbreHuffman {
      * 
      * @param noeud un noeud appartenant à l'arbre de Huffman
      * @return représentation d'un noeud
-     * @throws UnsupportedEncodingException encodage non géré par la JVM
-     *                                      ou le programme
+     * @throws IllegalStateException encodage non géré par la JVM                     
      */
     private static String construireRepresentationNoeud(NoeudHuffman noeud) {
         
