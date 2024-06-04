@@ -20,7 +20,7 @@ class TestCompressionHuffman {
     
     final static String[] CHEMINS_ARBRES = {
         "utilitairehuffman/test/textes/arbres/1maam112.txt",
-        "utilitairehuffman/test/textes/arbres/saut.txt"
+        "utilitairehuffman/test/textes/arbres/java.txt"
     }; 
     
     final static String[] CHEMINS_FICHIERS = {
@@ -28,14 +28,14 @@ class TestCompressionHuffman {
     }; 
     
     final static String[] CHEMINS_FICHIERS_SORTIE = {
-        "utilitairehuffman/test/textes/sortie/fichier_compresser1.txt"
+        "utilitairehuffman/test/textes/sortie/fichier_compresser1"
     }; 
     
     @Test
     void testCompresserFichier() throws IOException {
-        compresserFichier(CHEMINS_FICHIERS[0], CHEMINS_ARBRES[0],
-                          CHEMINS_FICHIERS_SORTIE[0]);
-        fail("Not yet implemented");
+        assertDoesNotThrow(() -> compresserFichier(CHEMINS_FICHIERS[0],
+                                                   CHEMINS_ARBRES[0],
+                                                   CHEMINS_FICHIERS_SORTIE[0]));
     }
 
 }

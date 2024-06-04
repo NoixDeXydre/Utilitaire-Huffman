@@ -5,16 +5,13 @@
 package utilitairehuffman.src;
 
 import static utilitairehuffman.src.LectureFichier.getLiseurChar;
-import static utilitairehuffman.src.PersistanceHuffman.ecrireDonnees;
+//import static utilitairehuffman.src.PersistanceHuffman.ecrireDonnees;
 import static utilitairehuffman.src.DictionnaireHuffman.getDictCompression;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.LinkedHashMap;
-import java.util.Scanner;
 
 /**
  * Compresse un fichier selon un arbre de huffman donné puis créé un
@@ -25,7 +22,10 @@ import java.util.Scanner;
  * @author TD2 groupe 4 Adrien Vigué, Cylian Poupin, Noa M'tima Lesniak
  */
 public class CompressionHuffman {
-
+    
+    private static final String ERREUR_ARBRE 
+    = "L'arbre de Huffman est invalide car une lettre n'existe pas";
+    
     /**
      * Compresse un fichier selon un 
      * {@link utilitairehuffman.src.ArbreHuffman}
@@ -42,27 +42,52 @@ public class CompressionHuffman {
     public static void compresserFichier(String cheminFichierACompresser,
                                          String cheminArbreHuffman,
                                          String cheminFichierCompresse) 
-                  throws IOException {
-        String donnees;
+           throws IOException {
+        
+        // TODO séparer en méthodes
         
         LinkedHashMap<Character, String> dictCompression 
         = getDictCompression(cheminArbreHuffman);
-        BufferedReader curseurFichierACompresser 
-        = getLiseurChar(cheminFichierACompresser);
         
-        int tampon;
-        char lettreLue; 
-        FileOutputStream sortieFichier 
-        = new FileOutputStream(cheminFichierCompresse, true);
-        while ((tampon = curseurFichierACompresser.read()) != -1) {
-            lettreLue = (char) tampon;
-            sortieFichier.write(dictCompression.get(lettreLue).getBytes(Charset.forName("UTF-8")));
-        }
+        // try avec ressources
+        try (BufferedReader curseurFichierACompresser 
+                = getLiseurChar(cheminFichierACompresser);
+                FileOutputStream sortieFichier 
+                = new FileOutputStream(cheminFichierCompresse)) {
             
-        //stub
-        //File fichierCompression = new File(cheminFichierACompresser);
-        //Scanner liseur = new Scanner(fichierCompression);
-        //donnees = liseur.nextLine();
-        //ecrireDonnees(donnees, cheminFichierCompresse);
+            
+            StringBuilder tamponOctets = new StringBuilder();
+            
+            String chaineOctets;
+            int tampon;
+            char lettreLue;
+            while ((tampon = curseurFichierACompresser.read()) != -1) {
+                
+                lettreLue = (char) tampon;
+                String codeHuffman = dictCompression.get(lettreLue);
+                if (codeHuffman != null) {
+                    
+                    tamponOctets.append(codeHuffman); 
+                    while (tamponOctets.length() >= 8) {
+                        
+                        chaineOctets = tamponOctets.substring(0, 8);
+                        tamponOctets.delete(0, 8);
+                        sortieFichier.write(Integer.parseInt(chaineOctets, 2));
+                    }
+                    
+                } else {
+                    throw new IOException(ERREUR_ARBRE);
+                }
+            }
+            
+            // Ecrit les bits restants
+            if (tamponOctets.length() > 0) {
+                while (tamponOctets.length() < 8) {
+                    tamponOctets.append('0'); // Rajoute les 0 manquants
+                }
+                sortieFichier.write
+                (Integer.parseInt(tamponOctets.toString(), 2));
+            }
+        }
     }
 }
