@@ -18,22 +18,24 @@ import java.util.Scanner;
  */
 public class CompressionHuffman {
 
-    /**
-     * TODO définir la fonction du constructeur
-     * 
-     * @param fichierACompresser le chemin vers le fichier à compresser
-     * @param arbre              le chemin vers l'arbre de Huffman qui servira pour
-     *                           le codage
-     * @throws IOException @see java.lang.IOException
-     */
-	public CompressionHuffman(String fichierACompresser, String arbre) 
-			throws IOException {
+	/**
+	 * TODO définir la fonction du constructeur
+	 * @param fichierACompresser le chemin vers le fichier à
+	 *		  compresser
+	 * @param le chemin vers l'arbre de Huffman qui servira pour le
+	 *		  codage
+	 * @param fichierCompresse le chemin vers l'endroit où sera placé
+	 *        le fichier compressé
+	 * @throws IOException @see java.lang.IOException
+	 * 		   FileNotFoundException @see java.lang.IOException
+	 */
+	public CompressionHuffman(String fichierACompresser, String arbre,
+	                          String fichierCompresse) throws IOException {
 		String donnees;
 		
 		File fichierCompression = new File(fichierACompresser);
 		Scanner liseur = new Scanner(fichierCompression);
 		donnees = liseur.nextLine();
-		PersistanceHuffman.ecrireDonnees(donnees, fichierACompresser);
-		fichierCompression.delete();
+		PersistanceHuffman.ecrireDonnees(donnees, fichierCompresse);
 	}
 }
