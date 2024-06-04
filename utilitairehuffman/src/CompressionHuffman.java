@@ -10,7 +10,9 @@ import static utilitairehuffman.src.DictionnaireHuffman.getDictCompression;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 
@@ -50,15 +52,17 @@ public class CompressionHuffman {
         
         int tampon;
         char lettreLue; 
+        FileOutputStream sortieFichier 
+        = new FileOutputStream(cheminFichierCompresse, true);
         while ((tampon = curseurFichierACompresser.read()) != -1) {
             lettreLue = (char) tampon;
-            System.out.print(dictCompression.get(lettreLue));
+            sortieFichier.write(dictCompression.get(lettreLue).getBytes(Charset.forName("UTF-8")));
         }
             
         //stub
-        File fichierCompression = new File(cheminFichierACompresser);
-        Scanner liseur = new Scanner(fichierCompression);
-        donnees = liseur.nextLine();
-        ecrireDonnees(donnees, cheminFichierCompresse);
+        //File fichierCompression = new File(cheminFichierACompresser);
+        //Scanner liseur = new Scanner(fichierCompression);
+        //donnees = liseur.nextLine();
+        //ecrireDonnees(donnees, cheminFichierCompresse);
     }
 }
