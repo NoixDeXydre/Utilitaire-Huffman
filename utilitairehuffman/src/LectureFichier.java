@@ -21,9 +21,9 @@ import java.util.Scanner;
  */
 public class LectureFichier {
     
-	// TODO faire en sorte que ce soit l'appelant qui précise l'encodage
+    // TODO faire en sorte que ce soit l'appelant qui précise l'encodage
 	
-	/** Encodage supporté par l'arbre */
+    /** Encodage supporté par l'arbre */
     public final static String ENCODAGE_TEXTE = "UTF-8";
     
     /**
@@ -78,7 +78,7 @@ public class LectureFichier {
     	long nombreCaracteres = 0l;
     	BufferedReader curseurTexte = getLiseurChar(cheminFichier);
     	while (curseurTexte.read() != -1) {
-    		nombreCaracteres++;
+    	    nombreCaracteres++;
     	}
     	
     	curseurTexte.close();

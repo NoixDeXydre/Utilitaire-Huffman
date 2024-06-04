@@ -68,9 +68,9 @@ public class TestArbreHuffman {
         assertEquals("", new ArbreHuffman(getDictLettresFrequences
                 (cheminsFichiers[1])).toString());
 
-        // Texte binaire (bug non utf-8)
-        //assertEquals("", new ArbreHuffman(getDictLettresFrequences
-        //(cheminsFichiers[3])).toString());
+        // Texte binaire (non utf-8)
+        assertEquals("", new ArbreHuffman(getDictLettresFrequences
+        (cheminsFichiers[3])).toString());
 
         // Exemple : 1maam112
         assertEquals(fichier1.replaceAll("\\s+", ""),
