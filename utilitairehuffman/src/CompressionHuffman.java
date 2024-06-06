@@ -9,6 +9,7 @@ import static utilitairehuffman.src.LectureFichier.getLiseurChar;
 import static utilitairehuffman.src.DictionnaireHuffman.getDictCompression;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.LinkedHashMap;
@@ -34,8 +35,8 @@ public class CompressionHuffman {
      *                                 compresser
      * @param cheminArbreHuffman le chemin vers l'arbre de Huffman
      *                           qui servira pour le codage
-     * @param cheminFichierCompresse le chemin vers l'endroit où sera placé
-     *                               le fichier compressé
+     * @param cheminFichierCompresse le chemin vers l'endroit où 
+     *                               sera placé le fichier compressé
      * @throws IOException @see java.lang.IOException
      * @throws FileNotFoundException @see java.lang.FileNotFoundException
      */

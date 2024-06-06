@@ -116,7 +116,8 @@ public class NoeudHuffman {
     public char getLettre() {
     	
     	if (!estFeuille()) {
-    		throw new IllegalStateException(ERREUR_NOEUD_PARENT_NON_FEUILLE);
+    		throw new 
+    		IllegalStateException(ERREUR_NOEUD_PARENT_NON_FEUILLE);
     	}
         return lettre;
     }
@@ -149,13 +150,14 @@ public class NoeudHuffman {
      * Attache deux enfants dans le noeud pour en faire un parent
      * et fusionne la fréquence des deux enfants d'après
      * l'algorithme de Huffman.
+     * 
      * @param enfantGauche
      * @param enfanDroit
      * @throws IllegalArgumentException si les deux fréquences
-     * 		   sont supérieures à 1
+     *                                  sont supérieures à 1
      */
     private void setNoeudsEnfant(NoeudHuffman noeudEnfantGauche,
-    							 NoeudHuffman noeudEnfantDroit) {
+    			         NoeudHuffman noeudEnfantDroit) {
     	
     	this.noeudEnfantGauche = noeudEnfantGauche;
     	this.noeudEnfantDroit = noeudEnfantDroit;

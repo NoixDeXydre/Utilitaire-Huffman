@@ -115,7 +115,6 @@ public class UtilitaireHuffman {
                 Noa M'TIMA LESNIAK, Cylian POUPIN, Adrien VIGUE, Tom LE BEUZE
                 """;
         
-        // TODO messages d'erreurs (à voir en fonction en fonction du framework de gestion de fichiers) (Indiquer si cela conserne le fichier ou l'arbre) :
         final String SYNTAXE_ERREUR =
                 """
                 Erreur de syntaxe, au moins un des arguments est incorrect.
@@ -159,7 +158,8 @@ public class UtilitaireHuffman {
                 """;
         
         
-        // La destination n'est pas valide (caractères non autorisés dans le nom du fichier)
+        // La destination n'est pas valide (caractères non autorisés
+        // dans le nom du fichier)
         final String NOM_DESTINATION_ERREUR =
                 """
                 !-!-!!-!-!
@@ -246,7 +246,8 @@ public class UtilitaireHuffman {
                 ArbreHuffman fichierHuffman = null;
                 try {
               
-                    fichierHuffman = new ArbreHuffman(getDictLettresFrequences(fichierSource));
+                    fichierHuffman = new ArbreHuffman(
+                            getDictLettresFrequences(fichierSource));
                     System.out.println("Arbre créé.");
                     
                 } catch (IOException e) {

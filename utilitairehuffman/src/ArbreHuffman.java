@@ -5,25 +5,22 @@
 
 package utilitairehuffman.src;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.LinkedHashMap;
 
 /**
  * <p>
- * L'Arbre de Huffman est une structure de données représentant des noeuds
- * dans un arbre binaire. 
- * Il peut s'utiliser pour procéder au codage de Huffman, une méthode
- * de compression sans perte.
+ * L'Arbre de Huffman est une structure de données représentant des noeuds dans
+ * un arbre binaire. Il peut s'utiliser pour procéder au codage de Huffman, une
+ * méthode de compression sans perte.
  * 
  * <p>
  * Contrairement à un arbre classique, il se créer à partir de ses feuilles,
  * composant provenant de {@link utilitairehuffman.src.NoeudHuffman}
  * 
  * <p>
- * D'après les spécifications du document, 
- * cette implémentation de l'arbre de Huffman
- * ne représente que les caractère en UTF-8.
+ * D'après les spécifications du document, cette implémentation de l'arbre de
+ * Huffman ne représente que les caractère en UTF-8.
  * 
  * @author TD 2 Groupe 4 Noa M'Tima Lesniak, Tom Le Beuze
  */
@@ -49,29 +46,29 @@ public class ArbreHuffman {
      */
     private NoeudHuffman[] noeudsTampon;
 
-    /** 
-     * Dictionnaire ayant pour clé un caractère, et pour valeur sa fréquence.
-     * Les valeurs sont triés dans l'ordre croissant 
-     * pour bien faire fonctionner l'algorithme.
+    /**
+     * Dictionnaire ayant pour clé un caractère, et pour valeur sa fréquence. Les
+     * valeurs sont triés dans l'ordre croissant pour bien faire fonctionner
+     * l'algorithme.
      */
     private LinkedHashMap<Character, Double> dictionnaireLettresFrequences;
 
     /**
      * <p>
-     * Création d'un arbre de Huffman à partir d'un dictionnaire
-     * de caractères en clé et de fréquences en valeur.
+     * Création d'un arbre de Huffman à partir d'un dictionnaire de 
+     * caractères en clé et de fréquences en valeur.
      * 
      * <p>
-     * Le dictionnaire doit être au préalable 
-     * trié dans l'ordre décroissant pour correctement
-     * effectuer la connexion des noeuds.
+     * Le dictionnaire doit être au préalable trié dans l'ordre 
+     * décroissant pour correctement effectuer la connexion des 
+     * noeuds.
      * 
      * <p>
-     * Le dictionnaire peut éventuellement se récupérer 
-     * à l'aide du composant {@link utilitairehuffman.src.DictionnaireHuffman}
+     * Le dictionnaire peut éventuellement se récupérer à l'aide du 
+     * composant. 
+     * {@link utilitairehuffman.src.DictionnaireHuffman}
      * 
      * @param dictionnaire le dictionnaire utilisé par l'arbre.
-     * @throws IOException @see java.lang.IOException
      */
     public ArbreHuffman(LinkedHashMap<Character, Double> dictionnaire) { 
 
@@ -90,13 +87,15 @@ public class ArbreHuffman {
      * <p>
      * Représente l'arbre de Huffman sous forme d'un texte multilignes
      * avec le code encodé, décodé et le symbole char de chaque noeud.
-     * @see FORMATAGE_ARBRE_HUFFMAN
+     * 
+     * @see #FORMAT_ARBRE_HUFFMAN
      * 
      * <p>
-     * Un texte non lisible comme du bytecode renverra une représentation vide.
+     * Un texte non lisible comme du bytecode renverra une 
+     * représentation vide.
      * 
-     * @return représentation de l'arbre de Huffman, ou une chaîne vide
-     * 	       si l'arbre de Huffman est lui-même vide
+     * @return représentation de l'arbre de Huffman, ou une chaîne
+     *         vide si l'arbre de Huffman est lui-même vide.
      */
     @Override 
     public String toString() {
@@ -199,7 +198,7 @@ public class ArbreHuffman {
      *		à fusionner dans le tableau ? 
      * </li>
      * <li> 
-     * 		Oui : création d'un parent à partir des deux noeuds,
+     *      Oui : création d'un parent à partir des deux noeuds,
      * 	    puis mettre le parent dans le tableau.
      * </li>
      * <li> Non : STOP </li>
@@ -260,6 +259,5 @@ public class ArbreHuffman {
 
         System.arraycopy(noeudsFeuilles, 0, noeudsTampon,
                                          0, noeudsFeuilles.length);
-
     }
 }

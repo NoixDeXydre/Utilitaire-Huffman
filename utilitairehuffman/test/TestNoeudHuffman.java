@@ -23,7 +23,7 @@ public class TestNoeudHuffman {
      * Test de la construction d'un parent (noeudHuffmanParent)
      */
     @Test
-    public void testNoeudHuffmanParent() { // static auto d'Eclipse
+    public void testNoeudHuffmanParent() {
 
         // Fréquences invalides
         assertThrows(IllegalArgumentException.class,
@@ -57,7 +57,7 @@ public class TestNoeudHuffman {
      */
     @Test
     // Test de la construction d'un noeud simple
-    public void testNoeudHuffmanFeuille() { // static auto d'Eclipse
+    public void testNoeudHuffmanFeuille() {
 
         assertThrows(IllegalArgumentException.class,
                 () -> new NoeudHuffman('a', -0.1));
@@ -73,7 +73,7 @@ public class TestNoeudHuffman {
      * Tests de estFeuille
      */
     @Test
-    public void testEstFeuille() { // static auto d'Eclipse
+    public void testEstFeuille() {
 
         // Le noeud est sensé être une feuille
         assertEquals(new NoeudHuffman('a', 1).estFeuille(), true);
@@ -111,7 +111,7 @@ public class TestNoeudHuffman {
      * Tests de getLettre
      */
     @Test
-    public void testGetLettre() { // static auto d'Eclipse
+    public void testGetLettre() {
 
         assertEquals(new NoeudHuffman('a', 0.18).getLettre(), 'a');
         assertEquals(new NoeudHuffman('2', 0.18).getLettre(), '2');
@@ -130,7 +130,7 @@ public class TestNoeudHuffman {
      * Tests de getEnfantGauche
      */
     @Test
-    public void testGetEnfantGauche() { // static auto d'Eclipse
+    public void testGetEnfantGauche() {
         NoeudHuffman enfant1 = new NoeudHuffman('a', 0.18);
         NoeudHuffman enfant2 = new NoeudHuffman('b', 0.18);
         NoeudHuffman parent = new NoeudHuffman(enfant1, enfant2);
@@ -141,7 +141,7 @@ public class TestNoeudHuffman {
      * Tests de getEnfantDroit
      */
     @Test
-    public void testGetEnfantDroit() { // static auto d'Eclipse
+    public void testGetEnfantDroit() {
         NoeudHuffman enfant1 = new NoeudHuffman('a', 0.18);
         NoeudHuffman enfant2 = new NoeudHuffman('b', 0.18);
         NoeudHuffman parent = new NoeudHuffman(enfant1, enfant2);
@@ -152,7 +152,7 @@ public class TestNoeudHuffman {
      * Tests de getNoeudParent
      */
     @Test
-    public void testGetNoeudParent() { // static auto d'Eclipse
+    public void testGetNoeudParent() {
         NoeudHuffman enfant1 = new NoeudHuffman('a', 0.18);
         NoeudHuffman enfant2 = new NoeudHuffman('b', 0.18);
         NoeudHuffman parent = new NoeudHuffman(enfant1, enfant2);

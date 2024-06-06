@@ -77,6 +77,7 @@ public class TestArbreHuffman {
                     (getDictLettresFrequences
                     (cheminsFichiers[2])).toString().replaceAll("\\s+", ""));
         
-        // FIXME pas de test dans le cas où la JVM ne gère pas l'encodage UFT-8
+        // FIXME pas de test dans le cas où la JVM ne gère pas 
+        // l'encodage UFT-8
     }
 }

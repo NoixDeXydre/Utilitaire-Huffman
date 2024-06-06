@@ -24,7 +24,7 @@ public class TestLectureFichier {
      * Tests de getLiseurChar
      */
     @Test
-    public void testGetLiseurChar() { // static auto d'Eclipse
+    public void testGetLiseurChar() {
 
         // Cas d'erreur
         assertThrows(IOException.class,
@@ -37,7 +37,7 @@ public class TestLectureFichier {
      * @throws IOException @see java.lang.IOException
      */
     @Test
-    public void testGetLongueurTexte() throws IOException { // static auto d'Eclipse
+    public void testGetLongueurTexte() throws IOException {
 
         final String[] cheminsFichiers = {
             "utilitairehuffman/test/textes/cajouj.txt",

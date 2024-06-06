@@ -21,7 +21,8 @@ import java.util.Scanner;
  */
 public class LectureFichier {
     
-    // TODO faire en sorte que ce soit l'appelant qui précise l'encodage
+    // TODO faire en sorte que ce soit l'appelant qui précise 
+    // l'encodage
 	
     /** Encodage supporté par l'arbre */
     public final static String ENCODAGE_TEXTE = "UTF-8";
@@ -32,14 +33,15 @@ public class LectureFichier {
      * un fichier caractère par caractère dans l'encodage UTF-8.
      * 
      * <p>
-     * Les données que donne la liseuse sont sous la forme de bytecode,
-     * il faut donc effectuer du casting pour bien lire les données.
+     * Les données que donne la liseuse sont sous la forme de 
+     * bytecode, il faut donc effectuer du casting pour bien lire 
+     * les données.
      * 
      * @see java.io.BufferedReader
      * 
      * @param cheminFichier
      * @return le liseur
-     * @throws IOException           @see java.lang.IOException
+     * @throws IOException @see java.lang.IOException
      */
     public static BufferedReader getLiseurChar(String cheminFichier) 
     			   throws IOException {

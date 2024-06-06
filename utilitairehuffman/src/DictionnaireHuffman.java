@@ -27,10 +27,12 @@ public class DictionnaireHuffman {
     /**
      * <p>
      * Donne un dictionnaire avec en clé des lettres 
-     * et en valeur des fréquences associées à partir d'un fichier texte.
+     * et en valeur des fréquences associées à partir d'un fichier 
+     * texte.
      * 
      * <p>
-     * Avant d'être retourné, le dictionnaire est trié par ordre croissant.
+     * Avant d'être retourné, le dictionnaire est trié par ordre 
+     * croissant.
      * 
      * <p>
      * On peut calculer la fréquence d'un caractère 
@@ -42,7 +44,8 @@ public class DictionnaireHuffman {
      * <p>
      * un + 1 = un + 1 / nbrCaractereTotal;
      * </p>
-     * Où nbrCaractereTotal est le nombre de caractère total dans un texte.
+     * Où nbrCaractereTotal est le nombre de caractère total dans un
+     * texte.
      * 
      * @param cheminTexte chemin du fichier à partir 
      *                    duquel le dictionnaire sera créé.
@@ -87,8 +90,8 @@ public class DictionnaireHuffman {
      * et le code compressé en tant que valeur.
      * 
      * <p>
-     * Cela est utile pour la compression car chaque lettre détecté en clé
-     * pourra être remplacé par son code Huffman.
+     * Cela est utile pour la compression car chaque lettre détecté 
+     * en clé pourra être remplacé par son code Huffman.
      * 
      * @see getDictDecompression
      * 

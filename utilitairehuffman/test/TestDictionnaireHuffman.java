@@ -35,8 +35,6 @@ public class TestDictionnaireHuffman {
     /**
      * Tests de getDictCompression.
      * @throws FileNotFoundException 
-     *
-     * @throws IOException @see java.lang.IOException
      */
     @Test
     public void testGetDictCompression() throws FileNotFoundException {
