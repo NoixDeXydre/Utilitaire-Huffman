@@ -5,14 +5,14 @@
 
 package utilitairehuffman;
 
-import utilitairehuffman.src.ArbreHuffman;
-
 import static utilitairehuffman.src.CompressionHuffman.compresserFichier;
-import static utilitairehuffman.src.PersistanceHuffman.ecrireDonnees;
 import static utilitairehuffman.src.DictionnaireHuffman
                                    .getDictLettresFrequences;
+import static utilitairehuffman.src.PersistanceHuffman.ecrireDonnees;
 
 import java.io.IOException;
+
+import utilitairehuffman.src.ArbreHuffman;
 
 /**
  * Gestion de l'entrée utilisateur pour le fonctionnement de 
@@ -93,7 +93,7 @@ public class UtilitaireHuffman {
                 """
                 _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
                 |        Programme de compression via arbre de Huffman        |
-                |                VERSION 0.2 PREPRODUCTION DEMO               |
+                                |                VERSION 0.3 PREPRODUCTION DEMO               |
                 |-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-|
                 
                 Tapez "help" en argument pour une liste des commandes 
@@ -195,7 +195,7 @@ public class UtilitaireHuffman {
         
         try {
             if ("encode".equalsIgnoreCase(args[0])) {
-                System.out.println("Demande d'encodage"); // DEBUG
+                System.out.println("Encodage de votre fichier ...");
 
                 // TODO faire le lien avec ArbreHuffman()
                 argCorrect = true;
@@ -213,24 +213,25 @@ public class UtilitaireHuffman {
                 try {
                     compresserFichier(fichierSource, arbreSource,
                                       fichierDestination);
-                    System.out.println("Appel de la compression correcte"); // stub
+                    System.out.println("Fichier compréssé.");
                 } catch (IOException e) {
                     System.out.println(LECTURE_FICHIER_ERREUR);
-                    // TODO quand implémenté : 2 messages d'erreurs si chemin fichier et/ou arbre incorrect
+                    // TODO quand implémenté : 2 messages d'erreurs
+                    // si chemin fichier et/ou arbre incorrect
                 }
-                System.out.println("pas encore fini"); // stub
+                System.out.println("Pas encore implémenté"); // stub
             }
 
             if ("decode".equalsIgnoreCase(args[0])) {
-                System.out.println("Demande de décodage"); // DEBUG
+                System.out.println("Décodage de votre fichier ...");
                 // TODO faire le lien avec ArbreHuffman()
                 argCorrect = true;
                 fichierSource = args[1];
-                System.out.println("pas encore fini"); // stub
+                System.out.println("Pas encore implémenté"); // stub
             }
 
             if ("make-abr".equalsIgnoreCase(args[0])) {
-                System.out.println("Demande de création d'arbre"); // DEBUG
+                System.out.println("Création de l'arbre de Huffman ...");
                 argCorrect = true;
                 
                 fichierSource = args[1];
@@ -245,20 +246,19 @@ public class UtilitaireHuffman {
                 ArbreHuffman fichierHuffman = null;
                 try {
               
-                	fichierHuffman = new ArbreHuffman(getDictLettresFrequences(fichierSource)); 
-                    System.out.println(
-                      "Appel de la création de l'arbre correcte"); // stub
+                    fichierHuffman = new ArbreHuffman(getDictLettresFrequences(fichierSource));
+                    System.out.println("Arbre créé.");
                     
                 } catch (IOException e) {
                     System.out.println(LECTURE_FICHIER_ERREUR);
                     System.exit(1);
                 }
                 
-                System.out.println("Demande l'écriture du fichier"); // DEBUG
+                System.out.println("Création du fichier arbre ...");
                 try {
                     ecrireDonnees(fichierHuffman.toString(), arbreDestination);  // Données STUB
                     
-                    System.out.println("Fichier écrit"); // DEBUG
+                    System.out.println("Arbre créé et écrit.");
                     
                 } catch (IOException erreurEcriture) {
                     System.out.println(ECRITURE_ARBRE_ERREUR);
