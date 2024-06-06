@@ -92,8 +92,8 @@ public class UtilitaireHuffman {
         final String HABILLAGE_CONSOLE_EN_TETE =
                 """
                 _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-                |        Programme de compression via arbre de Huffman        |
-                                |                VERSION 0.3 PREPRODUCTION DEMO               |
+                |         Programme de compression via arbre de Huffman       |
+                |                    VERSION 0.3 PRODUCTION                   |
                 |-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-|
                 
                 Tapez "help" en argument pour une liste des commandes 
